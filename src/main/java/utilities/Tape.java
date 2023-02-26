@@ -23,12 +23,13 @@
 package utilities;
 
 import configuration.TapeSettingsType;
-import machine.SpectrumClock;
+import lombok.extern.slf4j.Slf4j;
+import machine.ClockTimeoutListener;
 import machine.MachineTypes;
 import machine.Memory;
+import machine.SpectrumClock;
 import z80core.Z80;
 
-import javax.swing.table.AbstractTableModel;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -41,16 +42,16 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  *
  * @author jsanchez
  */
 @Slf4j
-public class Tape implements machine.ClockTimeoutListener {
+public class Tape implements ClockTimeoutListener {
 
     private Z80 cpu;
     private ByteArrayOutputStream record;
@@ -58,8 +59,8 @@ public class Tape implements machine.ClockTimeoutListener {
     private ByteArrayInputStream bais;
     private InflaterInputStream iis;
     private File filename;
-    private byte tapeBuffer[];
-    private final int offsetBlocks[] = new int[4096]; // el AMC tiene más de 1500 bloques!!!
+    private byte[] tapeBuffer;
+    private final int[] offsetBlocks = new int[4096]; // el AMC tiene más de 1500 bloques!!!
     private int nOffsetBlocks;
     private int idxHeader;
     private int tapePos;
@@ -148,7 +149,7 @@ public class Tape implements machine.ClockTimeoutListener {
         nOffsetBlocks = 0;
         idxHeader = 0;
         Arrays.fill(offsetBlocks, 0);
-        tapeTableModel = new TapeTableModel();
+        tapeTableModel = new TapeTableModel(this);
     }
 
     /**
@@ -159,10 +160,7 @@ public class Tape implements machine.ClockTimeoutListener {
      * @throws NullPointerException Thrown if the listener argument is null.
      */
     public void addTapeChangedListener(final TapeStateListener listener) {
-
-        if (listener == null) {
-            throw new NullPointerException("Error: Listener can't be null");
-        }
+        Objects.requireNonNull(listener, "Error: Listener can't be null");
 
         // Avoid duplicates
         if (!stateListeners.contains(listener)) {
@@ -180,10 +178,7 @@ public class Tape implements machine.ClockTimeoutListener {
      * registered.
      */
     public void removeTapeChangedListener(final TapeStateListener listener) {
-
-        if (listener == null) {
-            throw new NullPointerException("Internal Error: Listener can't be null");
-        }
+        Objects.requireNonNull(listener, "Internal Error: Listener can't be null");
 
         if (!stateListeners.remove(listener)) {
             throw new IllegalArgumentException("Internal Error: Listener was not listening on object");
@@ -191,9 +186,7 @@ public class Tape implements machine.ClockTimeoutListener {
     }
 
     private void fireTapeStateChanged(final TapeState state) {
-        stateListeners.forEach(listener -> {
-            listener.stateChanged(state);
-        });
+        stateListeners.forEach(listener -> listener.stateChanged(state));
     }
 
     /**
@@ -204,10 +197,7 @@ public class Tape implements machine.ClockTimeoutListener {
      * @throws NullPointerException Thrown if the listener argument is null.
      */
     public void addTapeBlockListener(final TapeBlockListener listener) {
-
-        if (listener == null) {
-            throw new NullPointerException("Error: Listener can't be null");
-        }
+        Objects.requireNonNull(listener, "Error: Listener can't be null");
 
         // Avoid duplicates
         if (!blockListeners.contains(listener)) {
@@ -225,10 +215,7 @@ public class Tape implements machine.ClockTimeoutListener {
      * registered.
      */
     public void removeTapeBlockListener(final TapeBlockListener listener) {
-
-        if (listener == null) {
-            throw new NullPointerException("Internal Error: Listener can't be null");
-        }
+        Objects.requireNonNull(listener, "Internal Error: Listener can't be null");
 
         if (!blockListeners.remove(listener)) {
             throw new IllegalArgumentException("Internal Error: Listener was not listening on object");
@@ -236,9 +223,7 @@ public class Tape implements machine.ClockTimeoutListener {
     }
 
     private void fireTapeBlockChanged(final int block) {
-        blockListeners.forEach(listener -> {
-            listener.blockChanged(block);
-        });
+        blockListeners.forEach(listener -> listener.blockChanged(block));
     }
 
     public void setSpectrumModel(MachineTypes model) {
@@ -249,7 +234,7 @@ public class Tape implements machine.ClockTimeoutListener {
         cpu = z80;
     }
 
-    private int getNumBlocks() {
+    int getNumBlocks() {
         return tapeExtension == TapeExtensionType.NO_TAPE ? 1 : nOffsetBlocks + 1;
     }
 
@@ -267,7 +252,7 @@ public class Tape implements machine.ClockTimeoutListener {
     }
 
     private String getCleanMsg(int offset, int len) {
-        byte msg[] = new byte[len];
+        byte[] msg = new byte[len];
 
         // Hay que quitar los caracteres especiales
         for (int car = 0; car < len; car++) {
@@ -281,7 +266,7 @@ public class Tape implements machine.ClockTimeoutListener {
         return new String(msg);
     }
 
-    private String getBlockType(int block) {
+    String getBlockType(int block) {
         java.util.ResourceBundle bundle =
                 java.util.ResourceBundle.getBundle("utilities/Bundle"); // NOI18N
         if (tapeExtension == TapeExtensionType.NO_TAPE) {
@@ -303,92 +288,37 @@ public class Tape implements machine.ClockTimeoutListener {
 
         int offset = offsetBlocks[block];
 
-        String msg;
-        switch ((tapeBuffer[offset] & 0xff)) {
-            case 0x10: // Standard speed data block
-                msg = bundle.getString("STD_SPD_DATA");
-                break;
-            case 0x11: // Turbo speed data block
-                msg = bundle.getString("TURBO_SPD_DATA");
-                break;
-            case 0x12: // Pure Tone Block
-                msg = bundle.getString("PURE_TONE");
-                break;
-            case 0x13: // Pulse Sequence Block
-                msg = bundle.getString("PULSE_SEQUENCE");
-                break;
-            case 0x14: // Pure Data Block
-                msg = bundle.getString("PURE_DATA");
-                break;
-            case 0x15: // Direct Data Block
-                msg = bundle.getString("DIRECT_DATA");
-                break;
-            case 0x18: // CSW Recording Block
-                msg = bundle.getString("CSW_RECORDING");
-                break;
-            case 0x19: // Generalized Data Block
-                msg = bundle.getString("GDB_DATA");
-                break;
-            case 0x20: // Pause (silence) or 'Stop the Tape' command
-                msg = bundle.getString("PAUSE_STOP");
-                break;
-            case 0x21: // Group Start
-                msg = bundle.getString("GROUP_START");
-                break;
-            case 0x22: // Group End
-                msg = bundle.getString("GROUP_STOP");
-                break;
-            case 0x23: // Jump to Block
-                msg = bundle.getString("JUMP_TO");
-                break;
-            case 0x24: // Loop Start
-                msg = bundle.getString("LOOP_START");
-                break;
-            case 0x25: // Loop End
-                msg = bundle.getString("LOOP_STOP");
-                break;
-            case 0x26: // Call Sequence
-                msg = bundle.getString("CALL_SEQ");
-                break;
-            case 0x27: // Return from Sequence
-                msg = bundle.getString("RETURN_SEQ");
-                break;
-            case 0x28: // Select Block
-                msg = bundle.getString("SELECT_BLOCK");
-                break;
-            case 0x2A: // Stop the tape if in 48K mode
-                msg = bundle.getString("STOP_48K_MODE");
-                break;
-            case 0x2B: // Set Signal Level
-                msg = bundle.getString("SET_SIGNAL_LEVEL");
-                break;
-            case 0x30: // Text Description
-                msg = bundle.getString("TEXT_DESC");
-                break;
-            case 0x31: // Message Block
-                msg = bundle.getString("MESSAGE_BLOCK");
-                break;
-            case 0x32: // Archive Info
-                msg = bundle.getString("ARCHIVE_INFO");
-                break;
-            case 0x33: // Hardware Type
-                msg = bundle.getString("HARDWARE_TYPE");
-                break;
-            case 0x35: // Custom Info Block
-                msg = bundle.getString("CUSTOM_INFO");
-                break;
-            case 'Z': // ZXTape!
-//                msg = bundle.getString("GLUE_BLOCK");
-                msg = "ZXTape!";
-                break;
-            default:
-                msg = String.format(bundle.getString("UNKN_TZX_BLOCK"), tapeBuffer[offset]);
-        }
-
-        return msg;
+        return switch ((tapeBuffer[offset] & 0xff)) {
+            case 0x10 -> bundle.getString("STD_SPD_DATA");      // Standard speed data block
+            case 0x11 -> bundle.getString("TURBO_SPD_DATA");    // Turbo speed data block
+            case 0x12 -> bundle.getString("PURE_TONE");         // Pure Tone Block
+            case 0x13 -> bundle.getString("PULSE_SEQUENCE");    // Pulse Sequence Block
+            case 0x14 -> bundle.getString("PURE_DATA");         // Pure Data Block
+            case 0x15 -> bundle.getString("DIRECT_DATA");       // Direct Data Block
+            case 0x18 -> bundle.getString("CSW_RECORDING");     // CSW Recording Block
+            case 0x19 -> bundle.getString("GDB_DATA");          // Generalized Data Block
+            case 0x20 -> bundle.getString("PAUSE_STOP");        // Pause (silence) or 'Stop the Tape' command
+            case 0x21 -> bundle.getString("GROUP_START");       // Group Start
+            case 0x22 -> bundle.getString("GROUP_STOP");        // Group End
+            case 0x23 -> bundle.getString("JUMP_TO");           // Jump to Block
+            case 0x24 -> bundle.getString("LOOP_START");        // Loop Start
+            case 0x25 -> bundle.getString("LOOP_STOP");         // Loop End
+            case 0x26 -> bundle.getString("CALL_SEQ");          // Call Sequence
+            case 0x27 -> bundle.getString("RETURN_SEQ");        // Return from Sequence
+            case 0x28 -> bundle.getString("SELECT_BLOCK");      // Select Block
+            case 0x2A -> bundle.getString("STOP_48K_MODE");     // Stop the tape if in 48K mode
+            case 0x2B -> bundle.getString("SET_SIGNAL_LEVEL");  // Set Signal Level
+            case 0x30 -> bundle.getString("TEXT_DESC");         // Text Description
+            case 0x31 -> bundle.getString("MESSAGE_BLOCK");     // Message Block
+            case 0x32 -> bundle.getString("ARCHIVE_INFO");      // Archive Info
+            case 0x33 -> bundle.getString("HARDWARE_TYPE");     // Hardware Type
+            case 0x35 -> bundle.getString("CUSTOM_INFO");       // Custom Info Block
+            case 'Z' -> "ZXTape!";                                   // bundle.getString("GLUE_BLOCK");
+            default -> String.format(bundle.getString("UNKN_TZX_BLOCK"), tapeBuffer[offset]);
+        };
     }
 
-    private String getBlockInfo(int block) {
+    String getBlockInfo(int block) {
         java.util.ResourceBundle bundle =
                 java.util.ResourceBundle.getBundle("utilities/Bundle"); // NOI18N
 
@@ -595,21 +525,14 @@ public class Tape implements machine.ClockTimeoutListener {
     public void clockTimeout() {
 
         switch (tapeExtension) {
-            case TAP:
-                playTap();
-                break;
-            case TZX:
-                playTzx();
-                break;
-            case CSW:
-                playCsw();
-                break;
-            default:
-                log.warn("Warning!, clockTimeout without tape playing");
+            case TAP -> playTap();
+            case TZX -> playTzx();
+            case CSW -> playCsw();
+            default -> log.warn("Warning!, clockTimeout without tape playing");
         }
     }
 
-    private int readInt(byte buffer[], int start, int len) {
+    private int readInt(byte[] buffer, int start, int len) {
         int res = 0;
 
         for (int idx = 0; idx < len; idx++) {
@@ -1994,62 +1917,4 @@ public class Tape implements machine.ClockTimeoutListener {
         micBit = micState;
     }
 
-    private class TapeTableModel extends AbstractTableModel {
-
-        public TapeTableModel() {
-        }
-
-        @Override
-        public int getRowCount() {
-            return getNumBlocks();
-        }
-
-        @Override
-        public int getColumnCount() {
-            return 3;
-        }
-
-        @Override
-        public Object getValueAt(int row, int col) {
-            String msg;
-
-//        System.out.println(String.format("getValueAt row %d, col %d", row, col));
-            switch (col) {
-                case 0:
-                    return String.format("%4d", row + 1);
-                case 1:
-                    msg = getBlockType(row);
-                    break;
-                case 2:
-                    msg = getBlockInfo(row);
-                    break;
-                default:
-                    return "NON EXISTENT COLUMN!";
-            }
-            return msg;
-        }
-
-        @Override
-        public String getColumnName(int col) {
-            java.util.ResourceBundle bundle =
-                    java.util.ResourceBundle.getBundle("gui/Bundle"); // NOI18N
-
-            String msg;
-
-            switch (col) {
-                case 0:
-                    msg = bundle.getString("JSpeccy.tapeCatalog.columnModel.title0");
-                    break;
-                case 1:
-                    msg = bundle.getString("JSpeccy.tapeCatalog.columnModel.title1");
-                    break;
-                case 2:
-                    msg = bundle.getString("JSpeccy.tapeCatalog.columnModel.title2");
-                    break;
-                default:
-                    msg = "COLUMN ERROR!";
-            }
-            return msg;
-        }
-    }
 }

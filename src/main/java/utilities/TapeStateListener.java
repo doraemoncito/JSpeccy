@@ -12,5 +12,5 @@ import utilities.Tape.TapeState;
  * @author jsanchez
  */
 public interface TapeStateListener {
-    public void stateChanged(final TapeState state);
+    void stateChanged(final TapeState state);
 }

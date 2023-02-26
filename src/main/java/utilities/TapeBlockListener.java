@@ -9,5 +9,5 @@ package utilities;
  * @author jsanchez
  */
 public interface TapeBlockListener {
-     public void blockChanged(final int block);
+     void blockChanged(final int block);
 }

@@ -21,9 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 class Audio {
-    private int samplingFrequency;
     private SourceDataLine line;
-    private DataLine.Info infoDataLine;
     private AudioFormat fmt;
     // Buffer de sonido para 1 frame a 48 Khz estéreo, hay más espacio del necesario.
     private final byte[] buf = new byte[4096];
@@ -36,7 +34,7 @@ class Audio {
     private int level, lastLevel;
     private int audiotstates;
     private int samplesPerFrame, frameSize;
-    private int soundMode, channels;
+    private int soundMode;
     private long timeRem, step;
     private MachineTypes spectrumModel;
     private boolean enabledAY;
@@ -49,19 +47,18 @@ class Audio {
     }
 
     synchronized void open(MachineTypes model, AY8912 ay8912, boolean hasAY, int freq) {
-        samplingFrequency = freq;
 
         soundMode = settings.getSoundMode();
         if (soundMode < 0 || soundMode > 3)
             soundMode = 0;
 
-        channels = soundMode > 0 ? 2 : 1;
+        int channels = soundMode > 0 ? 2 : 1;
 
         if (line == null) {
             try {
-                fmt = new AudioFormat(samplingFrequency, 16, channels, true, false);
-//                System.out.println(fmt);
-                infoDataLine = new DataLine.Info(SourceDataLine.class, fmt);
+                fmt = new AudioFormat(freq, 16, channels, true, false);
+                log.trace("{}", fmt);
+                DataLine.Info infoDataLine = new DataLine.Info(SourceDataLine.class, fmt);
                 line = (SourceDataLine) AudioSystem.getLine(infoDataLine);
             } catch (LineUnavailableException excpt) {
                 log.info("Unavailable Line: ", excpt);
@@ -69,34 +66,28 @@ class Audio {
 
             enabledAY = hasAY;
             timeRem = 0;
-            samplesPerFrame = samplingFrequency / 50;
+            samplesPerFrame = freq / 50;
             frameSize = samplesPerFrame * 2 * channels;
-//            System.out.println(String.format("FREQ = %d, samples = %d, frameSize = %d",
-//                    samplingFrequency, samplesPerFrame, frameSize));
+            log.trace("FREQ = {}, samples = {}, frameSize = {}", freq, samplesPerFrame, frameSize);
 
             if (model != spectrumModel) {
                 spectrumModel = model;
                 ay8912.setSpectrumModel(spectrumModel);
             }
 
-            step = (long)(((double)spectrumModel.tstatesFrame / (double)samplesPerFrame) * 100000.0);
+            step = (long) (((double) spectrumModel.tstatesFrame / (double) samplesPerFrame) * 100_000.0);
             audiotstates = ptrBeeper = ptrBuf = 0;
             level = lastLevel = 0;
 
-            ay8912.setMaxAmplitude(soundMode == 0 ? 10900 : 16350);
+            ay8912.setMaxAmplitude((soundMode == 0) ? 10900 : 16350);
             switch (soundMode) {
-                case 2: // Stereo ACB
-                    ay8912.setBufferChannels(ayBufA, ayBufC, ayBufB);
-                    break;
-                case 3: // Stereo BAC
-                    ay8912.setBufferChannels(ayBufB, ayBufA, ayBufC);
-                    break;
-                default: // Stereo ABC or Mono
-                    ay8912.setBufferChannels(ayBufA, ayBufB, ayBufC);
+                case 2 -> ay8912.setBufferChannels(ayBufA, ayBufC, ayBufB);     // Stereo ACB
+                case 3 -> ay8912.setBufferChannels(ayBufB, ayBufA, ayBufC);     // Stereo BAC
+                default -> ay8912.setBufferChannels(ayBufA, ayBufB, ayBufC);    // Stereo ABC or Mono
             }
 
             if (enabledAY) {
-                ay8912.setAudioFreq(samplingFrequency);
+                ay8912.setAudioFreq(freq);
                 ay8912.startPlay();
                 ay = ay8912;
             }
@@ -190,7 +181,7 @@ class Audio {
         if (ptrBeeper == 0)
             return;
 
-//        System.out.println(ptrBeeper + ", " + ay.getSampleCount());
+        log.trace("{}, {}", ptrBeeper, ay.getSampleCount());
 
         if (soundMode == 0) {
             endFrameMono();

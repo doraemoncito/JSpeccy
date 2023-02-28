@@ -102,7 +102,7 @@ public class SnapshotSNA implements SnapshotFile {
 
             spectrum.setBorder(snaHeader[26]);
 
-            memory = new MemoryState();
+            memory = MemoryState.aMemoryState().build();
             spectrum.setMemoryState(memory);
 
             byte[] buffer = new byte[0x4000];

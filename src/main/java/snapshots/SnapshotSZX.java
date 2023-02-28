@@ -511,7 +511,7 @@ public class SnapshotSZX implements SnapshotFile {
                         break;
                     case ZXSTBID_RAMPAGE:
                         if (memory == null) {
-                            memory = new MemoryState();
+                            memory = MemoryState.aMemoryState().build();
                             spectrum.setMemoryState(memory);
                         }
 
@@ -555,7 +555,7 @@ public class SnapshotSZX implements SnapshotFile {
                         break;
                     case ZXSTBID_MULTIFACE:
                         if (memory == null) {
-                            memory = new MemoryState();
+                            memory = MemoryState.aMemoryState().build();
                             spectrum.setMemoryState(memory);
                         }
 
@@ -750,7 +750,7 @@ public class SnapshotSZX implements SnapshotFile {
                         }
 
                         if (memory == null) {
-                            memory = new MemoryState();
+                            memory = MemoryState.aMemoryState().build();
                             spectrum.setMemoryState(memory);
                         }
 
@@ -821,7 +821,7 @@ public class SnapshotSZX implements SnapshotFile {
                         }
 
                         if (memory == null) {
-                            memory = new MemoryState();
+                            memory = MemoryState.aMemoryState().build();
                             spectrum.setMemoryState(memory);
                         }
 
@@ -879,7 +879,7 @@ public class SnapshotSZX implements SnapshotFile {
                         }
 
                         if (memory == null) {
-                            memory = new MemoryState();
+                            memory = MemoryState.aMemoryState().build();
                             spectrum.setMemoryState(memory);
                         }
 
@@ -894,7 +894,7 @@ public class SnapshotSZX implements SnapshotFile {
                         break;
                     case ZXSTBID_LECRAMPAGE:
                         if (memory == null) {
-                            memory = new MemoryState();
+                            memory = MemoryState.aMemoryState().build();
                             spectrum.setMemoryState(memory);
                         }
 

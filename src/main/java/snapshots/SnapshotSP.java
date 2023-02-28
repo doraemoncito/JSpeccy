@@ -97,7 +97,7 @@ public class SnapshotSP implements SnapshotFile {
             }
             // byte 37 unused
 
-            memory = new MemoryState();
+            memory = MemoryState.aMemoryState().build();
             spectrum.setMemoryState(memory);
 
             byte[] buffer = new byte[0x4000];

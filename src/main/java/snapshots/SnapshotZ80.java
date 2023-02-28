@@ -197,7 +197,7 @@ public class SnapshotZ80 implements SnapshotFile {
                     spectrum.setJoystick(JoystickModel.NONE);
             }
 
-            memory = new MemoryState();
+            memory = MemoryState.aMemoryState().build();
             spectrum.setMemoryState(memory);
 
             // Si regPC != 0, es un z80 v1.0

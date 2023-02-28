@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 /**
  *
@@ -74,42 +75,32 @@ public final class Memory {
     }
 
     public MemoryState getMemoryState() {
-        MemoryState state = new MemoryState();
+        MemoryState.MemoryStateBuilder builder = MemoryState.aMemoryState();
 
         switch (spectrumModel) {
-            case SPECTRUM16K:
-                state.setPageRam(5, savePage(5));
-                break;
-            case SPECTRUM48K:
-                state.setPageRam(5, savePage(5));
-                state.setPageRam(2, savePage(2));
-                state.setPageRam(0, savePage(0));
+            case SPECTRUM16K -> builder.withPageRam(5, savePage(5));
+            case SPECTRUM48K -> {
+                IntStream.of(5, 2, 0).forEach(page -> builder.withPageRam(page, savePage(page)));
                 if (lecRam != null) {
-                    state.setPortFD(portFD);
-                    for (int page = 0; page < 16; page++) {
-                        state.setLecPageRam(page, savePageLec(page));
-                    }
+                    builder.withPortFD(portFD);
+                    IntStream.range(0, 16).forEach(page -> builder.withLecPageRam(page, savePageLec(page)));
                 }
-                break;
-            default:
-                for (int page = 0; page < 8; page++) {
-                    state.setPageRam(page, savePage(page));
-                }
+            }
+            default -> IntStream.range(0, 8).forEach(page -> builder.withPageRam(page, savePage(page)));
         }
 
-        state.setIF2RomPaged(IF2RomPaged);
+        builder.withIF2RomPaged(IF2RomPaged);
         if (IF2RomPaged) {
-            state.setIF2Rom(saveIF2Rom());
+            builder.withIF2Rom(saveIF2Rom());
         }
 
-        state.setMf128on48k(settings.getSpectrumSettings().isMf128On48K());
-        state.setMultifaceRam(saveMFRam());
-        state.setMultifacePaged(multifacePaged);
-        state.setMultifaceLocked(multifaceLocked);
+        builder.withMf128on48k(settings.getSpectrumSettings().isMf128On48K())
+                .withMultifaceRam(saveMFRam())
+                .withMultifacePaged(multifacePaged)
+                .withMultifaceLocked(multifaceLocked)
+                .withIF1RomPaged(IF1RomPaged);
 
-        state.setIF1RomPaged(IF1RomPaged);
-
-        return state;
+        return builder.build();
     }
 
     public void setMemoryState(MemoryState state) {

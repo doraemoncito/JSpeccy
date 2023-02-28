@@ -5,6 +5,15 @@
 package machine;
 
 import joystickinput.JoystickRaw;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+import machine.joystick.CursorJoystick;
+import machine.joystick.FullerJoystick;
+import machine.joystick.Joystick;
+import machine.joystick.KempstonJoystick;
+import machine.joystick.NoneJoystick;
+import machine.joystick.Sinclair1Joystick;
+import machine.joystick.Sinclair2Joystick;
 
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -15,19 +24,33 @@ import java.util.Arrays;
  *
  * @author jsanchez
  */
+@Slf4j
 public class Keyboard implements KeyListener {
 
-    public static enum JoystickModel {
+    public enum JoystickModel {
 
-        NONE, KEMPSTON, SINCLAIR1, SINCLAIR2, CURSOR, FULLER
-    };
+        NONE(new NoneJoystick()),
+        KEMPSTON(new KempstonJoystick()),
+        SINCLAIR1(new Sinclair1Joystick()),
+        SINCLAIR2(new Sinclair2Joystick()),
+        CURSOR(new CursorJoystick()),
+        FULLER(new FullerJoystick());
 
-    private final int rowKey[] = new int[8];
+        @Getter
+        private final Joystick joystick;
+
+        JoystickModel(final Joystick joystick) {
+            this.joystick = joystick;
+        }
+
+    }
+
+    private final int[] rowKey = new int[8];
     private int sjs1, sjs2;
     private boolean shiftPressed, mapPCKeys;
     private final boolean winBug;
-    private final KeyEvent keyEventPending[] = new KeyEvent[8];
-    private int kempston, fuller;
+    private final KeyEvent[] keyEventPending = new KeyEvent[8];
+
     private JoystickModel joystickModel, shadowJoystick;
     private final JoystickRaw joystick1, joystick2;
     private boolean rzxEnabled = false;
@@ -55,20 +78,20 @@ public class Keyboard implements KeyListener {
      * -----------------------------------------
      * 
      */
-    private static final int KEY_PRESSED_BIT0 = 0xfe;
-    private static final int KEY_PRESSED_BIT1 = 0xfd;
-    private static final int KEY_PRESSED_BIT2 = 0xfb;
-    private static final int KEY_PRESSED_BIT3 = 0xf7;
-    private static final int KEY_PRESSED_BIT4 = 0xef;
-    private static final int KEY_PRESSED_BIT7 = 0x7f;  // for Fuller fire button
-    private static final int KEY_RELEASED_BIT0 = 0x01;
-    private static final int KEY_RELEASED_BIT1 = 0x02;
-    private static final int KEY_RELEASED_BIT2 = 0x04;
-    private static final int KEY_RELEASED_BIT3 = 0x08;
-    private static final int KEY_RELEASED_BIT4 = 0x10;
-    private static final int KEY_RELEASED_BIT5 = 0x20; // for Kempston fire button 2
-    private static final int KEY_RELEASED_BIT6 = 0x40; // for Kempston fire button 3
-    private static final int KEY_RELEASED_BIT7 = 0x80; // for Fuller fire button
+    public static final int KEY_PRESSED_BIT0 = 0xfe;
+    public static final int KEY_PRESSED_BIT1 = 0xfd;
+    public static final int KEY_PRESSED_BIT2 = 0xfb;
+    public static final int KEY_PRESSED_BIT3 = 0xf7;
+    public static final int KEY_PRESSED_BIT4 = 0xef;
+    public static final int KEY_PRESSED_BIT7 = 0x7f;  // for Fuller fire button
+    public static final int KEY_RELEASED_BIT0 = 0x01;
+    public static final int KEY_RELEASED_BIT1 = 0x02;
+    public static final int KEY_RELEASED_BIT2 = 0x04;
+    public static final int KEY_RELEASED_BIT3 = 0x08;
+    public static final int KEY_RELEASED_BIT4 = 0x10;
+    public static final int KEY_RELEASED_BIT5 = 0x20; // for Kempston fire button 2
+    public static final int KEY_RELEASED_BIT6 = 0x40; // for Kempston fire button 3
+    public static final int KEY_RELEASED_BIT7 = 0x80; // for Fuller fire button
 
     public Keyboard(configuration.KeyboardJoystickType config, JoystickRaw joy1, JoystickRaw joy2) {
         reset();
@@ -86,8 +109,9 @@ public class Keyboard implements KeyListener {
     public final void reset() {
         Arrays.fill(rowKey, 0xff);
         shiftPressed = false;
-        kempston = 0;
-        sjs1 = sjs2 = fuller = 0xff;
+        ((KempstonJoystick) JoystickModel.KEMPSTON.getJoystick()).setKempston(0);
+        ((FullerJoystick) JoystickModel.FULLER.getJoystick()).setFuller(0xff);
+        sjs1 = sjs2 = 0xff;
         Arrays.fill(keyEventPending, null);
     }
 
@@ -96,21 +120,17 @@ public class Keyboard implements KeyListener {
     }
 
     public final void setJoystickModel(JoystickModel model) {
-        kempston = 0;
-        sjs1 = sjs2 = fuller = 0xff;
+        ((KempstonJoystick) JoystickModel.KEMPSTON.getJoystick()).setKempston(0);
+        ((FullerJoystick) JoystickModel.FULLER.getJoystick()).setFuller(0xff);
+        sjs1 = sjs2 = 0xff;
 
         if (joystick1 != null) {
             shadowJoystick = model;
 
             switch (shadowJoystick) {
-                case SINCLAIR1:
-                    joystickModel = joystick2 == null ? JoystickModel.SINCLAIR2 : JoystickModel.NONE;
-                    break;
-                case SINCLAIR2:
-                    joystickModel = joystick2 == null ? JoystickModel.SINCLAIR1 : JoystickModel.NONE;
-                    break;
-                default:
-                    joystickModel = JoystickModel.NONE;
+                case SINCLAIR1 -> joystickModel = (joystick2 == null) ? JoystickModel.SINCLAIR2 : JoystickModel.NONE;
+                case SINCLAIR2 -> joystickModel = (joystick2 == null) ? JoystickModel.SINCLAIR1 : JoystickModel.NONE;
+                default -> joystickModel = JoystickModel.NONE;
             }
         } else {
             joystickModel = model;
@@ -118,25 +138,14 @@ public class Keyboard implements KeyListener {
         }
     }
 
-    public final void setJoystickModel(int model) {
+    public final void setJoystickModel(final int model) {
         switch (model) {
-            case 1:
-                setJoystickModel(JoystickModel.KEMPSTON);
-                break;
-            case 2:
-                setJoystickModel(JoystickModel.SINCLAIR1);
-                break;
-            case 3:
-                setJoystickModel(JoystickModel.SINCLAIR2);
-                break;
-            case 4:
-                setJoystickModel(JoystickModel.CURSOR);
-                break;
-            case 5:
-                setJoystickModel(JoystickModel.FULLER);
-                break;
-            default:
-                setJoystickModel(JoystickModel.NONE);
+            case 1 -> setJoystickModel(JoystickModel.KEMPSTON);
+            case 2 -> setJoystickModel(JoystickModel.SINCLAIR1);
+            case 3 -> setJoystickModel(JoystickModel.SINCLAIR2);
+            case 4 -> setJoystickModel(JoystickModel.CURSOR);
+            case 5 -> setJoystickModel(JoystickModel.FULLER);
+            default -> setJoystickModel(JoystickModel.NONE);
         }
     }
 
@@ -160,7 +169,7 @@ public class Keyboard implements KeyListener {
 
     public int readKempstonPort() {
         if (joystick1 == null) {
-            return kempston;
+            return ((KempstonJoystick) JoystickModel.KEMPSTON.getJoystick()).getKempston();
         }
 
         // Standard Kempston Port
@@ -224,7 +233,7 @@ public class Keyboard implements KeyListener {
 
     public int readFullerPort() {
         if (joystick1 == null) {
-            return fuller;
+            return ((FullerJoystick) JoystickModel.FULLER.getJoystick()).getFuller();
         }
 
         int state = joystick1.getButtonMask();
@@ -330,25 +339,23 @@ public class Keyboard implements KeyListener {
         // - If J1 is emulating Sinclair2, J2 emulates Sinclair1
         if (mapJoysticks && joystick1 != null) {
             switch (shadowJoystick) {
-                case KEMPSTON:
+                case KEMPSTON -> {
                     if (joystick2 != null && res == 0xef)
                         joystickToSJS1(joystick2.getButtonMask());
-                    break;
-                case SINCLAIR1:
+                }
+                case SINCLAIR1 -> {
                     if (res == 0xef)
                         joystickToSJS1(joystick1.getButtonMask());
                     if (joystick2 != null && res == 0xf7)
                         joystickToSJS2(joystick2.getButtonMask());
-                    break;
-                case SINCLAIR2:
+                }
+                case SINCLAIR2 -> {
                     if (res == 0xf7)
                         joystickToSJS2(joystick1.getButtonMask());
                     if (joystick2 != null && res == 0xef)
                         joystickToSJS1(joystick2.getButtonMask());
-                    break;
-                case CURSOR:
-                    joystickToCursor();
-                    break;
+                }
+                case CURSOR -> joystickToCursor();
             }
         }
 
@@ -363,33 +370,43 @@ public class Keyboard implements KeyListener {
 //            rowKey[7] &= rowKey[7];
 //        }
 
-//        System.out.println(String.format("readKeyboardPort: %04X, %02x, %02x", port, sjs1, sjs2));
+        log.trace(String.format("readKeyboardPort: %04X, %02x, %02x", port, sjs1, sjs2));
+
         switch (res) {
-            case 0x7f: // SPACE to 'B' row
+            case 0x7f -> { // SPACE to 'B' row
                 return rowKey[7];
-            case 0xbf: // ENTER to 'H' row
+            }
+            case 0xbf -> { // ENTER to 'H' row
                 return rowKey[6];
-            case 0xdf: // 'P' to 'Y' row
+            }
+            case 0xdf -> { // 'P' to 'Y' row
                 return rowKey[5];
-            case 0xef: // '0' to '6' row
+            }
+            case 0xef -> { // '0' to '6' row
                 return rowKey[4] & sjs1;
-            case 0xf7: // '1' to '5' row
+            }
+            case 0xf7 -> { // '1' to '5' row
                 return rowKey[3] & sjs2;
-            case 0xfb: // 'Q' to 'T' row
+            }
+            case 0xfb -> { // 'Q' to 'T' row
                 return rowKey[2];
-            case 0xfd: // 'A' to 'G' row
+            }
+            case 0xfd -> { // 'A' to 'G' row
                 return rowKey[1];
-            case 0xfe: //  'SHIFT' to 'V' row
+            }
+            case 0xfe -> { //  'SHIFT' to 'V' row
                 return rowKey[0];
-            default:    // reading more than a row
+            }
+            default -> {    // reading more than a row
                 res = ~res & 0xff;
                 for (int row = 0, mask = 0x01; row < 8; row++, mask <<= 1) {
                     if ((res & mask) != 0) {
                         keys &= rowKey[row];
                     }
                 }
+                return keys;
+            }
         }
-        return keys;
     }
 
     @Override
@@ -403,12 +420,12 @@ public class Keyboard implements KeyListener {
         if (mapPCKeys) {
             char keychar = evt.getKeyChar();
             if (keychar != KeyEvent.CHAR_UNDEFINED && !evt.isAltDown()) {
-//            System.out.println("pressed " + keychar);
+                log.trace("pressed {}", keychar);
                 if (pressedKeyChar(keychar)) {
                     for (int key = 0; key < keyEventPending.length; key++) {
                         if (keyEventPending[key] == null) {
                             keyEventPending[key] = evt;
-//                        System.out.println(String.format("Key pressed #%d: %c", key, keychar));
+                            log.trace("Key pressed {} ", String.format("#%d: %c", key, keychar));
                             break;
                         }
                     }
@@ -419,7 +436,7 @@ public class Keyboard implements KeyListener {
 
         int key = evt.getKeyCode();
 
-//        System.out.println(String.format("Press keyCode = %d, modifiers = %d", key, evt.getModifiersEx()));
+        log.trace(String.format("Press keyCode = %d, modifiers = %d", key, evt.getModifiersEx()));
 
         /*
          * Windows no envía el keycode VK_ALT_GRAPH y en su lugar envía dos eventos, Ctrl + Alt, en ese orden.
@@ -449,289 +466,109 @@ public class Keyboard implements KeyListener {
 
         switch (key) {
             // Row B - Break/Space
-            case KeyEvent.VK_SPACE:
-                rowKey[7] &= KEY_PRESSED_BIT0; // Break/Space
-                break;
-            case KeyEvent.VK_CONTROL:
-                rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
-                break;
-            case KeyEvent.VK_M:
-                rowKey[7] &= KEY_PRESSED_BIT2; // M
-                break;
-            case KeyEvent.VK_N:
-                rowKey[7] &= KEY_PRESSED_BIT3; // N
-                break;
-            case KeyEvent.VK_B:
-                rowKey[7] &= KEY_PRESSED_BIT4; // B
-                break;
+            case KeyEvent.VK_SPACE -> rowKey[7] &= KEY_PRESSED_BIT0;    // Break/Space
+            case KeyEvent.VK_CONTROL -> rowKey[7] &= KEY_PRESSED_BIT1;  // Symbol Shift
+            case KeyEvent.VK_M -> rowKey[7] &= KEY_PRESSED_BIT2;        // M
+            case KeyEvent.VK_N -> rowKey[7] &= KEY_PRESSED_BIT3;        // N
+            case KeyEvent.VK_B -> rowKey[7] &= KEY_PRESSED_BIT4;        // B
+
             // Row ENTER - H
-            case KeyEvent.VK_ENTER:
-                rowKey[6] &= KEY_PRESSED_BIT0; // ENTER
-                break;
-            case KeyEvent.VK_L:
-                rowKey[6] &= KEY_PRESSED_BIT1; // L
-                break;
-            case KeyEvent.VK_K:
-                rowKey[6] &= KEY_PRESSED_BIT2; // K
-                break;
-            case KeyEvent.VK_J:
-                rowKey[6] &= KEY_PRESSED_BIT3; // J
-                break;
-            case KeyEvent.VK_H:
-                rowKey[6] &= KEY_PRESSED_BIT4; // H
-                break;
+            case KeyEvent.VK_ENTER -> rowKey[6] &= KEY_PRESSED_BIT0;    // ENTER
+            case KeyEvent.VK_L -> rowKey[6] &= KEY_PRESSED_BIT1;        // L
+            case KeyEvent.VK_K -> rowKey[6] &= KEY_PRESSED_BIT2;        // K
+            case KeyEvent.VK_J -> rowKey[6] &= KEY_PRESSED_BIT3;        // J
+            case KeyEvent.VK_H -> rowKey[6] &= KEY_PRESSED_BIT4;        // H
+
             // Row P - Y
-            case KeyEvent.VK_P:
-                rowKey[5] &= KEY_PRESSED_BIT0; // P
-                break;
-            case KeyEvent.VK_O:
-                rowKey[5] &= KEY_PRESSED_BIT1; // O
-                break;
-            case KeyEvent.VK_I:
-                rowKey[5] &= KEY_PRESSED_BIT2; // I
-                break;
-            case KeyEvent.VK_U:
-                rowKey[5] &= KEY_PRESSED_BIT3; // U
-                break;
-            case KeyEvent.VK_Y:
-                rowKey[5] &= KEY_PRESSED_BIT4; // Y
-                break;
+            case KeyEvent.VK_P -> rowKey[5] &= KEY_PRESSED_BIT0;        // P
+            case KeyEvent.VK_O -> rowKey[5] &= KEY_PRESSED_BIT1;        // O
+            case KeyEvent.VK_I -> rowKey[5] &= KEY_PRESSED_BIT2;        // I
+            case KeyEvent.VK_U -> rowKey[5] &= KEY_PRESSED_BIT3;        // U
+            case KeyEvent.VK_Y -> rowKey[5] &= KEY_PRESSED_BIT4;        // Y
+
             // Row 0 - 6
-            case KeyEvent.VK_0:
-                rowKey[4] &= KEY_PRESSED_BIT0; // 0
-                break;
-            case KeyEvent.VK_9:
-                rowKey[4] &= KEY_PRESSED_BIT1; // 9
-                break;
-            case KeyEvent.VK_8:
-                rowKey[4] &= KEY_PRESSED_BIT2; // 8
-                break;
-            case KeyEvent.VK_7:
-                rowKey[4] &= KEY_PRESSED_BIT3; // 7
-                break;
-            case KeyEvent.VK_6:
-                rowKey[4] &= KEY_PRESSED_BIT4; // 6
-                break;
+            case KeyEvent.VK_0 -> rowKey[4] &= KEY_PRESSED_BIT0;        // 0
+            case KeyEvent.VK_9 -> rowKey[4] &= KEY_PRESSED_BIT1;        // 9
+            case KeyEvent.VK_8 -> rowKey[4] &= KEY_PRESSED_BIT2;        // 8
+            case KeyEvent.VK_7 -> rowKey[4] &= KEY_PRESSED_BIT3;        // 7
+            case KeyEvent.VK_6 -> rowKey[4] &= KEY_PRESSED_BIT4;        // 6
+
             // Row 1 - 5
-            case KeyEvent.VK_1:
-                rowKey[3] &= KEY_PRESSED_BIT0; // 1
-                break;
-            case KeyEvent.VK_2:
-                rowKey[3] &= KEY_PRESSED_BIT1; // 2
-                break;
-            case KeyEvent.VK_3:
-                rowKey[3] &= KEY_PRESSED_BIT2; // 3
-                break;
-            case KeyEvent.VK_4:
-                rowKey[3] &= KEY_PRESSED_BIT3; // 4
-                break;
-            case KeyEvent.VK_5:
-                rowKey[3] &= KEY_PRESSED_BIT4; // 5
-                break;
+            case KeyEvent.VK_1 -> rowKey[3] &= KEY_PRESSED_BIT0;        // 1
+            case KeyEvent.VK_2 -> rowKey[3] &= KEY_PRESSED_BIT1;        // 2
+            case KeyEvent.VK_3 -> rowKey[3] &= KEY_PRESSED_BIT2;        // 3
+            case KeyEvent.VK_4 -> rowKey[3] &= KEY_PRESSED_BIT3;        // 4
+            case KeyEvent.VK_5 -> rowKey[3] &= KEY_PRESSED_BIT4;        // 5
+
             // Row Q - T
-            case KeyEvent.VK_Q:
-                rowKey[2] &= KEY_PRESSED_BIT0; // Q
-                break;
-            case KeyEvent.VK_W:
-                rowKey[2] &= KEY_PRESSED_BIT1; // W
-                break;
-            case KeyEvent.VK_E:
-                rowKey[2] &= KEY_PRESSED_BIT2; // E
-                break;
-            case KeyEvent.VK_R:
-                rowKey[2] &= KEY_PRESSED_BIT3; // R
-                break;
-            case KeyEvent.VK_T:
-                rowKey[2] &= KEY_PRESSED_BIT4; // T
-                break;
+            case KeyEvent.VK_Q -> rowKey[2] &= KEY_PRESSED_BIT0;        // Q
+            case KeyEvent.VK_W -> rowKey[2] &= KEY_PRESSED_BIT1;        // W
+            case KeyEvent.VK_E -> rowKey[2] &= KEY_PRESSED_BIT2;        // E
+            case KeyEvent.VK_R -> rowKey[2] &= KEY_PRESSED_BIT3;        // R
+            case KeyEvent.VK_T -> rowKey[2] &= KEY_PRESSED_BIT4;        // T
+
             // Row A - G
-            case KeyEvent.VK_A:
-                rowKey[1] &= KEY_PRESSED_BIT0; // A
-                break;
-            case KeyEvent.VK_S:
-                rowKey[1] &= KEY_PRESSED_BIT1; // S
-                break;
-            case KeyEvent.VK_D:
-                rowKey[1] &= KEY_PRESSED_BIT2; // D
-                break;
-            case KeyEvent.VK_F:
-                rowKey[1] &= KEY_PRESSED_BIT3; // F
-                break;
-            case KeyEvent.VK_G:
-                rowKey[1] &= KEY_PRESSED_BIT4; // G
-                break;
+            case KeyEvent.VK_A -> rowKey[1] &= KEY_PRESSED_BIT0;        // A
+            case KeyEvent.VK_S -> rowKey[1] &= KEY_PRESSED_BIT1;        // S
+            case KeyEvent.VK_D -> rowKey[1] &= KEY_PRESSED_BIT2;        // D
+            case KeyEvent.VK_F -> rowKey[1] &= KEY_PRESSED_BIT3;        // F
+            case KeyEvent.VK_G -> rowKey[1] &= KEY_PRESSED_BIT4;        // G
+
             // Row Caps Shift - V
-            case KeyEvent.VK_SHIFT:
-                rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
+            case KeyEvent.VK_SHIFT -> {
+                rowKey[0] &= KEY_PRESSED_BIT0;                          // Caps Shift
                 shiftPressed = true;
-                break;
-            case KeyEvent.VK_Z:
-                rowKey[0] &= KEY_PRESSED_BIT1; // Z
-                break;
-            case KeyEvent.VK_X:
-                rowKey[0] &= KEY_PRESSED_BIT2; // X
-                break;
-            case KeyEvent.VK_C:
-                rowKey[0] &= KEY_PRESSED_BIT3; // C
-                break;
-            case KeyEvent.VK_V:
-                rowKey[0] &= KEY_PRESSED_BIT4; // V
-                break;
+            }
+            case KeyEvent.VK_Z -> rowKey[0] &= KEY_PRESSED_BIT1;        // Z
+            case KeyEvent.VK_X -> rowKey[0] &= KEY_PRESSED_BIT2;        // X
+            case KeyEvent.VK_C -> rowKey[0] &= KEY_PRESSED_BIT3;        // C
+            case KeyEvent.VK_V -> rowKey[0] &= KEY_PRESSED_BIT4;        // V
+
             // Additional keys
-            case KeyEvent.VK_BACK_SPACE:
+            case KeyEvent.VK_BACK_SPACE -> {
                 if (!shiftPressed)
-                    rowKey[0] &= KEY_PRESSED_BIT0; // CAPS
-                rowKey[4] &= KEY_PRESSED_BIT0; // 0
-                break;
-            case KeyEvent.VK_COMMA:
-                rowKey[7] &= (KEY_PRESSED_BIT1 & KEY_PRESSED_BIT3); // Symbol Shift + N (',')
-                break;
-            case KeyEvent.VK_PERIOD:
-                rowKey[7] &= (KEY_PRESSED_BIT1 & KEY_PRESSED_BIT2); // Symbol Shift + M ('.')
-                break;
-            case KeyEvent.VK_MINUS:
-                rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
-                rowKey[6] &= KEY_PRESSED_BIT3; // J
-                break;
-            case KeyEvent.VK_PLUS:
-                rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
-                rowKey[6] &= KEY_PRESSED_BIT2; // K
-                break;
-            case KeyEvent.VK_EQUALS: // UK Keyboard
-                rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
-                rowKey[6] &= KEY_PRESSED_BIT1; // L
-                break;
-            case KeyEvent.VK_NUMBER_SIGN: // UK Keyboard
-                rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
-                rowKey[3] &= KEY_PRESSED_BIT2; // 3
-                break;
-            case KeyEvent.VK_SLASH: // UK Keyboard
-                rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
-                rowKey[0] &= KEY_PRESSED_BIT4; // V
-                break;
-            case KeyEvent.VK_SEMICOLON: // UK Keyboard
+                    rowKey[0] &= KEY_PRESSED_BIT0;                      // CAPS
+                rowKey[4] &= KEY_PRESSED_BIT0;                          // 0
+            }
+            case KeyEvent.VK_COMMA -> rowKey[7] &= (KEY_PRESSED_BIT1 & KEY_PRESSED_BIT3);   // Symbol Shift + N (',')
+            case KeyEvent.VK_PERIOD -> rowKey[7] &= (KEY_PRESSED_BIT1 & KEY_PRESSED_BIT2);  // Symbol Shift + M ('.')
+            case KeyEvent.VK_MINUS -> {
+                rowKey[7] &= KEY_PRESSED_BIT1;                          // Symbol Shift
+                rowKey[6] &= KEY_PRESSED_BIT3;                          // J
+            }
+            case KeyEvent.VK_PLUS -> {
+                rowKey[7] &= KEY_PRESSED_BIT1;                          // Symbol Shift
+                rowKey[6] &= KEY_PRESSED_BIT2;                          // K
+            }
+            case KeyEvent.VK_EQUALS -> {                                // UK Keyboard
+                rowKey[7] &= KEY_PRESSED_BIT1;                          // Symbol Shift
+                rowKey[6] &= KEY_PRESSED_BIT1;                          // L
+            }
+            case KeyEvent.VK_NUMBER_SIGN -> {                           // UK Keyboard
+                rowKey[7] &= KEY_PRESSED_BIT1;                          // Symbol Shift
+                rowKey[3] &= KEY_PRESSED_BIT2;                          // 3
+            }
+            case KeyEvent.VK_SLASH -> {                                 // UK Keyboard
+                rowKey[7] &= KEY_PRESSED_BIT1;                          // Symbol Shift
+                rowKey[0] &= KEY_PRESSED_BIT4;                          // V
+            }
+            case KeyEvent.VK_SEMICOLON -> { // UK Keyboard
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[5] &= KEY_PRESSED_BIT1; // O
-                break;
-            case KeyEvent.VK_CAPS_LOCK:
+            }
+            case KeyEvent.VK_CAPS_LOCK -> {
                 if (!shiftPressed)
                     rowKey[0] &= KEY_PRESSED_BIT0; // CAPS
                 rowKey[3] &= KEY_PRESSED_BIT1; // 2  -- Caps Lock
-                break;
-            case KeyEvent.VK_ESCAPE:
+            }
+            case KeyEvent.VK_ESCAPE -> {
                 if (!shiftPressed)
                     rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[7] &= KEY_PRESSED_BIT0; // Space
-                break;
+            }
             // Joystick emulation
-            case KeyEvent.VK_LEFT:
-                switch (joystickModel) {
-                    case NONE:
-                        if (!shiftPressed)
-                            rowKey[0] &= KEY_PRESSED_BIT0; // Caps
-                    case CURSOR:
-                        rowKey[3] &= KEY_PRESSED_BIT4; // 5  -- Left arrow
-                        break;
-                    case KEMPSTON:
-                        kempston |= KEY_RELEASED_BIT1;
-                        break;
-                    case SINCLAIR1:
-                        rowKey[4] &= KEY_PRESSED_BIT4; // 6 -- Left
-                        break;
-                    case SINCLAIR2:
-                        rowKey[3] &= KEY_PRESSED_BIT0; // 1 -- Left
-                        break;
-                    case FULLER:
-                        fuller &= KEY_PRESSED_BIT2;
-                        break;
-                }
-                break;
-            case KeyEvent.VK_DOWN:
-                switch (joystickModel) {
-                    case NONE:
-                        if (!shiftPressed)
-                            rowKey[0] &= KEY_PRESSED_BIT0; // Caps
-                    case CURSOR:
-                        rowKey[4] &= KEY_PRESSED_BIT4; // 6  -- Down arrow
-                        break;
-                    case KEMPSTON:
-                        kempston |= KEY_RELEASED_BIT2;
-                        break;
-                    case SINCLAIR1:
-                        rowKey[4] &= KEY_PRESSED_BIT2; // 8 -- Down
-                        break;
-                    case SINCLAIR2:
-                        rowKey[3] &= KEY_PRESSED_BIT2; // 3 -- Down
-                        break;
-                    case FULLER:
-                        fuller &= KEY_PRESSED_BIT1;
-                        break;
-                }
-                break;
-            case KeyEvent.VK_UP:
-                switch (joystickModel) {
-                    case NONE:
-                        if (!shiftPressed)
-                            rowKey[0] &= KEY_PRESSED_BIT0; // Caps
-                    case CURSOR:
-                        rowKey[4] &= KEY_PRESSED_BIT3; // 7  -- Up arrow
-                        break;
-                    case KEMPSTON:
-                        kempston |= KEY_RELEASED_BIT3;
-                        break;
-                    case SINCLAIR1:
-                        rowKey[4] &= KEY_PRESSED_BIT1; // 9 -- Up
-                        break;
-                    case SINCLAIR2:
-                        rowKey[3] &= KEY_PRESSED_BIT3; // 4 -- Up
-                        break;
-                    case FULLER:
-                        fuller &= KEY_PRESSED_BIT0;
-                        break;
-                }
-                break;
-            case KeyEvent.VK_RIGHT:
-                switch (joystickModel) {
-                    case NONE:
-                        if (!shiftPressed)
-                            rowKey[0] &= KEY_PRESSED_BIT0; // Caps
-                    case CURSOR:
-                        rowKey[4] &= KEY_PRESSED_BIT2; // 8  -- Right arrow
-                        break;
-                    case KEMPSTON:
-                        kempston |= KEY_RELEASED_BIT0;
-                        break;
-                    case SINCLAIR1:
-                        rowKey[4] &= KEY_PRESSED_BIT3; // 7 -- Right
-                        break;
-                    case SINCLAIR2:
-                        rowKey[3] &= KEY_PRESSED_BIT1; // 2 -- Right
-                        break;
-                    case FULLER:
-                        fuller &= KEY_PRESSED_BIT3;
-                        break;
-                }
-                break;
-            case KeyEvent.VK_META:
-            case KeyEvent.VK_ALT_GRAPH:
-                switch (joystickModel) {
-                    case NONE:
-                        break;
-                    case KEMPSTON:
-                        kempston |= KEY_RELEASED_BIT4;
-                        break;
-                    case CURSOR:
-                    case SINCLAIR1:
-                        rowKey[4] &= KEY_PRESSED_BIT0; // 0 -- Fire
-                        break;
-                    case SINCLAIR2:
-                        rowKey[3] &= KEY_PRESSED_BIT4; // 5 -- Fire
-                        break;
-                    case FULLER:
-                        fuller &= KEY_PRESSED_BIT7;
-                        break;
-                }
-                break;
+            case KeyEvent.VK_LEFT, KeyEvent.VK_DOWN, KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_META, KeyEvent.VK_ALT_GRAPH ->
+                    joystickModel.getJoystick().handleKeyPressed(key, shiftPressed, rowKey);
         }
     }
 
@@ -746,13 +583,13 @@ public class Keyboard implements KeyListener {
             char keychar = evt.getKeyChar();
 
             if (keychar != KeyEvent.CHAR_UNDEFINED && !evt.isAltDown()) {
-//            System.out.println("released " + keychar);
+                log.trace("released {}", keychar);
                 for (int key = 0; key < keyEventPending.length; key++) {
                     if (keyEventPending[key] != null
                             && evt.getKeyCode() == keyEventPending[key].getKeyCode()) {
                         keychar = keyEventPending[key].getKeyChar();
                         keyEventPending[key] = null;
-//                    System.out.println(String.format("Key released #%d: %c\n", key, keychar));
+                        log.trace(String.format("Key released #%d: %c\n", key, keychar));
                     }
                 }
 
@@ -764,7 +601,7 @@ public class Keyboard implements KeyListener {
 
         int key = evt.getKeyCode();
 
-//        System.out.println(String.format("Release keyCode = %d, modifiers = %d", key, evt.getModifiersEx()));
+        log.trace(String.format("Release keyCode = %d, modifiers = %d", key, evt.getModifiersEx()));
 
         /*
          * Windows no envía el keycode VK_ALT_GRAPH y en su lugar envía dos eventos, Ctrl + Alt, en ese orden.
@@ -788,298 +625,114 @@ public class Keyboard implements KeyListener {
 
         switch (key) {
             // Row Break/Space - B
-            case KeyEvent.VK_SPACE:
-                rowKey[7] |= KEY_RELEASED_BIT0; // Break/Space
-                break;
-            case KeyEvent.VK_CONTROL:
-                rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
-                break;
-            case KeyEvent.VK_M:
-                rowKey[7] |= KEY_RELEASED_BIT2; // M
-                break;
-            case KeyEvent.VK_N:
-                rowKey[7] |= KEY_RELEASED_BIT3; // N
-                break;
-            case KeyEvent.VK_B:
-                rowKey[7] |= KEY_RELEASED_BIT4; // B
-                break;
+            case KeyEvent.VK_SPACE -> rowKey[7] |= KEY_RELEASED_BIT0; // Break/Space
+            case KeyEvent.VK_CONTROL -> rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
+            case KeyEvent.VK_M -> rowKey[7] |= KEY_RELEASED_BIT2; // M
+            case KeyEvent.VK_N -> rowKey[7] |= KEY_RELEASED_BIT3; // N
+            case KeyEvent.VK_B -> rowKey[7] |= KEY_RELEASED_BIT4; // B
+
             // Row ENTER - H
-            case KeyEvent.VK_ENTER:
-                rowKey[6] |= KEY_RELEASED_BIT0; // ENTER
-                break;
-            case KeyEvent.VK_L:
-                rowKey[6] |= KEY_RELEASED_BIT1; // L
-                break;
-            case KeyEvent.VK_K:
-                rowKey[6] |= KEY_RELEASED_BIT2; // K
-                break;
-            case KeyEvent.VK_J:
-                rowKey[6] |= KEY_RELEASED_BIT3; // J
-                break;
-            case KeyEvent.VK_H:
-                rowKey[6] |= KEY_RELEASED_BIT4; // H
-                break;
+            case KeyEvent.VK_ENTER -> rowKey[6] |= KEY_RELEASED_BIT0; // ENTER
+            case KeyEvent.VK_L -> rowKey[6] |= KEY_RELEASED_BIT1; // L
+            case KeyEvent.VK_K -> rowKey[6] |= KEY_RELEASED_BIT2; // K
+            case KeyEvent.VK_J -> rowKey[6] |= KEY_RELEASED_BIT3; // J
+            case KeyEvent.VK_H -> rowKey[6] |= KEY_RELEASED_BIT4; // H
+
             // Row P - Y
-            case KeyEvent.VK_P:
-                rowKey[5] |= KEY_RELEASED_BIT0; // P
-                break;
-            case KeyEvent.VK_O:
-                rowKey[5] |= KEY_RELEASED_BIT1; // O
-                break;
-            case KeyEvent.VK_I:
-                rowKey[5] |= KEY_RELEASED_BIT2; // I
-                break;
-            case KeyEvent.VK_U:
-                rowKey[5] |= KEY_RELEASED_BIT3; // U
-                break;
-            case KeyEvent.VK_Y:
-                rowKey[5] |= KEY_RELEASED_BIT4; // Y
-                break;
+            case KeyEvent.VK_P -> rowKey[5] |= KEY_RELEASED_BIT0; // P
+            case KeyEvent.VK_O -> rowKey[5] |= KEY_RELEASED_BIT1; // O
+            case KeyEvent.VK_I -> rowKey[5] |= KEY_RELEASED_BIT2; // I
+            case KeyEvent.VK_U -> rowKey[5] |= KEY_RELEASED_BIT3; // U
+            case KeyEvent.VK_Y -> rowKey[5] |= KEY_RELEASED_BIT4; // Y
+
             // Row 0 - 6
-            case KeyEvent.VK_0:
-                rowKey[4] |= KEY_RELEASED_BIT0; // 0
-                break;
-            case KeyEvent.VK_9:
-                rowKey[4] |= KEY_RELEASED_BIT1; // 9
-                break;
-            case KeyEvent.VK_8:
-                rowKey[4] |= KEY_RELEASED_BIT2; // 8
-                break;
-            case KeyEvent.VK_7:
-                rowKey[4] |= KEY_RELEASED_BIT3; // 7
-                break;
-            case KeyEvent.VK_6:
-                rowKey[4] |= KEY_RELEASED_BIT4; // 6
-                break;
+            case KeyEvent.VK_0 -> rowKey[4] |= KEY_RELEASED_BIT0; // 0
+            case KeyEvent.VK_9 -> rowKey[4] |= KEY_RELEASED_BIT1; // 9
+            case KeyEvent.VK_8 -> rowKey[4] |= KEY_RELEASED_BIT2; // 8
+            case KeyEvent.VK_7 -> rowKey[4] |= KEY_RELEASED_BIT3; // 7
+            case KeyEvent.VK_6 -> rowKey[4] |= KEY_RELEASED_BIT4; // 6
+
             // Row 1 - 5
-            case KeyEvent.VK_1:
-                rowKey[3] |= KEY_RELEASED_BIT0; // 1
-                break;
-            case KeyEvent.VK_2:
-                rowKey[3] |= KEY_RELEASED_BIT1; // 2
-                break;
-            case KeyEvent.VK_3:
-                rowKey[3] |= KEY_RELEASED_BIT2; // 3
-                break;
-            case KeyEvent.VK_4:
-                rowKey[3] |= KEY_RELEASED_BIT3; // 4
-                break;
-            case KeyEvent.VK_5:
-                rowKey[3] |= KEY_RELEASED_BIT4; // 5
-                break;
+            case KeyEvent.VK_1 -> rowKey[3] |= KEY_RELEASED_BIT0; // 1
+            case KeyEvent.VK_2 -> rowKey[3] |= KEY_RELEASED_BIT1; // 2
+            case KeyEvent.VK_3 -> rowKey[3] |= KEY_RELEASED_BIT2; // 3
+            case KeyEvent.VK_4 -> rowKey[3] |= KEY_RELEASED_BIT3; // 4
+            case KeyEvent.VK_5 -> rowKey[3] |= KEY_RELEASED_BIT4; // 5
+
             // Row Q - T
-            case KeyEvent.VK_Q:
-                rowKey[2] |= KEY_RELEASED_BIT0; // Q
-                break;
-            case KeyEvent.VK_W:
-                rowKey[2] |= KEY_RELEASED_BIT1; // W
-                break;
-            case KeyEvent.VK_E:
-                rowKey[2] |= KEY_RELEASED_BIT2; // E
-                break;
-            case KeyEvent.VK_R:
-                rowKey[2] |= KEY_RELEASED_BIT3; // R
-                break;
-            case KeyEvent.VK_T:
-                rowKey[2] |= KEY_RELEASED_BIT4; // T
-                break;
+            case KeyEvent.VK_Q -> rowKey[2] |= KEY_RELEASED_BIT0; // Q
+            case KeyEvent.VK_W -> rowKey[2] |= KEY_RELEASED_BIT1; // W
+            case KeyEvent.VK_E -> rowKey[2] |= KEY_RELEASED_BIT2; // E
+            case KeyEvent.VK_R -> rowKey[2] |= KEY_RELEASED_BIT3; // R
+            case KeyEvent.VK_T -> rowKey[2] |= KEY_RELEASED_BIT4; // T
+
             // Row A - G
-            case KeyEvent.VK_A:
-                rowKey[1] |= KEY_RELEASED_BIT0; // A
-                break;
-            case KeyEvent.VK_S:
-                rowKey[1] |= KEY_RELEASED_BIT1; // S
-                break;
-            case KeyEvent.VK_D:
-                rowKey[1] |= KEY_RELEASED_BIT2; // D
-                break;
-            case KeyEvent.VK_F:
-                rowKey[1] |= KEY_RELEASED_BIT3; // F
-                break;
-            case KeyEvent.VK_G:
-                rowKey[1] |= KEY_RELEASED_BIT4; // G
-                break;
+            case KeyEvent.VK_A -> rowKey[1] |= KEY_RELEASED_BIT0; // A
+            case KeyEvent.VK_S -> rowKey[1] |= KEY_RELEASED_BIT1; // S
+            case KeyEvent.VK_D -> rowKey[1] |= KEY_RELEASED_BIT2; // D
+            case KeyEvent.VK_F -> rowKey[1] |= KEY_RELEASED_BIT3; // F
+            case KeyEvent.VK_G -> rowKey[1] |= KEY_RELEASED_BIT4; // G
+
             // Row Caps Shift - V
-            case KeyEvent.VK_SHIFT:
+            case KeyEvent.VK_SHIFT -> {
                 if (shiftPressed) {
                     rowKey[0] |= KEY_RELEASED_BIT0; // Caps Shift
                     shiftPressed = false;
                 }
-                break;
-            case KeyEvent.VK_Z:
-                rowKey[0] |= KEY_RELEASED_BIT1; // Z
-                break;
-            case KeyEvent.VK_X:
-                rowKey[0] |= KEY_RELEASED_BIT2; // X
-                break;
-            case KeyEvent.VK_C:
-                rowKey[0] |= KEY_RELEASED_BIT3; // C
-                break;
-            case KeyEvent.VK_V:
-                rowKey[0] |= KEY_RELEASED_BIT4; // V
-                break;
+            }
+            case KeyEvent.VK_Z -> rowKey[0] |= KEY_RELEASED_BIT1; // Z
+            case KeyEvent.VK_X -> rowKey[0] |= KEY_RELEASED_BIT2; // X
+            case KeyEvent.VK_C -> rowKey[0] |= KEY_RELEASED_BIT3; // C
+            case KeyEvent.VK_V -> rowKey[0] |= KEY_RELEASED_BIT4; // V
+
             // Additional keys
-            case KeyEvent.VK_BACK_SPACE:
+            case KeyEvent.VK_BACK_SPACE -> {
                 if (!shiftPressed) {
                     rowKey[0] |= KEY_RELEASED_BIT0; // CAPS
                 }
                 rowKey[4] |= KEY_RELEASED_BIT0; // 0
-                break;
-            case KeyEvent.VK_COMMA:
-                rowKey[7] |= (KEY_RELEASED_BIT1 | KEY_RELEASED_BIT3); // Symbol Shift + N
-                break;
-            case KeyEvent.VK_PERIOD:
-                rowKey[7] |= (KEY_RELEASED_BIT1 | KEY_RELEASED_BIT2); // Symbol Shift + M
-                break;
-            case KeyEvent.VK_MINUS:
+            }
+            case KeyEvent.VK_COMMA -> rowKey[7] |= (KEY_RELEASED_BIT1 | KEY_RELEASED_BIT3);     // Symbol Shift + N
+            case KeyEvent.VK_PERIOD -> rowKey[7] |= (KEY_RELEASED_BIT1 | KEY_RELEASED_BIT2);    // Symbol Shift + M
+            case KeyEvent.VK_MINUS -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[6] |= KEY_RELEASED_BIT3; // J
-                break;
-            case KeyEvent.VK_PLUS:
+            }
+            case KeyEvent.VK_PLUS -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[6] |= KEY_RELEASED_BIT2; // K
-                break;
-            case KeyEvent.VK_EQUALS: // UK Keyboard
+            }
+            case KeyEvent.VK_EQUALS -> { // UK Keyboard
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[6] |= KEY_RELEASED_BIT1; // L
-                break;
-            case KeyEvent.VK_NUMBER_SIGN: // UK Keyboard
+            }
+            case KeyEvent.VK_NUMBER_SIGN -> { // UK Keyboard
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[3] |= KEY_RELEASED_BIT2; // 3
-                break;
-            case KeyEvent.VK_SLASH: // UK Keyboard
+            }
+            case KeyEvent.VK_SLASH -> { // UK Keyboard
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[0] |= KEY_RELEASED_BIT4; // V
-                break;
-            case KeyEvent.VK_SEMICOLON: // UK Keyboard
+            }
+            case KeyEvent.VK_SEMICOLON -> { // UK Keyboard
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[5] |= KEY_RELEASED_BIT1; // O
-                break;
-            case KeyEvent.VK_CAPS_LOCK:
+            }
+            case KeyEvent.VK_CAPS_LOCK -> {
                 if (!shiftPressed) {
                     rowKey[0] |= KEY_RELEASED_BIT0; // CAPS
                 }
                 rowKey[3] |= KEY_RELEASED_BIT1; // 2
-                break;
-            case KeyEvent.VK_ESCAPE:
+            }
+            case KeyEvent.VK_ESCAPE -> {
                 if (!shiftPressed) {
                     rowKey[0] |= KEY_RELEASED_BIT0; // CAPS
                 }
                 rowKey[7] |= KEY_RELEASED_BIT0; // Space
-                break;
+            }
             // Joystick emulation
-            case KeyEvent.VK_LEFT:
-                switch (joystickModel) {
-                    case NONE:
-                        if (!shiftPressed) {
-                            rowKey[0] |= KEY_RELEASED_BIT0; // CAPS
-                        }
-                    case CURSOR:
-                        rowKey[3] |= KEY_RELEASED_BIT4; // 5 -- Left arrow
-                        break;
-                    case KEMPSTON:
-                        kempston &= KEY_PRESSED_BIT1;
-                        break;
-                    case SINCLAIR1:
-                        rowKey[4] |= KEY_RELEASED_BIT4; // 6 -- Left
-                        break;
-                    case SINCLAIR2:
-                        rowKey[3] |= KEY_RELEASED_BIT0; // 1 -- Left
-                        break;
-                    case FULLER:
-                        fuller |= KEY_RELEASED_BIT2;
-                        break;
-                }
-                break;
-            case KeyEvent.VK_DOWN:
-                switch (joystickModel) {
-                    case NONE:
-                        if (!shiftPressed) {
-                            rowKey[0] |= KEY_RELEASED_BIT0; // CAPS
-                        }
-                    case CURSOR:
-                        rowKey[4] |= KEY_RELEASED_BIT4; // 6 -- Down arrow
-                        break;
-                    case KEMPSTON:
-                        kempston &= KEY_PRESSED_BIT2;
-                        break;
-                    case SINCLAIR1:
-                        rowKey[4] |= KEY_RELEASED_BIT2; // 8 -- Down
-                        break;
-                    case SINCLAIR2:
-                        rowKey[3] |= KEY_RELEASED_BIT2; // 3 -- Down
-                        break;
-                    case FULLER:
-                        fuller |= KEY_RELEASED_BIT1;
-                        break;
-                }
-                break;
-            case KeyEvent.VK_UP:
-                switch (joystickModel) {
-                    case NONE:
-                        if (!shiftPressed) {
-                            rowKey[0] |= KEY_RELEASED_BIT0; // CAPS
-                        }
-                    case CURSOR:
-                        rowKey[4] |= KEY_RELEASED_BIT3; // 7  -- Up arrow
-                        break;
-                    case KEMPSTON:
-                        kempston &= KEY_PRESSED_BIT3;
-                        break;
-                    case SINCLAIR1:
-                        rowKey[4] |= KEY_RELEASED_BIT1; // 9 -- Up
-                        break;
-                    case SINCLAIR2:
-                        rowKey[3] |= KEY_RELEASED_BIT3; // 4 -- Up
-                        break;
-                    case FULLER:
-                        fuller |= KEY_RELEASED_BIT0;
-                        break;
-                }
-                break;
-            case KeyEvent.VK_RIGHT:
-                switch (joystickModel) {
-                    case NONE:
-                        if (!shiftPressed) {
-                            rowKey[0] |= KEY_RELEASED_BIT0; // CAPS
-                        }
-                    case CURSOR:
-                        rowKey[4] |= KEY_RELEASED_BIT2; // 8 -- Right arrow
-                        break;
-                    case KEMPSTON:
-                        kempston &= KEY_PRESSED_BIT0;
-                        break;
-                    case SINCLAIR1:
-                        rowKey[4] |= KEY_RELEASED_BIT3; // 7 -- Right
-                        break;
-                    case SINCLAIR2:
-                        rowKey[3] |= KEY_RELEASED_BIT1; // 2 -- Right
-                        break;
-                    case FULLER:
-                        fuller |= KEY_RELEASED_BIT3;
-                        break;
-                }
-                break;
-            case KeyEvent.VK_META:
-            case KeyEvent.VK_ALT_GRAPH:
-                switch (joystickModel) {
-                    case NONE:
-                        break;
-                    case KEMPSTON:
-                        kempston &= KEY_PRESSED_BIT4;
-                        break;
-                    case CURSOR:
-                    case SINCLAIR1:
-                        rowKey[4] |= KEY_RELEASED_BIT0;  // 0 -- Fire
-                        break;
-                    case SINCLAIR2:
-                        rowKey[3] |= KEY_RELEASED_BIT4;  // 5  -- Fire
-                        break;
-                    case FULLER:
-                        fuller |= KEY_RELEASED_BIT7;
-                        break;
-                }
-                break;
+            case KeyEvent.VK_LEFT, KeyEvent.VK_DOWN, KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_META, KeyEvent.VK_ALT_GRAPH ->
+                joystickModel.getJoystick().handleKeyReleased(key, shiftPressed, rowKey);
         }
     }
 
@@ -1096,361 +749,273 @@ public class Keyboard implements KeyListener {
         }
 
         switch (keyChar) {
-            case '!':
+            case '!' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[3] &= KEY_PRESSED_BIT0; // 1
-                break;
-            case '"':
+            }
+            case '"' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[5] &= KEY_PRESSED_BIT0; // P
-                break;
-            case '#':
+            }
+            case '#' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[3] &= KEY_PRESSED_BIT2; // 3
-                break;
-            case '$':
+            }
+            case '$' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[3] &= KEY_PRESSED_BIT3; // 4
-                break;
-            case '%':
+            }
+            case '%' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[3] &= KEY_PRESSED_BIT4; // 5
-                break;
-            case '&':
+            }
+            case '&' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[4] &= KEY_PRESSED_BIT4; // 6
-                break;
-            case '\'':
+            }
+            case '\'' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[4] &= KEY_PRESSED_BIT3; // 7
-                break;
-            case '(':
+            }
+            case '(' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[4] &= KEY_PRESSED_BIT2; // 8
-                break;
-            case ')':
+            }
+            case ')' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[4] &= KEY_PRESSED_BIT1; // 9
-                break;
-            case '*':
-                rowKey[7] &= (KEY_PRESSED_BIT1 & KEY_PRESSED_BIT4); // Symbol Shift + b
-                break;
-            case '+':
+            }
+            case '*' -> rowKey[7] &= (KEY_PRESSED_BIT1 & KEY_PRESSED_BIT4); // Symbol Shift + b
+            case '+' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[6] &= KEY_PRESSED_BIT2; // K
-                break;
-            case ',':
-                rowKey[7] &= (KEY_PRESSED_BIT1 & KEY_PRESSED_BIT3); // Symbol Shift + n
-                break;
-            case '-':
+            }
+            case ',' -> rowKey[7] &= (KEY_PRESSED_BIT1 & KEY_PRESSED_BIT3); // Symbol Shift + n
+            case '-' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[6] &= KEY_PRESSED_BIT3; // J
-                break;
-            case '.':
-                rowKey[7] &= (KEY_PRESSED_BIT1 & KEY_PRESSED_BIT2); // Symbol Shift + m
-                break;
-            case '/':
+            }
+            case '.' -> rowKey[7] &= (KEY_PRESSED_BIT1 & KEY_PRESSED_BIT2); // Symbol Shift + m
+            case '/' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[0] &= KEY_PRESSED_BIT4; // V
-                break;
-            case '0':
-                rowKey[4] &= KEY_PRESSED_BIT0; // 0
-                break;
-            case '1':
-                rowKey[3] &= KEY_PRESSED_BIT0; // 1
-                break;
-            case '2':
-                rowKey[3] &= KEY_PRESSED_BIT1; // 2
-                break;
-            case '3':
-                rowKey[3] &= KEY_PRESSED_BIT2; // 3
-                break;
-            case '4':
-                rowKey[3] &= KEY_PRESSED_BIT3; // 4
-                break;
-            case '5':
-                rowKey[3] &= KEY_PRESSED_BIT4; // 5
-                break;
-            case '6':
-                rowKey[4] &= KEY_PRESSED_BIT4; // 6
-                break;
-            case '7':
-                rowKey[4] &= KEY_PRESSED_BIT3; // 7
-                break;
-            case '8':
-                rowKey[4] &= KEY_PRESSED_BIT2; // 8
-                break;
-            case '9':
-                rowKey[4] &= KEY_PRESSED_BIT1; // 9
-                break;
-            case ':':
+            }
+            case '0' -> rowKey[4] &= KEY_PRESSED_BIT0; // 0
+            case '1' -> rowKey[3] &= KEY_PRESSED_BIT0; // 1
+            case '2' -> rowKey[3] &= KEY_PRESSED_BIT1; // 2
+            case '3' -> rowKey[3] &= KEY_PRESSED_BIT2; // 3
+            case '4' -> rowKey[3] &= KEY_PRESSED_BIT3; // 4
+            case '5' -> rowKey[3] &= KEY_PRESSED_BIT4; // 5
+            case '6' -> rowKey[4] &= KEY_PRESSED_BIT4; // 6
+            case '7' -> rowKey[4] &= KEY_PRESSED_BIT3; // 7
+            case '8' -> rowKey[4] &= KEY_PRESSED_BIT2; // 8
+            case '9' -> rowKey[4] &= KEY_PRESSED_BIT1; // 9
+            case ':' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[0] &= KEY_PRESSED_BIT1; // Z
-                break;
-            case ';':
+            }
+            case ';' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[5] &= KEY_PRESSED_BIT1; // O
-                break;
-            case '<':
+            }
+            case '<' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[2] &= KEY_PRESSED_BIT3; // R
-                break;
-            case '=':
+            }
+            case '=' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[6] &= KEY_PRESSED_BIT1; // L
-                break;
-            case '>':
+            }
+            case '>' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[2] &= KEY_PRESSED_BIT4; // T
-                break;
-            case '?':
+            }
+            case '?' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[0] &= KEY_PRESSED_BIT3; // C
-                break;
-            case '@':
+            }
+            case '@' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[3] &= KEY_PRESSED_BIT1; // 2
-                break;
-            case 'A':
+            }
+            case 'A' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[1] &= KEY_PRESSED_BIT0; // A
-                break;
-            case 'B':
+            }
+            case 'B' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[7] &= KEY_PRESSED_BIT4; // B
-                break;
-            case 'C':
-                rowKey[0] &= (KEY_PRESSED_BIT0 & KEY_PRESSED_BIT3); // Caps Shift + c
-                break;
-            case 'D':
+            }
+            case 'C' -> rowKey[0] &= (KEY_PRESSED_BIT0 & KEY_PRESSED_BIT3); // Caps Shift + c
+            case 'D' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[1] &= KEY_PRESSED_BIT2; // D
-                break;
-            case 'E':
+            }
+            case 'E' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[2] &= KEY_PRESSED_BIT2; // E
-                break;
-            case 'F':
+            }
+            case 'F' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[1] &= KEY_PRESSED_BIT3; // F
-                break;
-            case 'G':
+            }
+            case 'G' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[1] &= KEY_PRESSED_BIT4; // G
-                break;
-            case 'H':
+            }
+            case 'H' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[6] &= KEY_PRESSED_BIT4; // H
-                break;
-            case 'I':
+            }
+            case 'I' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[5] &= KEY_PRESSED_BIT2; // I
-                break;
-            case 'J':
+            }
+            case 'J' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[6] &= KEY_PRESSED_BIT3; // J
-                break;
-            case 'K':
+            }
+            case 'K' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[6] &= KEY_PRESSED_BIT2; // K
-                break;
-            case 'L':
+            }
+            case 'L' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[6] &= KEY_PRESSED_BIT1; // L
-                break;
-            case 'M':
+            }
+            case 'M' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[7] &= KEY_PRESSED_BIT2; // M
-                break;
-            case 'N':
+            }
+            case 'N' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[7] &= KEY_PRESSED_BIT3; // N
-                break;
-            case 'O':
+            }
+            case 'O' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[5] &= KEY_PRESSED_BIT1; // O
-                break;
-            case 'P':
+            }
+            case 'P' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[5] &= KEY_PRESSED_BIT0; // P
-                break;
-            case 'Q':
+            }
+            case 'Q' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[2] &= KEY_PRESSED_BIT0; // Q
-                break;
-            case 'R':
+            }
+            case 'R' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[2] &= KEY_PRESSED_BIT3; // R
-                break;
-            case 'S':
+            }
+            case 'S' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[1] &= KEY_PRESSED_BIT1; // S
-                break;
-            case 'T':
+            }
+            case 'T' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[2] &= KEY_PRESSED_BIT4; // T
-                break;
-            case 'U':
+            }
+            case 'U' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[5] &= KEY_PRESSED_BIT3; // U
-                break;
-            case 'V':
-                rowKey[0] &= (KEY_PRESSED_BIT0 & KEY_PRESSED_BIT4); // Caps Shift + v
-                break;
-            case 'W':
+            }
+            case 'V' -> rowKey[0] &= (KEY_PRESSED_BIT0 & KEY_PRESSED_BIT4); // Caps Shift + v
+            case 'W' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[2] &= KEY_PRESSED_BIT1; // W
-                break;
-            case 'X':
-                rowKey[0] &= (KEY_PRESSED_BIT0 & KEY_PRESSED_BIT2); // Caps Shift + x
-                break;
-            case 'Y':
+            }
+            case 'X' -> rowKey[0] &= (KEY_PRESSED_BIT0 & KEY_PRESSED_BIT2); // Caps Shift + x
+            case 'Y' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[5] &= KEY_PRESSED_BIT4; // Y
-                break;
-            case 'Z':
-                rowKey[0] &= (KEY_PRESSED_BIT0 & KEY_PRESSED_BIT1); // Caps Shift + z
-                break;
-            case '[':
+            }
+            case 'Z' -> rowKey[0] &= (KEY_PRESSED_BIT0 & KEY_PRESSED_BIT1); // Caps Shift + z
+            case '[' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[5] &= KEY_PRESSED_BIT4; // Y
-                break;
-            case '\\':
+            }
+            case '\\' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[1] &= KEY_PRESSED_BIT2; // D
-                break;
-            case ']':
+            }
+            case ']' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[5] &= KEY_PRESSED_BIT3; // U
-                break;
-            case '_':
+            }
+            case '_' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[4] &= KEY_PRESSED_BIT0; // 0
-                break;
-            case 'a':
-                rowKey[1] &= KEY_PRESSED_BIT0; // A
-                break;
-            case 'b':
-                rowKey[7] &= KEY_PRESSED_BIT4; // B
-                break;
-            case 'c':
-                rowKey[0] &= KEY_PRESSED_BIT3; // C
-                break;
-            case 'd':
-                rowKey[1] &= KEY_PRESSED_BIT2; // D
-                break;
-            case 'e':
-                rowKey[2] &= KEY_PRESSED_BIT2; // E
-                break;
-            case 'f':
-                rowKey[1] &= KEY_PRESSED_BIT3; // F
-                break;
-            case 'g':
-                rowKey[1] &= KEY_PRESSED_BIT4; // G
-                break;
-            case 'h':
-                rowKey[6] &= KEY_PRESSED_BIT4; // H
-                break;
-            case 'i':
-                rowKey[5] &= KEY_PRESSED_BIT2; // I
-                break;
-            case 'j':
-                rowKey[6] &= KEY_PRESSED_BIT3; // J
-                break;
-            case 'k':
-                rowKey[6] &= KEY_PRESSED_BIT2; // K
-                break;
-            case 'l':
-                rowKey[6] &= KEY_PRESSED_BIT1; // L
-                break;
-            case 'm':
-                rowKey[7] &= KEY_PRESSED_BIT2; // M
-                break;
-            case 'n':
-                rowKey[7] &= KEY_PRESSED_BIT3; // N
-                break;
-            case 'o':
-                rowKey[5] &= KEY_PRESSED_BIT1; // O
-                break;
-            case 'p':
-                rowKey[5] &= KEY_PRESSED_BIT0; // P
-                break;
-            case 'q':
-                rowKey[2] &= KEY_PRESSED_BIT0; // Q
-                break;
-            case 'r':
-                rowKey[2] &= KEY_PRESSED_BIT3; // R
-                break;
-            case 's':
-                rowKey[1] &= KEY_PRESSED_BIT1; // S
-                break;
-            case 't':
-                rowKey[2] &= KEY_PRESSED_BIT4; // T
-                break;
-            case 'u':
-                rowKey[5] &= KEY_PRESSED_BIT3; // U
-                break;
-            case 'v':
-                rowKey[0] &= KEY_PRESSED_BIT4; // V
-                break;
-            case 'w':
-                rowKey[2] &= KEY_PRESSED_BIT1; // W
-                break;
-            case 'x':
-                rowKey[0] &= KEY_PRESSED_BIT2; // X
-                break;
-            case 'y':
-                rowKey[5] &= KEY_PRESSED_BIT4; // Y
-                break;
-            case 'z':
-                rowKey[0] &= KEY_PRESSED_BIT1; // Z
-                break;
-            case '{':
+            }
+            case 'a' -> rowKey[1] &= KEY_PRESSED_BIT0; // A
+            case 'b' -> rowKey[7] &= KEY_PRESSED_BIT4; // B
+            case 'c' -> rowKey[0] &= KEY_PRESSED_BIT3; // C
+            case 'd' -> rowKey[1] &= KEY_PRESSED_BIT2; // D
+            case 'e' -> rowKey[2] &= KEY_PRESSED_BIT2; // E
+            case 'f' -> rowKey[1] &= KEY_PRESSED_BIT3; // F
+            case 'g' -> rowKey[1] &= KEY_PRESSED_BIT4; // G
+            case 'h' -> rowKey[6] &= KEY_PRESSED_BIT4; // H
+            case 'i' -> rowKey[5] &= KEY_PRESSED_BIT2; // I
+            case 'j' -> rowKey[6] &= KEY_PRESSED_BIT3; // J
+            case 'k' -> rowKey[6] &= KEY_PRESSED_BIT2; // K
+            case 'l' -> rowKey[6] &= KEY_PRESSED_BIT1; // L
+            case 'm' -> rowKey[7] &= KEY_PRESSED_BIT2; // M
+            case 'n' -> rowKey[7] &= KEY_PRESSED_BIT3; // N
+            case 'o' -> rowKey[5] &= KEY_PRESSED_BIT1; // O
+            case 'p' -> rowKey[5] &= KEY_PRESSED_BIT0; // P
+            case 'q' -> rowKey[2] &= KEY_PRESSED_BIT0; // Q
+            case 'r' -> rowKey[2] &= KEY_PRESSED_BIT3; // R
+            case 's' -> rowKey[1] &= KEY_PRESSED_BIT1; // S
+            case 't' -> rowKey[2] &= KEY_PRESSED_BIT4; // T
+            case 'u' -> rowKey[5] &= KEY_PRESSED_BIT3; // U
+            case 'v' -> rowKey[0] &= KEY_PRESSED_BIT4; // V
+            case 'w' -> rowKey[2] &= KEY_PRESSED_BIT1; // W
+            case 'x' -> rowKey[0] &= KEY_PRESSED_BIT2; // X
+            case 'y' -> rowKey[5] &= KEY_PRESSED_BIT4; // Y
+            case 'z' -> rowKey[0] &= KEY_PRESSED_BIT1; // Z
+            case '{' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[1] &= KEY_PRESSED_BIT3; // F
-                break;
-            case '|':
-            case '¦': // Spanish keyboard
+            }
+            case '|', '¦' -> { // Spanish keyboard
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[1] &= KEY_PRESSED_BIT1; // S
-                break;
-            case '}':
+            }
+            case '}' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[1] &= KEY_PRESSED_BIT4; // G
-                break;
-            case '~':
+            }
+            case '~' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[1] &= KEY_PRESSED_BIT0; // A
-                break;
-            case '©': // Mac only
+            }
+            case '©' -> { // Mac only
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[5] &= KEY_PRESSED_BIT0; // P
-                break;
-            case '`': // PC only
-            case '§': // Mac only
-            case '¡': // Spanish keyboard only
+            } // PC only
+            // Mac only
+            case '`', '§', '¡' -> { // Spanish keyboard only
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[3] &= KEY_PRESSED_BIT0; // 1 (EDIT mode)
-                break;
-            case '¬': // PC only
-            case '±': // Mac only
-            case '¿': // Spanish keyboard only
+            } // PC only
+            // Mac only
+            case '¬', '±', '¿' -> { // Spanish keyboard only
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[4] &= KEY_PRESSED_BIT1; // 9 (GRAPHICS mode)
-                break;
-            case '£':
+            }
+            case '£' -> {
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
                 rowKey[0] &= KEY_PRESSED_BIT2; // x
-                break;
-            case 'º':
+            }
+            case 'º' -> {
                 rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift -- Extended Mode
-                break;
-            default:
+            }
+            default -> {
                 if (shiftPressed) {
                     rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 }
                 done = false;
+            }
         }
         return done;
     }
@@ -1459,589 +1024,294 @@ public class Keyboard implements KeyListener {
         boolean done = true;
 
         switch (keyChar) {
-            case '!':
+            case '!' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[3] |= KEY_RELEASED_BIT0; // 1
-                break;
-            case '"':
+            }
+            case '"' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[5] |= KEY_RELEASED_BIT0; // P
-                break;
-            case '#':
+            }
+            case '#' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[3] |= KEY_RELEASED_BIT2; // 3
-                break;
-            case '$':
+            }
+            case '$' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[3] |= KEY_RELEASED_BIT3; // 4
-                break;
-            case '%':
+            }
+            case '%' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[3] |= KEY_RELEASED_BIT4; // 5
-                break;
-            case '&':
+            }
+            case '&' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[4] |= KEY_RELEASED_BIT4; // 6
-                break;
-            case '\'':
+            }
+            case '\'' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[4] |= KEY_RELEASED_BIT3; // 7
-                break;
-            case '(':
+            }
+            case '(' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[4] |= KEY_RELEASED_BIT2; // 8
-                break;
-            case ')':
+            }
+            case ')' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[4] |= KEY_RELEASED_BIT1; // 9
-                break;
-            case '*':
-                rowKey[7] |= (KEY_RELEASED_BIT1 | KEY_RELEASED_BIT4); // Symbol Shift + b
-                break;
-            case '+':
+            }
+            case '*' -> rowKey[7] |= (KEY_RELEASED_BIT1 | KEY_RELEASED_BIT4); // Symbol Shift + b
+            case '+' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[6] |= KEY_RELEASED_BIT2; // K
-                break;
-            case ',':
-                rowKey[7] |= (KEY_RELEASED_BIT1 | KEY_RELEASED_BIT3); // Symbol Shift + n
-                break;
-            case '-':
+            }
+            case ',' -> rowKey[7] |= (KEY_RELEASED_BIT1 | KEY_RELEASED_BIT3); // Symbol Shift + n
+            case '-' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[6] |= KEY_RELEASED_BIT3; // J
-                break;
-            case '.':
-                rowKey[7] |= 0x06; // Symbol Shift + M
-                break;
-            case '/':
+            }
+            case '.' -> rowKey[7] |= 0x06; // Symbol Shift + M
+            case '/' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[0] |= KEY_RELEASED_BIT4; // V
-                break;
-            case '0':
-                rowKey[4] |= KEY_RELEASED_BIT0; // 0
-                break;
-            case '1':
-                rowKey[3] |= KEY_RELEASED_BIT0; // 1
-                break;
-            case '2':
-                rowKey[3] |= KEY_RELEASED_BIT1; // 2
-                break;
-            case '3':
-                rowKey[3] |= KEY_RELEASED_BIT2; // 3
-                break;
-            case '4':
-                rowKey[3] |= KEY_RELEASED_BIT3; // 4
-                break;
-            case '5':
-                rowKey[3] |= KEY_RELEASED_BIT4; // 5
-                break;
-            case '6':
-                rowKey[4] |= KEY_RELEASED_BIT4; // 6
-                break;
-            case '7':
-                rowKey[4] |= KEY_RELEASED_BIT3; // 7
-                break;
-            case '8':
-                rowKey[4] |= KEY_RELEASED_BIT2; // 8
-                break;
-            case '9':
-                rowKey[4] |= KEY_RELEASED_BIT1; // 9
-                break;
-            case ':':
+            }
+            case '0' -> rowKey[4] |= KEY_RELEASED_BIT0; // 0
+            case '1' -> rowKey[3] |= KEY_RELEASED_BIT0; // 1
+            case '2' -> rowKey[3] |= KEY_RELEASED_BIT1; // 2
+            case '3' -> rowKey[3] |= KEY_RELEASED_BIT2; // 3
+            case '4' -> rowKey[3] |= KEY_RELEASED_BIT3; // 4
+            case '5' -> rowKey[3] |= KEY_RELEASED_BIT4; // 5
+            case '6' -> rowKey[4] |= KEY_RELEASED_BIT4; // 6
+            case '7' -> rowKey[4] |= KEY_RELEASED_BIT3; // 7
+            case '8' -> rowKey[4] |= KEY_RELEASED_BIT2; // 8
+            case '9' -> rowKey[4] |= KEY_RELEASED_BIT1; // 9
+            case ':' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[0] |= KEY_RELEASED_BIT1; // Z
-                break;
-            case ';':
+            }
+            case ';' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[5] |= KEY_RELEASED_BIT1; // O
-                break;
-            case '<':
+            }
+            case '<' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[2] |= KEY_RELEASED_BIT3; // R
-                break;
-            case '=':
+            }
+            case '=' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[6] |= KEY_RELEASED_BIT1; // L
-                break;
-            case '>':
+            }
+            case '>' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[2] |= KEY_RELEASED_BIT4; // T
-                break;
-            case '?':
+            }
+            case '?' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[0] |= KEY_RELEASED_BIT3; // C
-                break;
-            case '@':
+            }
+            case '@' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[3] |= KEY_RELEASED_BIT1; // 2
-                break;
-            case 'A':
-                rowKey[1] |= KEY_RELEASED_BIT0; // A
-                break;
-            case 'B':
-                rowKey[7] |= KEY_RELEASED_BIT4; // B
-                break;
-            case 'C':
-                rowKey[0] |= KEY_RELEASED_BIT3; // C
-                break;
-            case 'D':
-                rowKey[1] |= KEY_RELEASED_BIT2; // D
-                break;
-            case 'E':
-                rowKey[2] |= KEY_RELEASED_BIT2; // E
-                break;
-            case 'F':
-                rowKey[1] |= KEY_RELEASED_BIT3; // F
-                break;
-            case 'G':
-                rowKey[1] |= KEY_RELEASED_BIT4; // G
-                break;
-            case 'H':
-                rowKey[6] |= KEY_RELEASED_BIT4; // H
-                break;
-            case 'I':
-                rowKey[5] |= KEY_RELEASED_BIT2; // I
-                break;
-            case 'J':
-                rowKey[6] |= KEY_RELEASED_BIT3; // J
-                break;
-            case 'K':
-                rowKey[6] |= KEY_RELEASED_BIT2; // K
-                break;
-            case 'L':
-                rowKey[6] |= KEY_RELEASED_BIT1; // L
-                break;
-            case 'M':
-                rowKey[7] |= KEY_RELEASED_BIT2; // M
-                break;
-            case 'N':
-                rowKey[7] |= KEY_RELEASED_BIT3; // N
-                break;
-            case 'O':
-                rowKey[5] |= KEY_RELEASED_BIT1; // O
-                break;
-            case 'P':
-                rowKey[5] |= KEY_RELEASED_BIT0; // P
-                break;
-            case 'Q':
-                rowKey[2] |= KEY_RELEASED_BIT0; // Q
-                break;
-            case 'R':
-                rowKey[2] |= KEY_RELEASED_BIT3; // R
-                break;
-            case 'S':
-                rowKey[1] |= KEY_RELEASED_BIT1; // S
-                break;
-            case 'T':
-                rowKey[2] |= KEY_RELEASED_BIT4; // T
-                break;
-            case 'U':
-                rowKey[5] |= KEY_RELEASED_BIT3; // U
-                break;
-            case 'V':
-                rowKey[0] |= KEY_RELEASED_BIT4; // V
-                break;
-            case 'W':
-                rowKey[2] |= KEY_RELEASED_BIT1; // W
-                break;
-            case 'X':
-                rowKey[0] |= KEY_RELEASED_BIT2; // X
-                break;
-            case 'Y':
-                rowKey[5] |= KEY_RELEASED_BIT4; // Y
-                break;
-            case 'Z':
-                rowKey[0] |= KEY_RELEASED_BIT1; // Z
-                break;
-            case '[':
+            }
+            case 'A' -> rowKey[1] |= KEY_RELEASED_BIT0; // A
+            case 'B' -> rowKey[7] |= KEY_RELEASED_BIT4; // B
+            case 'C' -> rowKey[0] |= KEY_RELEASED_BIT3; // C
+            case 'D' -> rowKey[1] |= KEY_RELEASED_BIT2; // D
+            case 'E' -> rowKey[2] |= KEY_RELEASED_BIT2; // E
+            case 'F' -> rowKey[1] |= KEY_RELEASED_BIT3; // F
+            case 'G' -> rowKey[1] |= KEY_RELEASED_BIT4; // G
+            case 'H' -> rowKey[6] |= KEY_RELEASED_BIT4; // H
+            case 'I' -> rowKey[5] |= KEY_RELEASED_BIT2; // I
+            case 'J' -> rowKey[6] |= KEY_RELEASED_BIT3; // J
+            case 'K' -> rowKey[6] |= KEY_RELEASED_BIT2; // K
+            case 'L' -> rowKey[6] |= KEY_RELEASED_BIT1; // L
+            case 'M' -> rowKey[7] |= KEY_RELEASED_BIT2; // M
+            case 'N' -> rowKey[7] |= KEY_RELEASED_BIT3; // N
+            case 'O' -> rowKey[5] |= KEY_RELEASED_BIT1; // O
+            case 'P' -> rowKey[5] |= KEY_RELEASED_BIT0; // P
+            case 'Q' -> rowKey[2] |= KEY_RELEASED_BIT0; // Q
+            case 'R' -> rowKey[2] |= KEY_RELEASED_BIT3; // R
+            case 'S' -> rowKey[1] |= KEY_RELEASED_BIT1; // S
+            case 'T' -> rowKey[2] |= KEY_RELEASED_BIT4; // T
+            case 'U' -> rowKey[5] |= KEY_RELEASED_BIT3; // U
+            case 'V' -> rowKey[0] |= KEY_RELEASED_BIT4; // V
+            case 'W' -> rowKey[2] |= KEY_RELEASED_BIT1; // W
+            case 'X' -> rowKey[0] |= KEY_RELEASED_BIT2; // X
+            case 'Y' -> rowKey[5] |= KEY_RELEASED_BIT4; // Y
+            case 'Z' -> rowKey[0] |= KEY_RELEASED_BIT1; // Z
+            case '[' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[5] |= KEY_RELEASED_BIT4; // Y
-                break;
-            case '\\':
+            }
+            case '\\' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[1] |= KEY_RELEASED_BIT2; // D
-                break;
-            case ']':
+            }
+            case ']' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[5] |= KEY_RELEASED_BIT3; // U
-                break;
-            case '_':
+            }
+            case '_' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[4] |= KEY_RELEASED_BIT0; // 0
-                break;
-            case 'a':
-                rowKey[1] |= KEY_RELEASED_BIT0; // A
-                break;
-            case 'b':
-                rowKey[7] |= KEY_RELEASED_BIT4; // B
-                break;
-            case 'c':
-                rowKey[0] |= KEY_RELEASED_BIT3; // C
-                break;
-            case 'd':
-                rowKey[1] |= KEY_RELEASED_BIT2; // D
-                break;
-            case 'e':
-                rowKey[2] |= KEY_RELEASED_BIT2; // E
-                break;
-            case 'f':
-                rowKey[1] |= KEY_RELEASED_BIT3; // F
-                break;
-            case 'g':
-                rowKey[1] |= KEY_RELEASED_BIT4; // G
-                break;
-            case 'h':
-                rowKey[6] |= KEY_RELEASED_BIT4; // H
-                break;
-            case 'i':
-                rowKey[5] |= KEY_RELEASED_BIT2; // I
-                break;
-            case 'j':
-                rowKey[6] |= KEY_RELEASED_BIT3; // J
-                break;
-            case 'k':
-                rowKey[6] |= KEY_RELEASED_BIT2; // K
-                break;
-            case 'l':
-                rowKey[6] |= KEY_RELEASED_BIT1; // L
-                break;
-            case 'm':
-                rowKey[7] |= KEY_RELEASED_BIT2; // M
-                break;
-            case 'n':
-                rowKey[7] |= KEY_RELEASED_BIT3; // N
-                break;
-            case 'o':
-                rowKey[5] |= KEY_RELEASED_BIT1; // O
-                break;
-            case 'p':
-                rowKey[5] |= KEY_RELEASED_BIT0; // P
-                break;
-            case 'q':
-                rowKey[2] |= KEY_RELEASED_BIT0; // Q
-                break;
-            case 'r':
-                rowKey[2] |= KEY_RELEASED_BIT3; // R
-                break;
-            case 's':
-                rowKey[1] |= KEY_RELEASED_BIT1; // S
-                break;
-            case 't':
-                rowKey[2] |= KEY_RELEASED_BIT4; // T
-                break;
-            case 'u':
-                rowKey[5] |= KEY_RELEASED_BIT3; // U
-                break;
-            case 'v':
-                rowKey[0] |= KEY_RELEASED_BIT4; // V
-                break;
-            case 'w':
-                rowKey[2] |= KEY_RELEASED_BIT1; // W
-                break;
-            case 'x':
-                rowKey[0] |= KEY_RELEASED_BIT2; // X
-                break;
-            case 'y':
-                rowKey[5] |= KEY_RELEASED_BIT4; // Y
-                break;
-            case 'z':
-                rowKey[0] |= KEY_RELEASED_BIT1; // Z
-                break;
-            case '{':
+            }
+            case 'a' -> rowKey[1] |= KEY_RELEASED_BIT0; // A
+            case 'b' -> rowKey[7] |= KEY_RELEASED_BIT4; // B
+            case 'c' -> rowKey[0] |= KEY_RELEASED_BIT3; // C
+            case 'd' -> rowKey[1] |= KEY_RELEASED_BIT2; // D
+            case 'e' -> rowKey[2] |= KEY_RELEASED_BIT2; // E
+            case 'f' -> rowKey[1] |= KEY_RELEASED_BIT3; // F
+            case 'g' -> rowKey[1] |= KEY_RELEASED_BIT4; // G
+            case 'h' -> rowKey[6] |= KEY_RELEASED_BIT4; // H
+            case 'i' -> rowKey[5] |= KEY_RELEASED_BIT2; // I
+            case 'j' -> rowKey[6] |= KEY_RELEASED_BIT3; // J
+            case 'k' -> rowKey[6] |= KEY_RELEASED_BIT2; // K
+            case 'l' -> rowKey[6] |= KEY_RELEASED_BIT1; // L
+            case 'm' -> rowKey[7] |= KEY_RELEASED_BIT2; // M
+            case 'n' -> rowKey[7] |= KEY_RELEASED_BIT3; // N
+            case 'o' -> rowKey[5] |= KEY_RELEASED_BIT1; // O
+            case 'p' -> rowKey[5] |= KEY_RELEASED_BIT0; // P
+            case 'q' -> rowKey[2] |= KEY_RELEASED_BIT0; // Q
+            case 'r' -> rowKey[2] |= KEY_RELEASED_BIT3; // R
+            case 's' -> rowKey[1] |= KEY_RELEASED_BIT1; // S
+            case 't' -> rowKey[2] |= KEY_RELEASED_BIT4; // T
+            case 'u' -> rowKey[5] |= KEY_RELEASED_BIT3; // U
+            case 'v' -> rowKey[0] |= KEY_RELEASED_BIT4; // V
+            case 'w' -> rowKey[2] |= KEY_RELEASED_BIT1; // W
+            case 'x' -> rowKey[0] |= KEY_RELEASED_BIT2; // X
+            case 'y' -> rowKey[5] |= KEY_RELEASED_BIT4; // Y
+            case 'z' -> rowKey[0] |= KEY_RELEASED_BIT1; // Z
+            case '{' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[1] |= KEY_RELEASED_BIT3; // F
-                break;
-            case '|':
-            case '¦': // Spanish keyboard
+            }
+            case '|', '¦' -> { // Spanish keyboard
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[1] |= KEY_RELEASED_BIT1; // S
-                break;
-            case '}':
+            }
+            case '}' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[1] |= KEY_RELEASED_BIT4; // G
-                break;
-            case '~':
+            }
+            case '~' -> {
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[1] |= KEY_RELEASED_BIT0; // A
-                break;
-            case '©': // Mac only
+            }
+            case '©' -> { // Mac only
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[5] |= KEY_RELEASED_BIT0; // P
-                break;
-            case '`':
-            case '§': // Mac only
-            case '¡': // Spanish keyboard
+            } // Mac only
+            case '`', '§', '¡' -> // Spanish keyboard
 //                rowKey[0] |= KEY_RELEASED_BIT0; // Caps Shift
-                rowKey[3] |= KEY_RELEASED_BIT0; // 1
-                break;
-            case '¬':
-            case '±': // Mac only
-            case '¿': // Spanish keyboard
+                    rowKey[3] |= KEY_RELEASED_BIT0; // 1
+            // Mac only
+            case '¬', '±', '¿' -> // Spanish keyboard
 //                rowKey[0] |= KEY_RELEASED_BIT0; // Caps Shift
-                rowKey[4] |= KEY_RELEASED_BIT1; // G (Graphics mode)
-                break;
-            case '£': // Pound sign
+                    rowKey[4] |= KEY_RELEASED_BIT1; // G (Graphics mode)
+            case '£' -> { // Pound sign
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
                 rowKey[0] |= KEY_RELEASED_BIT2; // X
-                break;
-            case 'º': // Spanish keyboard only
+            }
+            case 'º' -> { // Spanish keyboard only
                 rowKey[0] |= KEY_RELEASED_BIT0; // Caps Shift
                 rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift -- Extended Mode
-                break;
-            default:
+            }
+            default -> {
                 if (shiftPressed) {
                     rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
                 }
                 done = false;
+            }
         }
         return done;
     }
 
     private void receiveRecreatedZXKeyEvents(KeyEvent evt) {
 
-//        System.out.println("Key Pressed: " + evt);
+        log.trace("Key Pressed: {}", evt);
         switch (evt.getKeyChar()) {
-            case '!':
-                rowKey[7] &= KEY_PRESSED_BIT1; // Symbol Shift
-                break;
-            case '$':
-                rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
-                break;
-            case '%':
-                rowKey[7] &= KEY_PRESSED_BIT0; // Break/Space
-                break;
-            case ',':
-                rowKey[7] &= KEY_PRESSED_BIT4; // B
-                break;
-            case '-':
-                rowKey[0] &= KEY_PRESSED_BIT2; // X
-                break;
-            case '.':
-                rowKey[7] |= KEY_RELEASED_BIT4; // B
-                break;
-            case '/':
-                rowKey[7] &= KEY_PRESSED_BIT3; // N
-                break;
-            case '0':
-                rowKey[6] &= KEY_PRESSED_BIT3; // J
-                break;
-            case '1':
-                rowKey[6] |= KEY_RELEASED_BIT3; // J
-                break;
-            case '2':
-                rowKey[6] &= KEY_PRESSED_BIT2; // K
-                break;
-            case '3':
-                rowKey[6] |= KEY_RELEASED_BIT2; // K
-                break;
-            case '4':
-                rowKey[6] &= KEY_PRESSED_BIT1; // L
-                break;
-            case '5':
-                rowKey[6] |= KEY_RELEASED_BIT1; // L
-                break;
-            case '6':
-                rowKey[6] &= KEY_PRESSED_BIT0; // ENTER
-                break;
-            case '7':
-                rowKey[6] |= KEY_RELEASED_BIT0; // ENTER
-                break;
-            case '8':
-                rowKey[0] &= KEY_PRESSED_BIT0; // Caps Shift
-                break;
-            case '9':
-                rowKey[0] |= KEY_RELEASED_BIT0; // Caps Shift
-                break;
-            case ':':
-                rowKey[0] |= KEY_RELEASED_BIT4; // V
-                break;
-            case ';':
-                rowKey[0] &= KEY_PRESSED_BIT4; // V
-                break;
-            case '<':
-                rowKey[0] &= KEY_PRESSED_BIT1; // Z
-                break;
-            case '=':
-                rowKey[0] |= KEY_RELEASED_BIT2; // X
-                break;
-            case '>':
-                rowKey[0] |= KEY_RELEASED_BIT1; // Z
-                break;
-            case '?':
-                rowKey[7] |= KEY_RELEASED_BIT3; // N
-                break;
-            case 'a':
-                rowKey[3] &= KEY_PRESSED_BIT0; // 1
-                break;
-            case 'b':
-                rowKey[3] |= KEY_RELEASED_BIT0; // 1
-                break;
-            case 'c':
-                rowKey[3] &= KEY_PRESSED_BIT1; // 2
-                break;
-            case 'd':
-                rowKey[3] |= KEY_RELEASED_BIT1; // 2
-                break;
-            case 'e':
-                rowKey[3] &= KEY_PRESSED_BIT2; // 3
-                break;
-            case 'f':
-                rowKey[3] |= KEY_RELEASED_BIT2; // 3
-                break;
-            case 'g':
-                rowKey[3] &= KEY_PRESSED_BIT3; // 4
-                break;
-            case 'h':
-                rowKey[3] |= KEY_RELEASED_BIT3; // 4
-                break;
-            case 'i':
-                rowKey[3] &= KEY_PRESSED_BIT4; // 5
-                break;
-            case 'j':
-                rowKey[3] |= KEY_RELEASED_BIT4; // 5
-                break;
-            case 'k':
-                rowKey[4] &= KEY_PRESSED_BIT4; // 6
-                break;
-            case 'l':
-                rowKey[4] |= KEY_RELEASED_BIT4; // 6
-                break;
-            case 'm':
-                rowKey[4] &= KEY_PRESSED_BIT3; // 7
-                break;
-            case 'n':
-                rowKey[4] |= KEY_RELEASED_BIT3; // 7
-                break;
-            case 'o':
-                rowKey[4] &= KEY_PRESSED_BIT2; // 8
-                break;
-            case 'p':
-                rowKey[4] |= KEY_RELEASED_BIT2; // 8
-                break;
-            case 'q':
-                rowKey[4] &= KEY_PRESSED_BIT1; // 9
-                break;
-            case 'r':
-                rowKey[4] |= KEY_RELEASED_BIT1; // 9
-                break;
-            case 's':
-                rowKey[4] &= KEY_PRESSED_BIT0; // 0
-                break;
-            case 't':
-                rowKey[4] |= KEY_RELEASED_BIT0; // 0
-                break;
-            case 'u':
-                rowKey[2] &= KEY_PRESSED_BIT0; // Q
-                break;
-            case 'v':
-                rowKey[2] |= KEY_RELEASED_BIT0; // Q
-                break;
-            case 'w':
-                rowKey[2] &= KEY_PRESSED_BIT1; // W
-                break;
-            case 'x':
-                rowKey[2] |= KEY_RELEASED_BIT1; // W
-                break;
-            case 'y':
-                rowKey[2] &= KEY_PRESSED_BIT2; // E
-                break;
-            case 'z':
-                rowKey[2] |= KEY_RELEASED_BIT2; // E
-                break;
-            case 'A':
-                rowKey[2] &= KEY_PRESSED_BIT3; // R
-                break;
-            case 'B':
-                rowKey[2] |= KEY_RELEASED_BIT3; // R
-                break;
-            case 'C':
-                rowKey[2] &= KEY_PRESSED_BIT4; // T
-                break;
-            case 'D':
-                rowKey[2] |= KEY_RELEASED_BIT4; // T
-                break;
-            case 'E':
-                rowKey[5] &= KEY_PRESSED_BIT4; // Y
-                break;
-            case 'F':
-                rowKey[5] |= KEY_RELEASED_BIT4; // Y
-                break;
-            case 'G':
-                rowKey[5] &= KEY_PRESSED_BIT3; // U
-                break;
-            case 'H':
-                rowKey[5] |= KEY_RELEASED_BIT3; // U
-                break;
-            case 'I':
-                rowKey[5] &= KEY_PRESSED_BIT2; // I
-                break;
-            case 'J':
-                rowKey[5] |= KEY_RELEASED_BIT2; // I
-                break;
-            case 'K':
-                rowKey[5] &= KEY_PRESSED_BIT1; // O
-                break;
-            case 'L':
-                rowKey[5] |= KEY_RELEASED_BIT1; // O
-                break;
-            case 'M':
-                rowKey[5] &= KEY_PRESSED_BIT0; // P
-                break;
-            case 'N':
-                rowKey[5] |= KEY_RELEASED_BIT0; // P
-                break;
-            case 'O':
-                rowKey[1] &= KEY_PRESSED_BIT0; // A
-                break;
-            case 'P':
-                rowKey[1] |= KEY_RELEASED_BIT0; // A
-                break;
-            case 'Q':
-                rowKey[1] &= KEY_PRESSED_BIT1; // S
-                break;
-            case 'R':
-                rowKey[1] |= KEY_RELEASED_BIT1; // S
-                break;
-            case 'S':
-                rowKey[1] &= KEY_PRESSED_BIT2; // D
-                break;
-            case 'T':
-                rowKey[1] |= KEY_RELEASED_BIT2; // D
-                break;
-            case 'U':
-                rowKey[1] &= KEY_PRESSED_BIT3; // F
-                break;
-            case 'V':
-                rowKey[1] |= KEY_RELEASED_BIT3; // F
-                break;
-            case 'W':
-                rowKey[1] &= KEY_PRESSED_BIT4; // G
-                break;
-            case 'X':
-                rowKey[1] |= KEY_RELEASED_BIT4; // G
-                break;
-            case 'Y':
-                rowKey[6] &= KEY_PRESSED_BIT4; // H
-                break;
-            case 'Z':
-                rowKey[6] |= KEY_RELEASED_BIT4; // H
-                break;
-            case '[':
-                rowKey[0] &= KEY_PRESSED_BIT3; // C
-                break;
-            case ']':
-                rowKey[0] |= KEY_RELEASED_BIT3; // C
-                break;
-            case '^':
-                rowKey[7] |= KEY_RELEASED_BIT0; // Break/Space
-                break;
-            case '{':
-                rowKey[7] &= KEY_PRESSED_BIT2; // M
-                break;
-            case '}':
-                rowKey[7] |= KEY_RELEASED_BIT2; // M
-                break;
-            default:
-                break;
+            case '!' -> rowKey[7] &= KEY_PRESSED_BIT1;  // Symbol Shift
+            case '$' -> rowKey[7] |= KEY_RELEASED_BIT1; // Symbol Shift
+            case '%' -> rowKey[7] &= KEY_PRESSED_BIT0;  // Break/Space
+            case ',' -> rowKey[7] &= KEY_PRESSED_BIT4;  // B
+            case '-' -> rowKey[0] &= KEY_PRESSED_BIT2;  // X
+            case '.' -> rowKey[7] |= KEY_RELEASED_BIT4; // B
+            case '/' -> rowKey[7] &= KEY_PRESSED_BIT3;  // N
+            case '0' -> rowKey[6] &= KEY_PRESSED_BIT3;  // J
+            case '1' -> rowKey[6] |= KEY_RELEASED_BIT3; // J
+            case '2' -> rowKey[6] &= KEY_PRESSED_BIT2;  // K
+            case '3' -> rowKey[6] |= KEY_RELEASED_BIT2; // K
+            case '4' -> rowKey[6] &= KEY_PRESSED_BIT1;  // L
+            case '5' -> rowKey[6] |= KEY_RELEASED_BIT1; // L
+            case '6' -> rowKey[6] &= KEY_PRESSED_BIT0;  // ENTER
+            case '7' -> rowKey[6] |= KEY_RELEASED_BIT0; // ENTER
+            case '8' -> rowKey[0] &= KEY_PRESSED_BIT0;  // Caps Shift
+            case '9' -> rowKey[0] |= KEY_RELEASED_BIT0; // Caps Shift
+            case ':' -> rowKey[0] |= KEY_RELEASED_BIT4; // V
+            case ';' -> rowKey[0] &= KEY_PRESSED_BIT4;  // V
+            case '<' -> rowKey[0] &= KEY_PRESSED_BIT1;  // Z
+            case '=' -> rowKey[0] |= KEY_RELEASED_BIT2; // X
+            case '>' -> rowKey[0] |= KEY_RELEASED_BIT1; // Z
+            case '?' -> rowKey[7] |= KEY_RELEASED_BIT3; // N
+            case 'a' -> rowKey[3] &= KEY_PRESSED_BIT0;  // 1
+            case 'b' -> rowKey[3] |= KEY_RELEASED_BIT0; // 1
+            case 'c' -> rowKey[3] &= KEY_PRESSED_BIT1;  // 2
+            case 'd' -> rowKey[3] |= KEY_RELEASED_BIT1; // 2
+            case 'e' -> rowKey[3] &= KEY_PRESSED_BIT2;  // 3
+            case 'f' -> rowKey[3] |= KEY_RELEASED_BIT2; // 3
+            case 'g' -> rowKey[3] &= KEY_PRESSED_BIT3;  // 4
+            case 'h' -> rowKey[3] |= KEY_RELEASED_BIT3; // 4
+            case 'i' -> rowKey[3] &= KEY_PRESSED_BIT4;  // 5
+            case 'j' -> rowKey[3] |= KEY_RELEASED_BIT4; // 5
+            case 'k' -> rowKey[4] &= KEY_PRESSED_BIT4;  // 6
+            case 'l' -> rowKey[4] |= KEY_RELEASED_BIT4; // 6
+            case 'm' -> rowKey[4] &= KEY_PRESSED_BIT3;  // 7
+            case 'n' -> rowKey[4] |= KEY_RELEASED_BIT3; // 7
+            case 'o' -> rowKey[4] &= KEY_PRESSED_BIT2;  // 8
+            case 'p' -> rowKey[4] |= KEY_RELEASED_BIT2; // 8
+            case 'q' -> rowKey[4] &= KEY_PRESSED_BIT1;  // 9
+            case 'r' -> rowKey[4] |= KEY_RELEASED_BIT1; // 9
+            case 's' -> rowKey[4] &= KEY_PRESSED_BIT0;  // 0
+            case 't' -> rowKey[4] |= KEY_RELEASED_BIT0; // 0
+            case 'u' -> rowKey[2] &= KEY_PRESSED_BIT0;  // Q
+            case 'v' -> rowKey[2] |= KEY_RELEASED_BIT0; // Q
+            case 'w' -> rowKey[2] &= KEY_PRESSED_BIT1;  // W
+            case 'x' -> rowKey[2] |= KEY_RELEASED_BIT1; // W
+            case 'y' -> rowKey[2] &= KEY_PRESSED_BIT2;  // E
+            case 'z' -> rowKey[2] |= KEY_RELEASED_BIT2; // E
+            case 'A' -> rowKey[2] &= KEY_PRESSED_BIT3;  // R
+            case 'B' -> rowKey[2] |= KEY_RELEASED_BIT3; // R
+            case 'C' -> rowKey[2] &= KEY_PRESSED_BIT4;  // T
+            case 'D' -> rowKey[2] |= KEY_RELEASED_BIT4; // T
+            case 'E' -> rowKey[5] &= KEY_PRESSED_BIT4;  // Y
+            case 'F' -> rowKey[5] |= KEY_RELEASED_BIT4; // Y
+            case 'G' -> rowKey[5] &= KEY_PRESSED_BIT3;  // U
+            case 'H' -> rowKey[5] |= KEY_RELEASED_BIT3; // U
+            case 'I' -> rowKey[5] &= KEY_PRESSED_BIT2;  // I
+            case 'J' -> rowKey[5] |= KEY_RELEASED_BIT2; // I
+            case 'K' -> rowKey[5] &= KEY_PRESSED_BIT1;  // O
+            case 'L' -> rowKey[5] |= KEY_RELEASED_BIT1; // O
+            case 'M' -> rowKey[5] &= KEY_PRESSED_BIT0;  // P
+            case 'N' -> rowKey[5] |= KEY_RELEASED_BIT0; // P
+            case 'O' -> rowKey[1] &= KEY_PRESSED_BIT0;  // A
+            case 'P' -> rowKey[1] |= KEY_RELEASED_BIT0; // A
+            case 'Q' -> rowKey[1] &= KEY_PRESSED_BIT1;  // S
+            case 'R' -> rowKey[1] |= KEY_RELEASED_BIT1; // S
+            case 'S' -> rowKey[1] &= KEY_PRESSED_BIT2;  // D
+            case 'T' -> rowKey[1] |= KEY_RELEASED_BIT2; // D
+            case 'U' -> rowKey[1] &= KEY_PRESSED_BIT3;  // F
+            case 'V' -> rowKey[1] |= KEY_RELEASED_BIT3; // F
+            case 'W' -> rowKey[1] &= KEY_PRESSED_BIT4;  // G
+            case 'X' -> rowKey[1] |= KEY_RELEASED_BIT4; // G
+            case 'Y' -> rowKey[6] &= KEY_PRESSED_BIT4;  // H
+            case 'Z' -> rowKey[6] |= KEY_RELEASED_BIT4; // H
+            case '[' -> rowKey[0] &= KEY_PRESSED_BIT3;  // C
+            case ']' -> rowKey[0] |= KEY_RELEASED_BIT3; // C
+            case '^' -> rowKey[7] |= KEY_RELEASED_BIT0; // Break/Space
+            case '{' -> rowKey[7] &= KEY_PRESSED_BIT2;  // M
+            case '}' -> rowKey[7] |= KEY_RELEASED_BIT2; // M
+            default -> {
+            }
         }
     }
 }

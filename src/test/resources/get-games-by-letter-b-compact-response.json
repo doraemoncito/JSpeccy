@@ -1,0 +1,838 @@
+{
+  "took": 10,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 2043,
+      "relation": "eq"
+    },
+    "hits": [
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0009031",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "A B C",
+          "releases": [
+            {
+              "publishers": [
+                {
+                  "country": "UK",
+                  "name": "Artic Computing Ltd",
+                  "labelType": "Company: Publisher/Manager",
+                  "publisherSeq": 1
+                }
+              ],
+              "files": [
+                {
+                  "path": "/pub/sinclair/games/a/ABC.tap.zip",
+                  "size": 7512,
+                  "format": "Tape (TAP)",
+                  "type": "Tape image",
+                  "encodingScheme": "Undetermined"
+                },
+                {
+                  "path": "/pub/sinclair/games/a/ABC.tzx.zip",
+                  "size": 7708,
+                  "origin": "Original release (O)",
+                  "format": "Perfect tape (TZX)",
+                  "type": "Tape image",
+                  "encodingScheme": "None"
+                }
+              ]
+            }
+          ],
+          "score": {
+            "score": 5,
+            "votes": 1
+          },
+          "genreType": "General",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/games-inlays/a/ABC.jpg",
+              "size": 360968,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/a/ABC.gif",
+              "size": 1199,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/a/ABC.txt",
+              "size": 1355,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "ABC.gif",
+              "size": 1199,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 9031,
+              "url": "/pub/sinclair/screens/in-game/a/ABC.gif"
+            }
+          ],
+          "originalYearOfRelease": 1983,
+          "genre": "General: Education",
+          "publishers": [
+            {
+              "country": "UK",
+              "notes": [],
+              "name": "Artic Computing Ltd",
+              "labelType": "Company: Publisher/Manager",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Education",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K",
+          "authors": [
+            {
+              "country": "UK",
+              "notes": [],
+              "authorSeq": 1,
+              "roles": [],
+              "name": "Chris A. Thornton",
+              "labelType": "Person",
+              "type": "Creator"
+            }
+          ]
+        },
+        "sort": [
+          "A B C"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0036078",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "A Bears Night Out (ZxZvm)",
+          "releases": [
+            {
+              "publishers": [],
+              "files": [
+                {
+                  "path": "/pub/sinclair/disks-inform/BearsNightOutA.dsk.zip",
+                  "size": 91007,
+                  "format": "+3 disk (DSK)",
+                  "type": "Disk image"
+                }
+              ]
+            }
+          ],
+          "score": {},
+          "genreType": "Adventure Game",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Adventure Game: Text-Only",
+          "publishers": [
+            {}
+          ],
+          "genreSubType": "Text-Only",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 128 +3",
+          "authors": [
+            {}
+          ]
+        },
+        "sort": [
+          "A Bears Night Out (ZxZvm)"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028700",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "A Big Program",
+          "releases": [
+            {
+              "publishers": [],
+              "files": [
+                {
+                  "path": "/pub/sinclair/zx81/games/b/BIGONE.ZIP",
+                  "size": 510,
+                  "type": "ZX81 archive file"
+                }
+              ]
+            }
+          ],
+          "score": {},
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0028700/0028700-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "language": "English",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0028700-run-1.png",
+              "size": 2887,
+              "scrUrl": "/zxdb/sinclair/entries/0028700/0028700-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 28700,
+              "url": "/zxscreens/0028700/0028700-run-1.png"
+            }
+          ],
+          "publishers": [
+            {}
+          ],
+          "contentType": "SOFTWARE",
+          "machineType": "ZX81 2K",
+          "authors": [
+            {}
+          ]
+        },
+        "sort": [
+          "A Big Program"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0027296",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "A Broken Friend",
+          "releases": [
+            {
+              "publishers": [
+                {
+                  "country": "UK",
+                  "name": "Paul Jenkinson",
+                  "labelType": "Person",
+                  "publisherSeq": 1
+                }
+              ],
+              "files": [
+                {
+                  "path": "/pub/sinclair/games/b/BrokenFriendAV1.0.tap.zip",
+                  "comments": "v1.0",
+                  "size": 17062,
+                  "format": "Tape (TAP)",
+                  "type": "Tape image",
+                  "encodingScheme": "Undetermined"
+                },
+                {
+                  "path": "/pub/sinclair/games/b/BrokenFriendAV1.0.tzx.zip",
+                  "comments": "v1.0",
+                  "size": 17255,
+                  "origin": "Original release (O)",
+                  "format": "Perfect tape (TZX)",
+                  "type": "Tape image",
+                  "encodingScheme": "None"
+                }
+              ]
+            }
+          ],
+          "score": {
+            "score": 5.17,
+            "votes": 6
+          },
+          "genreType": "Adventure Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/load/b/scr/BrokenFriendA.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/b/BrokenFriendA.gif",
+              "size": 6001,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/b/BrokenFriendA.txt",
+              "size": 1810,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "BrokenFriendA-load.gif",
+              "size": 6992,
+              "scrUrl": "/pub/sinclair/screens/load/b/scr/BrokenFriendA.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 27296,
+              "url": "/zxscreens/0027296/BrokenFriendA-load.gif"
+            },
+            {
+              "filename": "BrokenFriendA.gif",
+              "size": 6001,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 27296,
+              "url": "/pub/sinclair/screens/in-game/b/BrokenFriendA.gif"
+            }
+          ],
+          "originalYearOfRelease": 2012,
+          "genre": "Adventure Game: Text-Only",
+          "publishers": [
+            {
+              "country": "UK",
+              "notes": [],
+              "name": "Paul Jenkinson",
+              "labelType": "Person",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Text-Only",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K",
+          "authors": [
+            {
+              "country": "UK",
+              "notes": [],
+              "authorSeq": 1,
+              "roles": [],
+              "name": "Paul Jenkinson",
+              "labelType": "Person",
+              "type": "Creator"
+            }
+          ]
+        },
+        "sort": [
+          "A Broken Friend"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0010544",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "A Bulgarian Requiem",
+          "releases": [
+            {
+              "publishers": [
+                {
+                  "country": "Spain",
+                  "name": "Adban de Corcy",
+                  "labelType": "Nickname",
+                  "publisherSeq": 1
+                }
+              ],
+              "files": [
+                {
+                  "path": "/pub/sinclair/games/b/BulgarianRequiemA.tzx.zip",
+                  "size": 18768,
+                  "origin": "Original release (O)",
+                  "format": "Perfect tape (TZX)",
+                  "type": "Tape image",
+                  "encodingScheme": "None"
+                },
+                {
+                  "path": "/pub/sinclair/games/b/BulgarianRequiemA.z80.zip",
+                  "size": 41146,
+                  "format": "Snapshot (Z80)",
+                  "type": "Snapshot image",
+                  "encodingScheme": "Undetermined"
+                }
+              ]
+            }
+          ],
+          "score": {
+            "score": 7.38,
+            "votes": 8
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/load/b/scr/BulgarianRequiemA.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/b/BulgarianRequiemA.gif",
+              "size": 4497,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/b/BulgarianRequiemA.txt",
+              "size": 13146,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-maps/b/BulgarianRequiemA.png",
+              "size": 87242,
+              "format": "Picture (PNG)",
+              "type": "Game map"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "BulgarianRequiemA-load.gif",
+              "size": 4181,
+              "scrUrl": "/pub/sinclair/screens/load/b/scr/BulgarianRequiemA.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 10544,
+              "url": "/zxscreens/0010544/BulgarianRequiemA-load.gif"
+            },
+            {
+              "filename": "BulgarianRequiemA.gif",
+              "size": 4497,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 10544,
+              "url": "/pub/sinclair/screens/in-game/b/BulgarianRequiemA.gif"
+            }
+          ],
+          "originalYearOfRelease": 2000,
+          "genre": "Arcade Game: Platform",
+          "publishers": [
+            {
+              "country": "Spain",
+              "notes": [],
+              "name": "Adban de Corcy",
+              "labelType": "Nickname",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Platform",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K",
+          "authors": [
+            {
+              "country": "Spain",
+              "notes": [],
+              "authorSeq": 1,
+              "roles": [],
+              "name": "Fabián Álvarez López",
+              "labelType": "Person",
+              "type": "Creator"
+            }
+          ]
+        },
+        "sort": [
+          "A Bulgarian Requiem"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0019890",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "MIA",
+          "title": "A CESIL Interpreter",
+          "releases": [
+            {
+              "publishers": [
+                {
+                  "country": "UK",
+                  "name": "Galaxy Software",
+                  "labelType": "Company: Marketing/Distribution",
+                  "publisherSeq": 1
+                }
+              ],
+              "files": []
+            }
+          ],
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1983,
+          "genre": "Programming: General",
+          "publishers": [
+            {
+              "country": "UK",
+              "notes": [],
+              "name": "Galaxy Software",
+              "labelType": "Company: Marketing/Distribution",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "General",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K",
+          "authors": [
+            {}
+          ]
+        },
+        "sort": [
+          "A CESIL Interpreter"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0038888",
+        "_source": {
+          "originalDayOfRelease": 25,
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "A Case of Murder",
+          "releases": [
+            {
+              "publishers": [
+                {
+                  "country": "UK",
+                  "name": "Taskmaster Software",
+                  "labelType": "Company",
+                  "publisherSeq": 1
+                }
+              ],
+              "files": [
+                {
+                  "path": "/zxdb/sinclair/entries/0038888/CaseOfMurderA(128K).tap.zip",
+                  "comments": "128K version with graphics (2023 update)",
+                  "size": 57380,
+                  "format": "Tape (TAP)",
+                  "type": "Tape image",
+                  "encodingScheme": "None"
+                },
+                {
+                  "path": "/zxdb/sinclair/entries/0038888/CaseOfMurderA(128K).tzx.zip",
+                  "comments": "128K version with graphics (2023 update)",
+                  "size": 57408,
+                  "format": "Perfect tape (TZX)",
+                  "type": "Tape image",
+                  "encodingScheme": "None"
+                },
+                {
+                  "path": "/zxdb/sinclair/entries/0038888/CaseOfMurderA(48K).tap.zip",
+                  "comments": "2023 update (no graphics)",
+                  "size": 32320,
+                  "format": "Tape (TAP)",
+                  "type": "Tape image",
+                  "encodingScheme": "None"
+                },
+                {
+                  "path": "/zxdb/sinclair/entries/0038888/CaseOfMurderA(48K).tzx.zip",
+                  "comments": "2023 update (no graphics)",
+                  "size": 32375,
+                  "format": "Perfect tape (TZX)",
+                  "type": "Tape image",
+                  "encodingScheme": "None"
+                },
+                {
+                  "path": "/zxdb/sinclair/entries/0038888/CaseOfMurderA.dsk.zip",
+                  "comments": "Disk version with graphics (2023 update)",
+                  "size": 60462,
+                  "format": "+3 disk (DSK)",
+                  "type": "Disk image",
+                  "encodingScheme": "None"
+                },
+                {
+                  "path": "/zxdb/sinclair/entries/0038888/CaseOfMurderA.tzx.zip",
+                  "size": 28093,
+                  "format": "Perfect tape (TZX)",
+                  "type": "Tape image",
+                  "encodingScheme": "None"
+                }
+              ]
+            }
+          ],
+          "originalMonthOfRelease": 11,
+          "score": {},
+          "genreType": "Adventure Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0038888/CaseOfMurderA_Front.png",
+              "size": 87651,
+              "format": "Picture (PNG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0038888/CaseOfMurderA-LOAD-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0038888/0038888-open-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Opening screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0038888/0038888-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "CaseOfMurderA-LOAD-1.png",
+              "size": 6179,
+              "scrUrl": "/zxdb/sinclair/entries/0038888/CaseOfMurderA-LOAD-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 38888,
+              "url": "/zxscreens/0038888/CaseOfMurderA-LOAD-1.png"
+            },
+            {
+              "filename": "0038888-open-1.png",
+              "size": 3291,
+              "scrUrl": "/zxdb/sinclair/entries/0038888/0038888-open-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 38888,
+              "url": "/zxscreens/0038888/0038888-open-1.png"
+            },
+            {
+              "filename": "0038888-run-1.png",
+              "size": 2809,
+              "scrUrl": "/zxdb/sinclair/entries/0038888/0038888-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 38888,
+              "url": "/zxscreens/0038888/0038888-run-1.png"
+            }
+          ],
+          "originalYearOfRelease": 2022,
+          "genre": "Adventure Game: Text-Only",
+          "publishers": [
+            {
+              "country": "UK",
+              "notes": [
+                {
+                  "noteType": "S",
+                  "text": "Taskmaster Software was a short-lived publisher started by the students R. Powell and E. Toovey, to develop and commercialize text adventures for the ZX Spectrum. They bought licenses for both {Graphic Adventure Creator|Incentive Software Ltd|0006391} and {Professional Adventure Writer|Gilsoft International|0006825}, and started to work on a text adventure based on the latter. {The Dragnet Case|Taskmaster Software|0017418} was almost ready, but Powell moved to another city and Toovey got busy at school, so that was the end of Taskmaster Software."
+                }
+              ],
+              "name": "Taskmaster Software",
+              "labelType": "Company",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Text-Only",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K",
+          "authors": [
+            {
+              "country": "UK",
+              "notes": [],
+              "authorSeq": 1,
+              "roles": [],
+              "name": "R. Powell",
+              "labelType": "Person",
+              "type": "Creator"
+            },
+            {
+              "country": "UK",
+              "notes": [],
+              "authorSeq": 2,
+              "roles": [],
+              "name": "E. Toovey",
+              "labelType": "Person",
+              "type": "Creator"
+            }
+          ]
+        },
+        "sort": [
+          "A Case of Murder"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0042546",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "A Case of Murder 128K",
+          "releases": [
+            {
+              "publishers": [
+                {
+                  "country": "UK",
+                  "name": "Taskmaster Software",
+                  "labelType": "Company",
+                  "publisherSeq": 1
+                }
+              ],
+              "files": []
+            }
+          ],
+          "score": {},
+          "genreType": "Adventure Game",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 2023,
+          "genre": "Adventure Game: Text/Illustrated",
+          "publishers": [
+            {
+              "country": "UK",
+              "notes": [
+                {
+                  "noteType": "S",
+                  "text": "Taskmaster Software was a short-lived publisher started by the students R. Powell and E. Toovey, to develop and commercialize text adventures for the ZX Spectrum. They bought licenses for both {Graphic Adventure Creator|Incentive Software Ltd|0006391} and {Professional Adventure Writer|Gilsoft International|0006825}, and started to work on a text adventure based on the latter. {The Dragnet Case|Taskmaster Software|0017418} was almost ready, but Powell moved to another city and Toovey got busy at school, so that was the end of Taskmaster Software."
+                }
+              ],
+              "name": "Taskmaster Software",
+              "labelType": "Company",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Text/Illustrated",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 128K",
+          "authors": [
+            {
+              "country": "UK",
+              "notes": [],
+              "authorSeq": 1,
+              "roles": [],
+              "name": "E. Toovey",
+              "labelType": "Person",
+              "type": "Creator"
+            }
+          ]
+        },
+        "sort": [
+          "A Case of Murder 128K"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0017022",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "MIA",
+          "title": "A Catastrophic Holiday",
+          "releases": [
+            {
+              "publishers": [
+                {
+                  "name": "NE-AD Software - within compilation \"A Catastrophic Holiday + Catastrophies at School\"",
+                  "publisherSeq": 0
+                }
+              ],
+              "files": []
+            }
+          ],
+          "score": {},
+          "genreType": "Adventure Game",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1987,
+          "genre": "Adventure Game: Graphic",
+          "publishers": [
+            {
+              "country": "UK",
+              "notes": [],
+              "name": "NE-AD Software",
+              "labelType": "Company",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Graphic",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K",
+          "authors": [
+            {
+              "country": "UK",
+              "notes": [],
+              "authorSeq": 1,
+              "roles": [],
+              "name": "Neil Commins",
+              "labelType": "Person",
+              "type": "Creator"
+            },
+            {
+              "country": "UK",
+              "notes": [],
+              "authorSeq": 2,
+              "roles": [],
+              "name": "Adam Whitham",
+              "labelType": "Person",
+              "type": "Creator"
+            }
+          ]
+        },
+        "sort": [
+          "A Catastrophic Holiday"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0011563",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "MIA",
+          "title": "A Catastrophic Holiday + Catastrophies at School",
+          "releases": [
+            {
+              "publishers": [
+                {
+                  "country": "UK",
+                  "name": "NE-AD Software",
+                  "labelType": "Company",
+                  "publisherSeq": 1
+                }
+              ],
+              "files": []
+            }
+          ],
+          "score": {},
+          "genreType": "Compilation",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1987,
+          "genre": "Compilation",
+          "publishers": [
+            {
+              "country": "UK",
+              "notes": [],
+              "name": "NE-AD Software",
+              "labelType": "Company",
+              "publisherSeq": 1
+            }
+          ],
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K",
+          "authors": [
+            {}
+          ]
+        },
+        "sort": [
+          "A Catastrophic Holiday + Catastrophies at School"
+        ]
+      }
+    ]
+  }
+}

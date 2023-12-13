@@ -29,12 +29,17 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+        <default-server-package>server</default-server-package>
+        <default-client-package>client</default-client-package>
+
         <!-- NOTE: use `mvn versions:display-dependency-updates` to scan for dependency updates -->
         <activation.version>2.0.1</activation.version>
+        <commons-io.version>2.15.1</commons-io.version>
         <jakarta.xml.bind-api.version>4.0.1</jakarta.xml.bind-api.version>
         <jaxb-core.version>4.0.4</jaxb-core.version>
         <jaxb-impl.version>4.0.4</jaxb-impl.version>
         <picocli-version>4.7.5</picocli-version>
+        <replacer.version>1.5.3</replacer.version>
 
         <!-- NOTE: use `mvn versions:versions:display-plugin-updates` to scan for dependency updates -->
         <dependency-check-maven.version>9.0.0</dependency-check-maven.version>
@@ -48,12 +53,17 @@
         <maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
         <native-maven-plugin.version>0.9.28</native-maven-plugin.version>
         <spotbugs-maven-plugin.version>4.8.1.0</spotbugs-maven-plugin.version>
+        <swagger-codegen-maven-plugin.version>3.0.46</swagger-codegen-maven-plugin.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,6 +100,22 @@
             <artifactId>jaxb-impl</artifactId>
             <version>${jaxb-impl.version}</version>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
@@ -173,6 +199,105 @@
                                 <java.source>${maven.compiler.source}</java.source>
                                 <java.target>${maven.compiler.target}</java.target>
                             </additionalProperties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.swagger.codegen.v3</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>${swagger-codegen-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-zxdk-client-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <ignoreFileOverride>${project.basedir}/src/main/resources/.swagger-codegen-ignore</ignoreFileOverride>
+                            <inputSpec>${project.basedir}/src/main/resources/public/openapi-zxdk-3.0.0.yaml</inputSpec>
+                            <output>${client-output-directory}</output>
+                            <language>java</language>
+                            <configOptions>
+                                <sourceFolder>src/main/java</sourceFolder>
+                                <modelPackage>${default-client-package}.dto</modelPackage>
+                                <apiPackage>${default-client-package}.api</apiPackage>
+                                <invokerPackage>${default-client-package}</invokerPackage>
+                                <configPackage>${default-client-package}.configuration</configPackage>
+                                <delegatePattern>true</delegatePattern>
+                                <java8>true</java8>
+                                <library>resttemplate</library>
+                                <dateLibrary>java8</dateLibrary>
+                                <generateApiTests>false</generateApiTests>
+                                <generateModelTests>false</generateModelTests>
+                                <useSpringBoot3>true</useSpringBoot3>
+                                <useJakartaEe>true</useJakartaEe>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-documentation</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <ignoreFileOverride>${project.basedir}/src/main/resources/.swagger-codegen-ignore</ignoreFileOverride>
+                            <inputSpec>${project.basedir}/src/main/resources/public/openapi-zxdk-3.0.0.yaml</inputSpec>
+                            <language>html2</language>
+                            <output>${project.build.directory}/site/swagger</output>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>${replacer.version}</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includes>
+                        <include>${project.build.directory}/generated-sources/swagger/src/main/java/**/*.java</include>
+                    </includes>
+                    <regex>false</regex>
+                    <token>javax.</token>
+                    <value>jakarta.</value>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.github.git-commit-id</groupId>
+                <artifactId>git-commit-id-maven-plugin</artifactId>
+                <configuration>
+                    <!-- Enable offline native git use: https://github.com/git-commit-id/git-commit-id-maven-plugin/issues/458 -->
+                    <offline>true</offline>
+                    <useNativeGit>true</useNativeGit>
+                    <verbose>false</verbose>
+                    <commitIdGenerationMode>full</commitIdGenerationMode>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/swagger/src/main/java
+                                </source>
+                            </sources>
                         </configuration>
                     </execution>
                 </executions>

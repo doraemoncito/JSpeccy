@@ -15,10 +15,10 @@ import gui.JSpeccy;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import machine.Keyboard.JoystickModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
 
+import javax.inject.Inject;
 import java.io.File;
 import java.util.Optional;
 
@@ -41,7 +41,7 @@ public class JSpeccyCommand implements Runnable {
 
     private JSpeccy jSpeccy;
 
-    @Autowired
+    @Inject
     public JSpeccyCommand(final JSpeccy jSpeccy) {
 
         this.jSpeccy = jSpeccy;

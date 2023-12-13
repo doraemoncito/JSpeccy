@@ -1,0 +1,4664 @@
+{
+  "took": 22,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 4892,
+      "relation": "eq"
+    },
+    "hits": [
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0014389",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S\u0026S Parapsychologists",
+          "score": {
+            "score": 7.67,
+            "votes": 6
+          },
+          "genreType": "Adventure Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/SSParapsychologists.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SSParapsychologists.gif",
+              "size": 3955,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0014389/SSParapsychologists.pdf",
+              "size": 142710,
+              "format": "Document (PDF)",
+              "type": "Instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-adverts/s/SSParapsychologists.jpg",
+              "size": 327462,
+              "format": "Picture (JPG)",
+              "type": "Advertisement"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0014389/SSParapsychologists(2019).jpg",
+              "size": 247574,
+              "format": "Picture (JPG)",
+              "type": "Advertisement"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SSParapsychologists-load.png",
+              "size": 5174,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/SSParapsychologists.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 14389,
+              "url": "/zxscreens/0014389/SSParapsychologists-load.png"
+            },
+            {
+              "filename": "SSParapsychologists.gif",
+              "size": 3955,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 14389,
+              "url": "/pub/sinclair/screens/in-game/s/SSParapsychologists.gif"
+            }
+          ],
+          "originalYearOfRelease": 1994,
+          "genre": "Adventure Game: Text/Illustrated",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Arkham Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Text/Illustrated",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 128K"
+        },
+        "sort": [
+          "S\u0026S Parapsychologists"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0024186",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S-S-Sample",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S-S-Sample.gif",
+              "size": 815,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S-S-Sample.txt",
+              "size": 1961,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S-S-Sample.gif",
+              "size": 815,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 24186,
+              "url": "/pub/sinclair/screens/in-game/s/S-S-Sample.gif"
+            }
+          ],
+          "originalYearOfRelease": 1988,
+          "genre": "Utility: Sound/Speech",
+          "publishers": [
+            {
+              "name": "Dennis Publishing",
+              "publisherSeq": 0
+            }
+          ],
+          "genreSubType": "Sound/Speech",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S-S-Sample"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0025265",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S-Terminal",
+          "score": {},
+          "genreType": "General",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S-Terminal.gif",
+              "size": 821,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S-Terminal.gif",
+              "size": 821,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 25265,
+              "url": "/pub/sinclair/screens/in-game/s/S-Terminal.gif"
+            }
+          ],
+          "originalYearOfRelease": 1999,
+          "genre": "General: Domestic",
+          "publishers": [
+            {
+              "country": "Russia",
+              "name": "Stars of Keladan",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Domestic",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S-Terminal"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0014861",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.A.M. Simulator Boda Revenge",
+          "score": {
+            "score": 3.8,
+            "votes": 5
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.A.M.SimulatorBodaRevenge.gif",
+              "size": 1365,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.A.M.SimulatorBodaRevenge.gif",
+              "size": 1365,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 14861,
+              "url": "/pub/sinclair/screens/in-game/s/S.A.M.SimulatorBodaRevenge.gif"
+            }
+          ],
+          "originalYearOfRelease": 2004,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Miguel Angel Garcia Prada",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.A.M. Simulator Boda Revenge"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0006922",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.A.S. Assault",
+          "score": {
+            "score": 5,
+            "votes": 1
+          },
+          "genreType": "Adventure Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0006922/SASAssault.jpg",
+              "size": 191786,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0006922/SASAssault_Back.jpg",
+              "size": 118730,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.A.S.Assault.gif",
+              "size": 1246,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0006922/SASAssault(EN).txt",
+              "size": 460,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.A.S.Assault.gif",
+              "size": 1246,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 6922,
+              "url": "/pub/sinclair/screens/in-game/s/S.A.S.Assault.gif"
+            }
+          ],
+          "originalYearOfRelease": 1983,
+          "genre": "Adventure Game: Text-Only",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Mikro-Gen Ltd",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Text-Only",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.A.S. Assault"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0004341",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.A.S. Combat Assault",
+          "score": {
+            "score": 5.17,
+            "votes": 6
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.A.S.CombatAssault.gif",
+              "size": 3841,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-maps/s/S.A.S.CombatAssault.png",
+              "size": 70764,
+              "format": "Picture (PNG)",
+              "type": "Game map"
+            },
+            {
+              "path": "/zxdb/sinclair/pokes/s/S.A.S. Combat Assault (1993)(Sinclair User).pok",
+              "size": 59,
+              "format": "Pokes (POK)",
+              "type": "POK pokes file"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.A.S.CombatAssault.gif",
+              "size": 3841,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 4341,
+              "url": "/pub/sinclair/screens/in-game/s/S.A.S.CombatAssault.gif"
+            }
+          ],
+          "originalYearOfRelease": 1993,
+          "genre": "Arcade Game: Adventure",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "EMAP Business \u0026 Computer Publications Ltd",
+              "publisherSeq": 0
+            }
+          ],
+          "genreSubType": "Adventure",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.A.S. Combat Assault"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0038640",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Never released",
+          "title": "S.D.I.",
+          "score": {},
+          "genreType": "Arcade Game",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Martech Games Ltd",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.D.I."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0013932",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.E.M.I.S.I.S.",
+          "score": {
+            "score": 5.75,
+            "votes": 4
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.E.M.I.S.I.S..gif",
+              "size": 3581,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.E.M.I.S.I.S..gif",
+              "size": 3581,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 13932,
+              "url": "/pub/sinclair/screens/in-game/s/S.E.M.I.S.I.S..gif"
+            }
+          ],
+          "originalYearOfRelease": 1987,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Hobby Press S.A.",
+              "publisherSeq": 0
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.E.M.I.S.I.S."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0019186",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Distribution denied - still for sale",
+          "title": "S.E.U.D.",
+          "score": {
+            "score": 8.5,
+            "votes": 4
+          },
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0019186/SEUD_Front.jpg",
+              "size": 279637,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0019186/SEUD_Front_2.jpg",
+              "size": 232383,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.E.U.D..gif",
+              "size": 1708,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.E.U.D..txt",
+              "size": 18522,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0019186/SEUD_Tape.jpg",
+              "size": 58185,
+              "format": "Picture (JPG)",
+              "type": "Media scan"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.E.U.D..gif",
+              "size": 1708,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 19186,
+              "url": "/pub/sinclair/screens/in-game/s/S.E.U.D..gif"
+            }
+          ],
+          "originalYearOfRelease": 2008,
+          "genre": "Utility: Game Creator",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Cronosoft [UK]",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Game Creator",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.E.U.D."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0038452",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.H.A.K.E.R.",
+          "score": {},
+          "genreType": "Casual Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0038452/0038452-load-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0038452/0038452-open-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Opening screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0038452/0038452-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0038452-load-1.gif",
+              "size": 6918,
+              "scrUrl": "/zxdb/sinclair/entries/0038452/0038452-load-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 38452,
+              "url": "/zxscreens/0038452/0038452-load-1.gif"
+            },
+            {
+              "filename": "0038452-open-1.png",
+              "size": 1174,
+              "scrUrl": "/zxdb/sinclair/entries/0038452/0038452-open-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 38452,
+              "url": "/zxscreens/0038452/0038452-open-1.png"
+            },
+            {
+              "filename": "0038452-run-1.gif",
+              "size": 1608,
+              "scrUrl": "/zxdb/sinclair/entries/0038452/0038452-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 38452,
+              "url": "/zxscreens/0038452/0038452-run-1.gif"
+            }
+          ],
+          "originalYearOfRelease": 1985,
+          "genre": "Casual Game: Quiz",
+          "publishers": [
+            {
+              "name": "Arcadia S.r.l.",
+              "publisherSeq": 0
+            }
+          ],
+          "genreSubType": "Quiz",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.H.A.K.E.R."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0030152",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.I.P.",
+          "score": {},
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0030152/0030152-load-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0030152/0030152-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0030152/SIP_Readme.txt",
+              "size": 35,
+              "format": "Document (TXT)",
+              "type": "Instructions"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0030152/SIP(MatraComputerAutomations).jpg",
+              "size": 165577,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0030152/SIP(MatraComputerAutomations)_Back.jpg",
+              "size": 179695,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0030152/SIP(MatraComputerAutomations)_Tape.jpg",
+              "size": 80993,
+              "format": "Picture (JPG)",
+              "type": "Media scan"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0030152-load-1.png",
+              "size": 3385,
+              "scrUrl": "/zxdb/sinclair/entries/0030152/0030152-load-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 30152,
+              "url": "/zxscreens/0030152/0030152-load-1.png"
+            },
+            {
+              "filename": "0030152-run-1.png",
+              "size": 2957,
+              "scrUrl": "/zxdb/sinclair/entries/0030152/0030152-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 30152,
+              "url": "/zxscreens/0030152/0030152-run-1.png"
+            }
+          ],
+          "originalYearOfRelease": 2014,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "Russia",
+              "name": "RetroSouls",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.I.P."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0011122",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.I.T.I.",
+          "score": {
+            "score": 10,
+            "votes": 1
+          },
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/games-inlays/s/S.I.T.I..jpg",
+              "size": 172388,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.I.T.I..gif",
+              "size": 2163,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.I.T.I..pdf",
+              "size": 137355,
+              "format": "Document (PDF)",
+              "language": "Spanish",
+              "type": "Instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.I.T.I.(different).pdf",
+              "size": 29980238,
+              "format": "Document (PDF)",
+              "language": "Spanish",
+              "type": "Scanned instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-inlays/Rereleases/s/S.I.T.I.(S.I.T.I.V-3)(PinSoftS.A.).jpg",
+              "size": 195831,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.I.T.I.V-3_Leaflet.pdf",
+              "size": 3669393,
+              "format": "Document (PDF)",
+              "language": "Spanish",
+              "type": "Scanned instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.I.T.I..gif",
+              "size": 2163,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 11122,
+              "url": "/pub/sinclair/screens/in-game/s/S.I.T.I..gif"
+            }
+          ],
+          "originalYearOfRelease": 1984,
+          "genre": "Utility: Database/Filing",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Ventamatic",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Database/Filing",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.I.T.I."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0012324",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.I.T.I. Calc",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.I.T.I.Calc.gif",
+              "size": 1923,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.I.T.I.Calc.pdf",
+              "size": 5410193,
+              "format": "Document (PDF)",
+              "language": "Spanish",
+              "type": "Scanned instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.I.T.I.Calc.gif",
+              "size": 1923,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 12324,
+              "url": "/pub/sinclair/screens/in-game/s/S.I.T.I.Calc.gif"
+            }
+          ],
+          "originalYearOfRelease": 1985,
+          "genre": "Utility: Spreadsheet",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Ventamatic",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Spreadsheet",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.I.T.I. Calc"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0006985",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.M.A.S.H.E.D.",
+          "score": {
+            "score": 7.09,
+            "votes": 11
+          },
+          "genreType": "Adventure Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0006985/SMASHED.jpg",
+              "size": 530189,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0006985/SMASHED_Back.jpg",
+              "size": 233306,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/S.M.A.S.H.E.D..scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.M.A.S.H.E.D..gif",
+              "size": 6564,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.M.A.S.H.E.D..txt",
+              "size": 2089,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.M.A.S.H.E.D.-load.png",
+              "size": 2636,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/S.M.A.S.H.E.D..scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 6985,
+              "url": "/zxscreens/0006985/S.M.A.S.H.E.D.-load.png"
+            },
+            {
+              "filename": "S.M.A.S.H.E.D..gif",
+              "size": 6564,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 6985,
+              "url": "/pub/sinclair/screens/in-game/s/S.M.A.S.H.E.D..gif"
+            }
+          ],
+          "originalYearOfRelease": 1987,
+          "genre": "Adventure Game: Text/Illustrated",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Alternative Software Ltd",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Text/Illustrated",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.M.A.S.H.E.D."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034561",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "S.M.P.",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1984,
+          "genre": "Utility: Word Processor",
+          "publishers": [
+            {
+              "country": "USA",
+              "name": "Steven Reid",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Word Processor",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX81 16K"
+        },
+        "sort": [
+          "S.M.P."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0037678",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "S.O.L.O.",
+          "score": {},
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0037678/SOLO_Front.jpg",
+              "size": 174699,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0037678/0037678-load-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0037678/0037678-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0037678/SOLO(MatraComputerAutomations)_Front.jpg",
+              "size": 262920,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0037678/SOLO(MatraComputerAutomations)_Back.jpg",
+              "size": 283158,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0037678/SOLO(MatraComputerAutomations)_SideA.jpg",
+              "size": 77897,
+              "format": "Picture (JPG)",
+              "type": "Media scan"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0037678/SOLO(MatraComputerAutomations)_SideB.jpg",
+              "size": 76557,
+              "format": "Picture (JPG)",
+              "type": "Media scan"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0037678-load-1.png",
+              "size": 2997,
+              "scrUrl": "/zxdb/sinclair/entries/0037678/0037678-load-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 37678,
+              "url": "/zxscreens/0037678/0037678-load-1.png"
+            },
+            {
+              "filename": "0037678-run-1.png",
+              "size": 4394,
+              "scrUrl": "/zxdb/sinclair/entries/0037678/0037678-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 37678,
+              "url": "/zxscreens/0037678/0037678-run-1.png"
+            }
+          ],
+          "originalYearOfRelease": 2021,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "name": "Roolandoo",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K/128K"
+        },
+        "sort": [
+          "S.O.L.O."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0004674",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.O.R.T.",
+          "score": {
+            "score": 10,
+            "votes": 2
+          },
+          "genreType": "General",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.O.R.T..gif",
+              "size": 4653,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/pokes/s/S.O.R.T. (1984)(Mirrorsoft).pok",
+              "size": 61,
+              "format": "Pokes (POK)",
+              "type": "POK pokes file"
+            },
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/S.O.R.T.(Astronaut)(WoltersSoftware).scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.O.R.T..gif",
+              "size": 4653,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 4674,
+              "url": "/pub/sinclair/screens/in-game/s/S.O.R.T..gif"
+            },
+            {
+              "filename": "S.O.R.T.(Astronaut)(WoltersSoftware)-load.png",
+              "size": 794,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/S.O.R.T.(Astronaut)(WoltersSoftware).scr",
+              "format": "Picture",
+              "release_seq": "1",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 4674,
+              "url": "/zxscreens/0004674/S.O.R.T.(Astronaut)(WoltersSoftware)-load.png"
+            }
+          ],
+          "originalYearOfRelease": 1984,
+          "genre": "General: Education",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Mirrorsoft Ltd",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Education",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.O.R.T."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0004652",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.O.S.",
+          "score": {
+            "score": 7.83,
+            "votes": 12
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0004652/S.O.S..jpg",
+              "size": 661697,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.O.S..gif",
+              "size": 3991,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.O.S..txt",
+              "size": 3364,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-maps/s/S.O.S..jpg",
+              "size": 517704,
+              "format": "Picture (JPG)",
+              "type": "Game map"
+            },
+            {
+              "path": "/pub/sinclair/games-maps/s/S.O.S._2.png",
+              "size": 293642,
+              "format": "Picture (PNG)",
+              "type": "Game map"
+            },
+            {
+              "path": "/zxdb/sinclair/pokes/s/S.O.S. (1986)(Mastertronic).pok",
+              "size": 212,
+              "format": "Pokes (POK)",
+              "type": "POK pokes file"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.O.S..gif",
+              "size": 3991,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 4652,
+              "url": "/pub/sinclair/screens/in-game/s/S.O.S..gif"
+            }
+          ],
+          "originalYearOfRelease": 1986,
+          "genre": "Arcade Game: Maze",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Mastertronic Ltd",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Maze",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.O.S."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0023716",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.O.S.",
+          "score": {
+            "score": 3,
+            "votes": 1
+          },
+          "genreType": "Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.O.S._4.gif",
+              "size": 2677,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.O.S._4.gif",
+              "size": 2677,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 23716,
+              "url": "/pub/sinclair/screens/in-game/s/S.O.S._4.gif"
+            }
+          ],
+          "genre": "Game: Board",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Mark Hill",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Board",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.O.S."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0018126",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.O.S.",
+          "score": {
+            "score": 4.67,
+            "votes": 3
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.O.S._2.gif",
+              "size": 967,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.O.S._2.gif",
+              "size": 967,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 18126,
+              "url": "/pub/sinclair/screens/in-game/s/S.O.S._2.gif"
+            }
+          ],
+          "originalYearOfRelease": 1985,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Grupo de Trabajo Software S.A.",
+              "publisherSeq": 0
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.O.S."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0016139",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.O.S. [1]",
+          "score": {
+            "score": 5.5,
+            "votes": 2
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/S.O.S.1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.O.S.1.gif",
+              "size": 3316,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.O.S.1-load.gif",
+              "size": 3497,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/S.O.S.1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 16139,
+              "url": "/zxscreens/0016139/S.O.S.1-load.gif"
+            },
+            {
+              "filename": "S.O.S.1.gif",
+              "size": 3316,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 16139,
+              "url": "/pub/sinclair/screens/in-game/s/S.O.S.1.gif"
+            }
+          ],
+          "originalYearOfRelease": 1985,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Hobby Press S.A.",
+              "publisherSeq": 0
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.O.S. [1]"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0016336",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.O.S. [2]",
+          "score": {
+            "score": 4,
+            "votes": 1
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.O.S._3.gif",
+              "size": 1593,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.O.S._3.gif",
+              "size": 1593,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 16336,
+              "url": "/pub/sinclair/screens/in-game/s/S.O.S._3.gif"
+            }
+          ],
+          "originalYearOfRelease": 1985,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Hobby Press S.A.",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.O.S. [2]"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0027817",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.Petersburg Fifteen",
+          "score": {
+            "score": 4,
+            "votes": 1
+          },
+          "genreType": "Casual Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/S.PetersburgFifteen.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.PetersburgFifteen.gif",
+              "size": 7969,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.PetersburgFifteen-load.png",
+              "size": 3343,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/S.PetersburgFifteen.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 27817,
+              "url": "/zxscreens/0027817/S.PetersburgFifteen-load.png"
+            },
+            {
+              "filename": "S.PetersburgFifteen.gif",
+              "size": 7969,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 27817,
+              "url": "/pub/sinclair/screens/in-game/s/S.PetersburgFifteen.gif"
+            }
+          ],
+          "originalYearOfRelease": 1995,
+          "genre": "Casual Game: Card",
+          "publishers": [
+            {
+              "country": "Russia",
+              "name": "V. Minevskiy",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Card",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.Petersburg Fifteen"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0024187",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.S.S.Sampler",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.S.S.Sampler.gif",
+              "size": 1538,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.S.S.Sampler.txt",
+              "size": 2413,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.S.S.Sampler.gif",
+              "size": 1538,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 24187,
+              "url": "/pub/sinclair/screens/in-game/s/S.S.S.Sampler.gif"
+            }
+          ],
+          "originalYearOfRelease": 1991,
+          "genre": "Utility: Sound/Speech",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Future Publishing",
+              "publisherSeq": 0
+            }
+          ],
+          "genreSubType": "Sound/Speech",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.S.S.Sampler"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0007048",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.T.I.",
+          "score": {
+            "score": 5.75,
+            "votes": 8
+          },
+          "genreType": "Adventure Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0007048/STI.jpg",
+              "size": 324265,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0007048/STI_Back.jpg",
+              "size": 236715,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/S.T.I..scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.T.I..gif",
+              "size": 3091,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.T.I..txt",
+              "size": 2893,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.T.I.-load.png",
+              "size": 5093,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/S.T.I..scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 7048,
+              "url": "/zxscreens/0007048/S.T.I.-load.png"
+            },
+            {
+              "filename": "S.T.I..gif",
+              "size": 3091,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 7048,
+              "url": "/pub/sinclair/screens/in-game/s/S.T.I..gif"
+            }
+          ],
+          "originalYearOfRelease": 1988,
+          "genre": "Adventure Game: Text-Only",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Bug-Byte Software Ltd",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Text-Only",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.T.I."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0004965",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "S.T.U.N. Runner",
+          "score": {
+            "score": 2.85,
+            "votes": 22
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0004965/STUNRunner_Front.jpg",
+              "size": 324761,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004965/STUNRunner_Back.jpg",
+              "size": 348322,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/S.T.U.N.Runner128.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/S.T.U.N.Runner48.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.T.U.N.Runner.gif",
+              "size": 4407,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004965/STUNRunner(MULTI-LANG).pdf",
+              "size": 1462914,
+              "format": "Document (PDF)",
+              "language": "Multi-language: English, Italian",
+              "type": "Instructions"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004965/STUNRunner(EN).txt",
+              "size": 4009,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            },
+            {
+              "path": "/zxdb/sinclair/pokes/s/S.T.U.N. Runner (1990)(Domark).pok",
+              "size": 65,
+              "format": "Pokes (POK)",
+              "type": "POK pokes file"
+            },
+            {
+              "path": "/pub/sinclair/games-adverts/s/S.T.U.N.Runner.jpg",
+              "size": 266792,
+              "format": "Picture (JPG)",
+              "type": "Advertisement"
+            },
+            {
+              "path": "/pub/sinclair/games-adverts/s/S.T.U.N.Runner_2.jpg",
+              "size": 618337,
+              "format": "Picture (JPG)",
+              "type": "Advertisement"
+            },
+            {
+              "path": "/pub/sinclair/music/ay/games/s/S.T.U.N.Runner.ay.zip",
+              "size": 3544,
+              "format": "Music (AY)",
+              "type": "Ripped in-game/theme music in AY format"
+            },
+            {
+              "path": "/pub/sinclair/games-inlays/Rereleases/s/S.T.U.N.Runner(ErbeSoftwareS.A.)_Front.jpg",
+              "size": 121490,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/games-inlays/Rereleases/s/S.T.U.N.Runner(ErbeSoftwareS.A.)_Back.jpg",
+              "size": 113447,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.T.U.N.Runner(ErbeSoftwareS.A.).pdf",
+              "size": 15495,
+              "format": "Document (PDF)",
+              "language": "Spanish",
+              "type": "Instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-adverts/s/S.T.U.N.Runner(ErbeSoftwareS.A.).jpg",
+              "size": 308823,
+              "format": "Picture (JPG)",
+              "type": "Advertisement"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004965/STUNRunner(HitSquad).jpg",
+              "size": 401508,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004965/STUNRunner(HitSquad)_Back.jpg",
+              "size": 241070,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.T.U.N.Runner128-load.png",
+              "size": 7624,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/S.T.U.N.Runner128.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 4965,
+              "url": "/zxscreens/0004965/S.T.U.N.Runner128-load.png"
+            },
+            {
+              "filename": "S.T.U.N.Runner48-load.png",
+              "size": 7624,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/S.T.U.N.Runner48.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 4965,
+              "url": "/zxscreens/0004965/S.T.U.N.Runner48-load.png"
+            },
+            {
+              "filename": "S.T.U.N.Runner.gif",
+              "size": 4407,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 4965,
+              "url": "/pub/sinclair/screens/in-game/s/S.T.U.N.Runner.gif"
+            }
+          ],
+          "originalYearOfRelease": 1990,
+          "genre": "Arcade Game: Shoot-em-up",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Domark Ltd",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Shoot-em-up",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K/128K"
+        },
+        "sort": [
+          "S.T.U.N. Runner"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0030012",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "MIA",
+          "title": "S.W.A.N.",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1988,
+          "genre": "Utility: Game Creator",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Infinite Imaginations",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Game Creator",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "S.W.A.N."
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0036403",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SAGA Sprites und Graphic Animator",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0036403/SAGASpritesUndGraphicAnimator.jpg",
+              "size": 164593,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0036403/0036403-load-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0036403/0036403-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0036403/0036403-run-2.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0036403/0036403-run-3.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0036403-load-1.png",
+              "size": 4993,
+              "scrUrl": "/zxdb/sinclair/entries/0036403/0036403-load-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 36403,
+              "url": "/zxscreens/0036403/0036403-load-1.png"
+            },
+            {
+              "filename": "0036403-run-1.gif",
+              "size": 5791,
+              "scrUrl": "/zxdb/sinclair/entries/0036403/0036403-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 36403,
+              "url": "/zxscreens/0036403/0036403-run-1.gif"
+            },
+            {
+              "filename": "0036403-run-2.png",
+              "size": 1171,
+              "scrUrl": "/zxdb/sinclair/entries/0036403/0036403-run-2.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 36403,
+              "url": "/zxscreens/0036403/0036403-run-2.png"
+            },
+            {
+              "filename": "0036403-run-3.gif",
+              "size": 5478,
+              "scrUrl": "/zxdb/sinclair/entries/0036403/0036403-run-3.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 36403,
+              "url": "/zxscreens/0036403/0036403-run-3.gif"
+            }
+          ],
+          "originalYearOfRelease": 1984,
+          "genre": "Utility: Graphics",
+          "publishers": [
+            {
+              "country": "Germany",
+              "name": "Individual Software Service",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Graphics",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SAGA Sprites und Graphic Animator"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028531",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Address Manager",
+          "score": {},
+          "genreType": "General",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "General: Domestic",
+          "genreSubType": "Domestic",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Address Manager"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028532",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Address/Phone Manager",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Utility: Database/Filing",
+          "genreSubType": "Database/Filing",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Address/Phone Manager"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028533",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Adventure System",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1992,
+          "genre": "Utility: Game Creator",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Colin Jordan",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Game Creator",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Adventure System"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028534",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Assembler",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1990,
+          "genre": "Programming: Assembler/Mcode",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "LERM Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Assembler/Mcode",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Assembler"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028535",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Assembler 2",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1990,
+          "genre": "Programming: Assembler/Mcode",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "LERM Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Assembler/Mcode",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Assembler 2"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028536",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Assembler 3",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1991,
+          "genre": "Programming: Assembler/Mcode",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "LERM Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Assembler/Mcode",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Assembler 3"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034957",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM C",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1995,
+          "genre": "Programming: General",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "FRED Publishing",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "General",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM C"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028537",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Coupé Arcade Development System",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1992,
+          "genre": "Utility: Game Creator",
+          "publishers": [
+            {
+              "name": "Glenco Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Game Creator",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Coupé Arcade Development System"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028538",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM DICE Disk Utility",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1991,
+          "genre": "Utility: Media Admin",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Kobrahsoft",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Media Admin",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM DICE Disk Utility"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0040850",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Defence",
+          "score": {},
+          "genreType": "Arcade Game",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1985,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "name": "Sunshine Publications Ltd",
+              "publisherSeq": 0
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "Sinclair QL"
+        },
+        "sort": [
+          "SAM Defence"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028539",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Disassembler",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Programming: Assembler/Mcode",
+          "genreSubType": "Assembler/Mcode",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Disassembler"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028540",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Disc Doctor",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1990,
+          "genre": "Utility: Media Admin",
+          "genreSubType": "Media Admin",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Disc Doctor"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034960",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Juggler",
+          "score": {},
+          "genreType": "Demoscene",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1992,
+          "genre": "Demoscene: Demo",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Codigo Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Demo",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Juggler"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034914",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM MOD player",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0034914/0034914-load-1.ss4",
+              "size": 24592,
+              "format": "Screen dump SAM Coupé (SS4)",
+              "type": "Loading screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0034914-load-1.png",
+              "size": 19457,
+              "scrUrl": "/zxdb/sinclair/entries/0034914/0034914-load-1.ss4",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 34914,
+              "url": "/zxscreens/0034914/0034914-load-1.png"
+            }
+          ],
+          "originalYearOfRelease": 1996,
+          "genre": "Utility: Music",
+          "publishers": [
+            {
+              "country": "Netherlands",
+              "name": "Stefan Drissen",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Music",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM MOD player"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0029860",
+        "_source": {
+          "score": {},
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1991,
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Chezron Software",
+              "publisherSeq": 1
+            }
+          ],
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SAM Mail A",
+          "contentType": "SOFTWARE"
+        },
+        "sort": [
+          "SAM Mail A"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0029861",
+        "_source": {
+          "score": {},
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1991,
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Chezron Software",
+              "publisherSeq": 1
+            }
+          ],
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SAM Mail B",
+          "contentType": "SOFTWARE"
+        },
+        "sort": [
+          "SAM Mail B"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028541",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Multipack 1",
+          "score": {},
+          "genreType": "Compilation",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0028541/0028541-open-1.ssx",
+              "size": 6928,
+              "format": "Screen dump SAM Coupé (SSX)",
+              "type": "Opening screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0028522-load-1.png",
+              "size": 13458,
+              "scrUrl": "/zxdb/sinclair/entries/0028522/0028522-load-1.ssx",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "Future Ball",
+              "entry_id": 28522,
+              "url": "/zxscreens/0028541/0028522-load-1.png"
+            },
+            {
+              "filename": "0028543-load-1.png",
+              "size": 3460,
+              "scrUrl": "/zxdb/sinclair/entries/0028543/0028543-load-1.ssx",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "SAM Strikes Out!",
+              "entry_id": 28543,
+              "url": "/zxscreens/0028541/0028543-load-1.png"
+            },
+            {
+              "filename": "0028543-open-1.png",
+              "size": 7393,
+              "scrUrl": "/zxdb/sinclair/entries/0028543/0028543-open-1.ssx",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "SAM Strikes Out!",
+              "entry_id": 28543,
+              "url": "/zxscreens/0028541/0028543-open-1.png"
+            },
+            {
+              "filename": "0028543-run-1.png",
+              "size": 8360,
+              "scrUrl": "/zxdb/sinclair/entries/0028543/0028543-run-1.ssx",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "SAM Strikes Out!",
+              "entry_id": 28543,
+              "url": "/zxscreens/0028541/0028543-run-1.png"
+            },
+            {
+              "filename": "0028541-open-1.png",
+              "size": 1890,
+              "scrUrl": "/zxdb/sinclair/entries/0028541/0028541-open-1.ssx",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 28541,
+              "url": "/zxscreens/0028541/0028541-open-1.png"
+            },
+            {
+              "filename": "0028522-run-1.png",
+              "size": 9285,
+              "scrUrl": "/zxdb/sinclair/entries/0028522/0028522-run-1.ssx",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "Future Ball",
+              "entry_id": 28522,
+              "url": "/zxscreens/0028541/0028522-run-1.png"
+            }
+          ],
+          "originalYearOfRelease": 1990,
+          "genre": "Compilation: Games",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Enigma Variations Ltd",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Games",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Multipack 1"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028542",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Screen Compressor",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1991,
+          "genre": "Utility: Data Compression",
+          "genreSubType": "Data Compression",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Screen Compressor"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0029825",
+        "_source": {
+          "score": {},
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1990,
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Chezron Software",
+              "publisherSeq": 1
+            }
+          ],
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SAM Special",
+          "contentType": "SOFTWARE"
+        },
+        "sort": [
+          "SAM Special"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028543",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Strikes Out!",
+          "score": {},
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0028543/0028543-load-1.ssx",
+              "size": 24592,
+              "format": "Screen dump SAM Coupé (SSX)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0028543/0028543-open-1.ssx",
+              "size": 24592,
+              "format": "Screen dump SAM Coupé (SSX)",
+              "type": "Opening screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0028543/0028543-run-1.ssx",
+              "size": 24592,
+              "format": "Screen dump SAM Coupé (SSX)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0028543-load-1.png",
+              "size": 3460,
+              "scrUrl": "/zxdb/sinclair/entries/0028543/0028543-load-1.ssx",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 28543,
+              "url": "/zxscreens/0028543/0028543-load-1.png"
+            },
+            {
+              "filename": "0028543-open-1.png",
+              "size": 7393,
+              "scrUrl": "/zxdb/sinclair/entries/0028543/0028543-open-1.ssx",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 28543,
+              "url": "/zxscreens/0028543/0028543-open-1.png"
+            },
+            {
+              "filename": "0028543-run-1.png",
+              "size": 8360,
+              "scrUrl": "/zxdb/sinclair/entries/0028543/0028543-run-1.ssx",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 28543,
+              "url": "/zxscreens/0028543/0028543-run-1.png"
+            }
+          ],
+          "originalYearOfRelease": 1990,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Enigma Variations Ltd",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Strikes Out!"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028544",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Toolkit",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Programming: Assembler/Mcode",
+          "genreSubType": "Assembler/Mcode",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Toolkit"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0021339",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SAM Word",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SAMWord.gif",
+              "size": 1048,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SAMWord.gif",
+              "size": 1048,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 21339,
+              "url": "/pub/sinclair/screens/in-game/s/SAMWord.gif"
+            }
+          ],
+          "originalYearOfRelease": 2003,
+          "genre": "Utility: Word Processor",
+          "publishers": [
+            {
+              "country": "Russia",
+              "name": "SAM Style",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Word Processor",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SAM Word"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028545",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM Z80 Machine Code Course",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Programming: Assembler/Mcode",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Kobrahsoft",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Assembler/Mcode",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM Z80 Machine Code Course"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0029870",
+        "_source": {
+          "score": {},
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1992,
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Chezron Software",
+              "publisherSeq": 1
+            }
+          ],
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SAM mail",
+          "contentType": "SOFTWARE"
+        },
+        "sort": [
+          "SAM mail"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034962",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAM-64",
+          "score": {},
+          "genreType": "Demoscene",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 2015,
+          "genre": "Demoscene: Demo",
+          "publishers": [
+            {
+              "country": "Poland",
+              "name": "Adam Dawidziuk",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Demo",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAM-64"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034964",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMDOS",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1990,
+          "genre": "Utility: I/O Handling",
+          "genreSubType": "I/O Handling",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMDOS"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034966",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMForth",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1991,
+          "genre": "Programming: General",
+          "genreSubType": "General",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMForth"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034968",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMPaint",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1993,
+          "genre": "Utility: Graphics",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "FRED Publishing",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Graphics",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMPaint"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0022286",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SAMTOD",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SAMTOD.gif",
+              "size": 6594,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SAMTOD.gif",
+              "size": 6594,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 22286,
+              "url": "/pub/sinclair/screens/in-game/s/SAMTOD.gif"
+            }
+          ],
+          "originalYearOfRelease": 1991,
+          "genre": "Utility: I/O Handling",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Chezron Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "I/O Handling",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SAMTOD"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028546",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMdisk",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1991,
+          "genre": "Utility: Media Admin",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "LERM Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Media Admin",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMdisk"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028547",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMdisk 2",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Utility: Media Admin",
+          "genreSubType": "Media Admin",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMdisk 2"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034965",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMflate",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 2009,
+          "genre": "Utility: Data Compression",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Andrew Collier",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Data Compression",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMflate"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028548",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMtape",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Utility: Copy/Backup",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "LERM Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Copy/Backup",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMtape"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028549",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMtape 2",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Utility: Copy/Backup",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "LERM Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Copy/Backup",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMtape 2"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028550",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMtape 3",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Utility: Copy/Backup",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "LERM Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Copy/Backup",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMtape 3"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028551",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMtape 4",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1990,
+          "genre": "Utility: Copy/Backup",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "LERM Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Copy/Backup",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMtape 4"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028552",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAMtape 4M",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Utility: Copy/Backup",
+          "genreSubType": "Copy/Backup",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAMtape 4M"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0035896",
+        "_source": {
+          "score": {},
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0035896/0035896-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0035896-run-1.png",
+              "size": 990,
+              "scrUrl": "/zxdb/sinclair/entries/0035896/0035896-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 35896,
+              "url": "/zxscreens/0035896/0035896-run-1.png"
+            }
+          ],
+          "originalYearOfRelease": 2005,
+          "publishers": [
+            {
+              "country": "Hungary",
+              "name": "Jatekgyaros",
+              "publisherSeq": 1
+            }
+          ],
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SARGATEN",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SARGATEN"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0025124",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SAS Assault",
+          "score": {
+            "score": 5.5,
+            "votes": 2
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/games-inlays/s/SASAssault.jpg",
+              "size": 56446,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SASAssault.gif",
+              "size": 1888,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SASAssault.gif",
+              "size": 1888,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 25124,
+              "url": "/pub/sinclair/screens/in-game/s/SASAssault.gif"
+            }
+          ],
+          "originalYearOfRelease": 1984,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Micromania [UK]",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 16K"
+        },
+        "sort": [
+          "SAS Assault"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0025610",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "MIA",
+          "title": "SAS Assault",
+          "score": {},
+          "genreType": "Arcade Game",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1984,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Micromicon",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SAS Assault"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0009409",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Distribution denied",
+          "title": "SAS Combat Simulator",
+          "score": {
+            "score": 6.17,
+            "votes": 6
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0009409/SASCombatSimulator.jpg",
+              "size": 681897,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0009409/SASCombatSimulator_Back.jpg",
+              "size": 452165,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/SASCombatSimulator.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SASCombatSimulator.gif",
+              "size": 5190,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/nvg/sinclair/docs/instructions/games-text/sas_comb.txt",
+              "size": 1025,
+              "format": "Document (TXT)",
+              "type": "Instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/SASCombatSimulator.txt",
+              "size": 3202,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-maps/s/SASCombatSimulator.png",
+              "size": 223351,
+              "format": "Picture (PNG)",
+              "type": "Game map"
+            },
+            {
+              "path": "/zxdb/sinclair/pokes/s/SAS Combat Simulator (1989)(Code Masters).pok",
+              "size": 64,
+              "format": "Pokes (POK)",
+              "type": "POK pokes file"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0009409/SASCombatSimulator.rzx.zip",
+              "size": 115112,
+              "format": "Game recording (RZX)",
+              "type": "RZX playback file"
+            },
+            {
+              "path": "/pub/sinclair/games-inlays/Rereleases/s/SASCombatSimulator(IBSA).jpg",
+              "size": 139560,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SASCombatSimulator-load.png",
+              "size": 9705,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/SASCombatSimulator.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 9409,
+              "url": "/zxscreens/0009409/SASCombatSimulator-load.png"
+            },
+            {
+              "filename": "SASCombatSimulator.gif",
+              "size": 5190,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 9409,
+              "url": "/pub/sinclair/screens/in-game/s/SASCombatSimulator.gif"
+            }
+          ],
+          "originalYearOfRelease": 1989,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Code Masters Ltd",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K/128K"
+        },
+        "sort": [
+          "SAS Combat Simulator"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0004342",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SAS: Operation Thunderflash!!",
+          "score": {
+            "score": 3.41,
+            "votes": 24
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0004342/SAS-OperationThunderflash.jpg",
+              "size": 546466,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004342/SAS-OperationThunderflash_Back.jpg",
+              "size": 425071,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/SAS-OperationThunderflash.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SAS-OperationThunderflash.gif",
+              "size": 4209,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/SAS-OperationThunderflash.txt",
+              "size": 3596,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-maps/s/SAS-OperationThunderflash.png",
+              "size": 123371,
+              "format": "Picture (PNG)",
+              "type": "Game map"
+            },
+            {
+              "path": "/zxdb/sinclair/pokes/s/SAS Operation Thunderflash!! (1986)(Super Sparklers).pok",
+              "size": 43,
+              "format": "Pokes (POK)",
+              "type": "POK pokes file"
+            },
+            {
+              "path": "/pub/sinclair/games-adverts/s/SAS-OperationThunderflash.jpg",
+              "size": 110866,
+              "format": "Picture (JPG)",
+              "type": "Advertisement"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004342/SAS-OperationThunderflash(TopTenSoftware).jpg",
+              "size": 350994,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/games-inlays/Rereleases/s/SAS-OperationThunderflash(System4).jpg",
+              "size": 54894,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/SAS-OperationThunderflash(System4).pdf",
+              "size": 13466,
+              "format": "Document (PDF)",
+              "language": "Spanish",
+              "type": "Instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SAS-OperationThunderflash-load.png",
+              "size": 2137,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/SAS-OperationThunderflash.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 4342,
+              "url": "/zxscreens/0004342/SAS-OperationThunderflash-load.png"
+            },
+            {
+              "filename": "SAS-OperationThunderflash.gif",
+              "size": 4209,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 4342,
+              "url": "/pub/sinclair/screens/in-game/s/SAS-OperationThunderflash.gif"
+            }
+          ],
+          "originalYearOfRelease": 1986,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Super Sparklers",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SAS: Operation Thunderflash!!"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0040670",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAVE and LOAD",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1981,
+          "genre": "Utility: undetermined",
+          "publishers": [
+            {
+              "country": "USA",
+              "name": "Creative Computing Press",
+              "publisherSeq": 0
+            }
+          ],
+          "genreSubType": "undetermined",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX80"
+        },
+        "sort": [
+          "SAVE and LOAD"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034963",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SAmadeus",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1990,
+          "genre": "Utility: Music",
+          "genreSubType": "Music",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SAmadeus"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0039435",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SBOT",
+          "score": {},
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0039435/SBOT-LOAD-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0039435/SBOT-RUN-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0039435/SBOT.rzx.zip",
+              "size": 121325,
+              "format": "Game recording (RZX)",
+              "type": "RZX playback file"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SBOT-LOAD-1.png",
+              "size": 6206,
+              "scrUrl": "/zxdb/sinclair/entries/0039435/SBOT-LOAD-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 39435,
+              "url": "/zxscreens/0039435/SBOT-LOAD-1.png"
+            },
+            {
+              "filename": "SBOT-RUN-1.png",
+              "size": 4898,
+              "scrUrl": "/zxdb/sinclair/entries/0039435/SBOT-RUN-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 39435,
+              "url": "/zxscreens/0039435/SBOT-RUN-1.png"
+            }
+          ],
+          "originalYearOfRelease": 2023,
+          "genre": "Arcade Game: Action",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Xavisan",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 128K"
+        },
+        "sort": [
+          "SBOT"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0017000",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "MIA",
+          "title": "SC1 Tape to Microdrive Utility",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1985,
+          "genre": "Utility: Copy/Backup",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Kobrahsoft",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Copy/Backup",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SC1 Tape to Microdrive Utility"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0039364",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SCAM",
+          "score": {},
+          "genreType": "General",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0039364/SCAM-RUN-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SCAM-RUN-1.png",
+              "size": 1056,
+              "scrUrl": "/zxdb/sinclair/entries/0039364/SCAM-RUN-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 39364,
+              "url": "/zxscreens/0039364/SCAM-RUN-1.png"
+            }
+          ],
+          "originalYearOfRelease": 2023,
+          "genre": "General: Simulation",
+          "publishers": [
+            {
+              "country": "Netherlands",
+              "name": "Dr BEEP",
+              "publisherSeq": 1
+            },
+            {
+              "name": "Jbizzel",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Simulation",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX81 1K"
+        },
+        "sort": [
+          "SCAM"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0008664",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SCREEN$ Convertor",
+          "score": {
+            "score": 5.5,
+            "votes": 2
+          },
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SCREEN$Convertor.gif",
+              "size": 1126,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SCREEN$Convertor.gif",
+              "size": 1126,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 8664,
+              "url": "/pub/sinclair/screens/in-game/s/SCREEN$Convertor.gif"
+            }
+          ],
+          "genre": "Utility: Visual/Screen",
+          "publishers": [
+            {
+              "country": "Serbia",
+              "name": "Benkosoft",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Visual/Screen",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SCREEN$ Convertor"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0020241",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "MIA",
+          "title": "SCS",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1988,
+          "genre": "Utility: Visual/Screen",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Companion Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Visual/Screen",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SCS"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0029701",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SC_Assembler",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Programming: Assembler/Mcode",
+          "genreSubType": "Assembler/Mcode",
+          "contentType": "SOFTWARE"
+        },
+        "sort": [
+          "SC_Assembler"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0028553",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SC_Assembler",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1990,
+          "genre": "Programming: Assembler/Mcode",
+          "publishers": [
+            {
+              "name": "Steve\u0027s Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Assembler/Mcode",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SC_Assembler"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034969",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SC_DTP",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1993,
+          "genre": "Utility: Print",
+          "publishers": [
+            {
+              "name": "Steve\u0027s Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Print",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SC_DTP"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034970",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SC_FILER",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1991,
+          "genre": "Utility: Database/Filing",
+          "publishers": [
+            {
+              "name": "Steve\u0027s Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Database/Filing",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SC_FILER"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034971",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SC_MONITOR",
+          "score": {},
+          "genreType": "Programming",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1992,
+          "genre": "Programming: Assembler/Mcode",
+          "publishers": [
+            {
+              "name": "Steve\u0027s Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Assembler/Mcode",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SC_MONITOR"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034972",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SC_SPECLONE",
+          "score": {},
+          "genreType": "Emulator",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1990,
+          "genre": "Emulator",
+          "publishers": [
+            {
+              "name": "Steve\u0027s Software",
+              "publisherSeq": 1
+            }
+          ],
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SC_SPECLONE"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034973",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SC_WORD pro",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1994,
+          "genre": "Utility: Word Processor",
+          "publishers": [
+            {
+              "name": "Steve\u0027s Software",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Word Processor",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SC_WORD pro"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0020022",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "MIA",
+          "title": "SD2 Advanced Tape to Microdrive Utility",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1985,
+          "genre": "Utility: Copy/Backup",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Kobrahsoft",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Copy/Backup",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SD2 Advanced Tape to Microdrive Utility"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0017145",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "MIA",
+          "title": "SD3 Advanced Tape to Microdrive Utility",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1987,
+          "genre": "Utility: Copy/Backup",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Kobrahsoft",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Copy/Backup",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SD3 Advanced Tape to Microdrive Utility"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0015189",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "MIA",
+          "title": "SD4 Advanced Tape to Microdrive Utility",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 1988,
+          "genre": "Utility: Copy/Backup",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Kobrahsoft",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Copy/Backup",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SD4 Advanced Tape to Microdrive Utility"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0020715",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SD4+ Tape to Microdrive Utility",
+          "score": {},
+          "genreType": "Compilation",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/games-inlays/Compilations/s/SD4+TapeToMicrodriveUtility.jpg",
+              "size": 40823,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SD4+TapeToMicrodriveUtility.gif",
+              "size": 1213,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SD4+TapeToMicrodriveUtility.gif",
+              "size": 1213,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 20715,
+              "url": "/pub/sinclair/screens/in-game/s/SD4+TapeToMicrodriveUtility.gif"
+            }
+          ],
+          "originalYearOfRelease": 1988,
+          "genre": "Compilation",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Kobrahsoft",
+              "publisherSeq": 1
+            }
+          ],
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SD4+ Tape to Microdrive Utility"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0013884",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SD5 Advanced Tape to Microdrive Utility",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/games-inlays/s/SD5TapeToMicrodriveUtility.jpg",
+              "size": 24256,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/SD5TapeToMicrodriveUtility_RevisedLoadingInstructions.txt",
+              "size": 1995,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/SD5TapeToMicrodriveUtility.pdf",
+              "size": 7296409,
+              "format": "Document (PDF)",
+              "language": "English",
+              "type": "Scanned instructions"
+            }
+          ],
+          "screens": [],
+          "originalYearOfRelease": 1989,
+          "genre": "Utility: Copy/Backup",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Kobrahsoft",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Copy/Backup",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SD5 Advanced Tape to Microdrive Utility"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0004384",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Distribution denied",
+          "title": "SDI - Now the Odds Are Even",
+          "score": {
+            "score": 7.33,
+            "votes": 9
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/games-inlays/s/S.D.I..jpg",
+              "size": 83380,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004384/SDI_Front.jpg",
+              "size": 458078,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004384/SDI_Back.jpg",
+              "size": 379335,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/S.D.I..scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/S.D.I..gif",
+              "size": 3833,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004384/SDI-NowTheOddsAreEven(MULTI-LANG).pdf",
+              "size": 635828,
+              "format": "Document (PDF)",
+              "language": "Multi-language: English, French, German, Italian",
+              "type": "Instructions"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.D.I._English.txt",
+              "size": 9551,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            },
+            {
+              "path": "/zxdb/sinclair/pokes/s/S.D.I. (1988)(Activision Inc).pok",
+              "size": 102,
+              "format": "Pokes (POK)",
+              "type": "POK pokes file"
+            },
+            {
+              "path": "/pub/sinclair/games-adverts/s/S.D.I..jpg",
+              "size": 290405,
+              "format": "Picture (JPG)",
+              "type": "Advertisement"
+            },
+            {
+              "path": "/pub/sinclair/games-inlays/Rereleases/s/S.D.I.(ProeinSoftLine)_Front.jpg",
+              "size": 118632,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/games-inlays/Rereleases/s/S.D.I.(ProeinSoftLine)_Back.jpg",
+              "size": 133291,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.D.I.(ProeinSoftLine).pdf",
+              "size": 20078,
+              "format": "Document (PDF)",
+              "language": "Spanish",
+              "type": "Instructions"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004384/SDI(HitSquad).jpg",
+              "size": 402106,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0004384/SDI(HitSquad)_Back.jpg",
+              "size": 379711,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Back"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/S.D.I.(TheHitSquad).txt",
+              "size": 2747,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "S.D.I.-load.png",
+              "size": 6439,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/S.D.I..scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 4384,
+              "url": "/zxscreens/0004384/S.D.I.-load.png"
+            },
+            {
+              "filename": "S.D.I..gif",
+              "size": 3833,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 4384,
+              "url": "/pub/sinclair/screens/in-game/s/S.D.I..gif"
+            }
+          ],
+          "originalYearOfRelease": 1988,
+          "genre": "Arcade Game: Shoot-em-up",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Activision Inc",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Shoot-em-up",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SDI - Now the Odds Are Even"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0007719",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SDM 4K",
+          "score": {},
+          "genreType": "Demoscene",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/SDM4K.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SDM4K.gif",
+              "size": 1255,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SDM4K-load.png",
+              "size": 771,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/SDM4K.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 7719,
+              "url": "/zxscreens/0007719/SDM4K-load.png"
+            },
+            {
+              "filename": "SDM4K.gif",
+              "size": 1255,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 7719,
+              "url": "/pub/sinclair/screens/in-game/s/SDM4K.gif"
+            }
+          ],
+          "originalYearOfRelease": 1998,
+          "genre": "Demoscene: Intro",
+          "publishers": [
+            {
+              "country": "Russia",
+              "name": "Syndrome",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Intro",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 128K"
+        },
+        "sort": [
+          "SDM 4K"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0027962",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SHUTTLEBUG",
+          "score": {
+            "score": 7.95,
+            "votes": 19
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/pub/sinclair/games-inlays/s/SHUTTLEBUG.jpg",
+              "size": 421444,
+              "format": "Picture (JPG)",
+              "type": "Inlay - Front"
+            },
+            {
+              "path": "/pub/sinclair/screens/load/s/scr/SHUTTLEBUG.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SHUTTLEBUG.gif",
+              "size": 3840,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/pub/sinclair/games-info/s/SHUTTLEBUG.txt",
+              "size": 3621,
+              "format": "Document (TXT)",
+              "language": "English",
+              "type": "Instructions"
+            },
+            {
+              "path": "/zxdb/sinclair/pokes/s/SHUTTLEBUG (2012)(Stonechat Productions).pok",
+              "size": 24,
+              "format": "Pokes (POK)",
+              "type": "POK pokes file"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SHUTTLEBUG-load.png",
+              "size": 5790,
+              "scrUrl": "/pub/sinclair/screens/load/s/scr/SHUTTLEBUG.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 27962,
+              "url": "/zxscreens/0027962/SHUTTLEBUG-load.png"
+            },
+            {
+              "filename": "SHUTTLEBUG.gif",
+              "size": 3840,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 27962,
+              "url": "/pub/sinclair/screens/in-game/s/SHUTTLEBUG.gif"
+            }
+          ],
+          "originalYearOfRelease": 2012,
+          "genre": "Arcade Game: Maze",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Stonechat Productions",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Maze",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SHUTTLEBUG"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0012472",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Never released",
+          "title": "SID - Semi-Intelligent Drone",
+          "score": {},
+          "genreType": "Arcade Game",
+          "additionalDownloads": [],
+          "screens": [],
+          "genre": "Arcade Game: Adventure",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Piranha",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Adventure",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SID - Semi-Intelligent Drone"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0034976",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "title": "SID Player",
+          "score": {},
+          "genreType": "Utility",
+          "additionalDownloads": [],
+          "screens": [],
+          "originalYearOfRelease": 2011,
+          "genre": "Utility: Music",
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Simon Owen",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Music",
+          "contentType": "SOFTWARE",
+          "machineType": "SAM Coupé"
+        },
+        "sort": [
+          "SID Player"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0017176",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Never released - recovered",
+          "title": "SIDA",
+          "score": {
+            "score": 4.75,
+            "votes": 4
+          },
+          "genreType": "Arcade Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0017176/SIDA-LOAD-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/pub/sinclair/screens/in-game/s/SIDA.gif",
+              "size": 3678,
+              "format": "Picture (GIF)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SIDA-LOAD-1.png",
+              "size": 4139,
+              "scrUrl": "/zxdb/sinclair/entries/0017176/SIDA-LOAD-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 17176,
+              "url": "/zxscreens/0017176/SIDA-LOAD-1.png"
+            },
+            {
+              "filename": "SIDA.gif",
+              "size": 3678,
+              "format": "Picture (GIF)",
+              "release_seq": 0,
+              "type": "Running screen",
+              "entry_id": 17176,
+              "url": "/pub/sinclair/screens/in-game/s/SIDA.gif"
+            }
+          ],
+          "genre": "Arcade Game: Action",
+          "genreSubType": "Action",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SIDA"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0035897",
+        "_source": {
+          "score": {},
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0035897/0035897-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0035897-run-1.gif",
+              "size": 3738,
+              "scrUrl": "/zxdb/sinclair/entries/0035897/0035897-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 35897,
+              "url": "/zxscreens/0035897/0035897-run-1.gif"
+            }
+          ],
+          "originalYearOfRelease": 2005,
+          "publishers": [
+            {
+              "country": "Hungary",
+              "name": "Jatekgyaros",
+              "publisherSeq": 1
+            }
+          ],
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SIKLO2",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SIKLO2"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0036842",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SINCLAIR 1: The trail Begins",
+          "score": {},
+          "genreType": "Demoscene",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0036842/0036842-load-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0036842/0036842-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0036842/0036842-run-2.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0036842/0036842-run-3.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0036842-load-1.png",
+              "size": 5674,
+              "scrUrl": "/zxdb/sinclair/entries/0036842/0036842-load-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 36842,
+              "url": "/zxscreens/0036842/0036842-load-1.png"
+            },
+            {
+              "filename": "0036842-run-1.png",
+              "size": 5703,
+              "scrUrl": "/zxdb/sinclair/entries/0036842/0036842-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 36842,
+              "url": "/zxscreens/0036842/0036842-run-1.png"
+            },
+            {
+              "filename": "0036842-run-2.png",
+              "size": 3738,
+              "scrUrl": "/zxdb/sinclair/entries/0036842/0036842-run-2.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 36842,
+              "url": "/zxscreens/0036842/0036842-run-2.png"
+            },
+            {
+              "filename": "0036842-run-3.png",
+              "size": 1610,
+              "scrUrl": "/zxdb/sinclair/entries/0036842/0036842-run-3.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 36842,
+              "url": "/zxscreens/0036842/0036842-run-3.png"
+            }
+          ],
+          "originalYearOfRelease": 2021,
+          "genre": "Demoscene: Demo",
+          "publishers": [
+            {
+              "country": "Spain",
+              "name": "Sequentia Soft",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Demo",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SINCLAIR 1: The trail Begins"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0042215",
+        "_source": {
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SJOE",
+          "score": {},
+          "genreType": "Game",
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0042215/SJOE-LOAD-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Loading screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0042215/SJOE-RUN-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "SJOE-LOAD-1.gif",
+              "size": 8631,
+              "scrUrl": "/zxdb/sinclair/entries/0042215/SJOE-LOAD-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Loading screen",
+              "title": "",
+              "entry_id": 42215,
+              "url": "/zxscreens/0042215/SJOE-LOAD-1.gif"
+            },
+            {
+              "filename": "SJOE-RUN-1.png",
+              "size": 3423,
+              "scrUrl": "/zxdb/sinclair/entries/0042215/SJOE-RUN-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 42215,
+              "url": "/zxscreens/0042215/SJOE-RUN-1.png"
+            }
+          ],
+          "originalYearOfRelease": 2023,
+          "genre": "Game: Puzzle",
+          "publishers": [
+            {
+              "name": "Paradigm Shifter",
+              "publisherSeq": 1
+            }
+          ],
+          "genreSubType": "Puzzle",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX-Spectrum 48K"
+        },
+        "sort": [
+          "SJOE"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0030695",
+        "_source": {
+          "score": {},
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0030695/0030695-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            },
+            {
+              "path": "/zxdb/sinclair/entries/0030695/0030695-run-2.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0030695-run-1.png",
+              "size": 3507,
+              "scrUrl": "/zxdb/sinclair/entries/0030695/0030695-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 30695,
+              "url": "/zxscreens/0030695/0030695-run-1.png"
+            },
+            {
+              "filename": "0030695-run-2.gif",
+              "size": 5867,
+              "scrUrl": "/zxdb/sinclair/entries/0030695/0030695-run-2.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 30695,
+              "url": "/zxscreens/0030695/0030695-run-2.gif"
+            }
+          ],
+          "originalYearOfRelease": 2000,
+          "publishers": [
+            {
+              "country": "UK",
+              "name": "Graham Goring",
+              "publisherSeq": 1
+            }
+          ],
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SK Print",
+          "contentType": "SOFTWARE"
+        },
+        "sort": [
+          "SK Print"
+        ]
+      },
+      {
+        "_index": "zxinfo-20231024-211516",
+        "_id": "0029283",
+        "_source": {
+          "score": {},
+          "additionalDownloads": [
+            {
+              "path": "/zxdb/sinclair/entries/0029283/0029283-run-1.scr",
+              "size": 6912,
+              "format": "Screen dump (SCR)",
+              "type": "Running screen"
+            }
+          ],
+          "screens": [
+            {
+              "filename": "0029283-run-1.png",
+              "size": 1905,
+              "scrUrl": "/zxdb/sinclair/entries/0029283/0029283-run-1.scr",
+              "format": "Picture",
+              "release_seq": "0",
+              "type": "Running screen",
+              "title": "",
+              "entry_id": 29283,
+              "url": "/zxscreens/0029283/0029283-run-1.png"
+            }
+          ],
+          "zxinfoVersion": "1.0.175",
+          "availability": "Available",
+          "title": "SKETCHPA",
+          "contentType": "SOFTWARE",
+          "machineType": "ZX81 16K"
+        },
+        "sort": [
+          "SKETCHPA"
+        ]
+      }
+    ]
+  }
+}

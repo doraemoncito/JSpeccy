@@ -1,0 +1,774 @@
+swagger: "2.0"
+info:
+  version: "3.0.0"
+  title: ZXInfo API
+  description: |
+    Welcome to the world's (probaly) greatest Sinclair API!.
+
+    This ZXDB based API is a tool to help developers everywhere create amazing and incredible web sites and apps using data from the 40-plus years area of Sinclair home computers (and clones).
+
+    **Ready** to get started?
+
+    This is the short version of what you need to do:
+    * Be a good API citizen, read and understand how to use the API
+    * **Identify yourself** using your own **User-Agent** string (and don't forget to tell us about it). Otherwise there is a risk that access will be treated as a crawler!
+    * Keep in touch: tell us about what you're building and talk to other developers
+    * Build cool stuff
+
+    The ZXInfo API is also the backend for the web site https://zxinfo.dk
+
+    Remember that the ZXInfo API suite and portal is an evolving project, developed by dedicated people in their spare time. To the extent that it is possible, we will try to limit any modifications which cause backwards incompatible changes to applications.
+
+    Most communication will occur on the community forum on https://spectrumcomputing.co.uk/forums/
+
+    Additional information can be found on the [Wiki](https://github.com/thomasheckmann/zxinfo-api-v3/wiki/ZXInfo-API-v3-documentation)
+
+    **KNOWN CLIENTS using ZXInfo API**
+
+    If you want to check out how the ZXInfo API is being used, please checkout the following:
+
+    * Web site https://zxinfo.dk - a modern full featured web site build using Vue.js and Vuetify.
+    * [Virtual TR-DOS](https://vtrd.in/) - the largest archive of software (games, electronic press, system programs, pc tools) for the ZX Spectrum with TR-DOS.
+    * ZX Spectrum Frontend Meta Generator [GitHub](https://github.com/leemm/zxspectrum-meta-generator) - Create your metadata for various emulator frontends.
+    * Microdrive Emulator [OqtaDrive](https://oqtadrive.org/01.overview/features/) - emulates a bank of 8 Microdrives for use with a Sinclair ZX Spectrum with Interface 1, or with a Sinclair QL.
+    * ZX Tape Player App [GitHub](https://github.com/semack/zx_tape_player) - Cross platform TZX/TAP player for iOS and Android
+    * Android [Zx App](https://play.google.com/store/apps/details?id=com.bricboys.zxapp) - ZX Spectrum stuff search engine
+    * SpeccyBot https://github.com/druellan/speccybot - an interactive chat bot for Telegram that allows searching online for Spectrum related information.
+    * Emulator [ZEsarUX](https://github.com/chernandezba/zesarux) - ZX Second-Emulator And Released for UniX.
+    * WoSC https://worldofspectrum.net - WoSC (WOS Classic) is the spiritual successor to the legendary World Of Spectrum site.
+    * ZXInfoTV [AppleTV](https://github.com/thomasheckmann/zxinfo-tv) - a video focused experiece for your AppleTV
+
+    [**ZXDB update 23.10.2023**](https://zxinfo.dk/whatsnew)
+
+    Latest ZXDB version:
+    * 1.0.175
+    * 1.0.174
+    * 1.0.173
+    * 1.0.171
+    * 1.0.170
+    * 1.0.169
+    * 1.0.168
+    * [1.0.84](https://api.zxinfo.dk/changelogs/change-1.0.84-10022021.txt)
+
+  contact:
+    name: ZXInfo API development
+    email: zxinfo_dev@kolbeck.dk
+host: api.zxinfo.dk
+basePath: /v3
+tags:
+  - name: "zxinfo"
+    description: "(Almost) Everything about Sinclair-related material including software, hardware, books, magazines, etc."
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /search:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Most important endpoint, general search for entries."
+      description: |
+        Returns a List of entries matching input filters.
+
+        The search will match given input in the following document properties:
+          * title
+          * publishers
+          * authors
+          * author groups
+          * re-release title
+          * re-release publisher
+
+        Original entries are prioritized over modified versions. This is to ensure e.g. 'Manic Miner' shows up at the top :-)
+        Additional options can be specified to futher narrow down search.
+
+        Specials:
+        *machinetype* - use ZXSPECTRUM, ZX81 or PENTAGON to cover all variants, as an alternative to specify each machine variant.
+        *genretype* - use GAMES to cover all game genres, as an alternative to specify each type.
+
+      operationId: "search"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "query"
+          in: query
+          description: "something to query for"
+          type: string
+          required: false
+        - name: "titlesonly"
+          in: query
+          description: "restrict search to title only"
+          type: boolean
+          required: false
+          default: false
+        - name: "tosectype"
+          in: query
+          description: "restrict search to entries with these TOSEC types, e.g. tzx, tap or dsk"
+          type: string
+          required: false
+        - name: mode
+          in: query
+          description: Specifies if returned JSON should be 'tiny', 'compact' or 'full'. Compact format is ideal for creating an overview page showing the result
+          required: false
+          default: "compact"
+          type: string
+        - name: size
+          in: query
+          description: Specifies the page size for pagination. If used in combination with offset=random, max value allowed is 10.
+          required: false
+          default: 25
+          type: integer
+        - name: offset
+          in: query
+          description: Specifies the page offset for pagination. Use 'random' to return 'size' random items from result.
+          required: false
+          default: 0
+          type: string
+        - name: sort
+          in: query
+          description: Specifies sorting mode.
+          required: false
+          default: "rel_desc"
+          type: string
+          enum:
+            - title_asc
+            - title_desc
+            - date_asc
+            - date_desc
+            - rel_asc
+            - rel_desc
+        - name: output
+          in: query
+          description: Specifies output mode.
+          required: false
+          type: string
+          enum:
+            - simple
+            - flat
+        - name: "contenttype"
+          in: query
+          description: Filter by contenttype
+          type: string
+          enum:
+            - SOFTWARE
+            - HARDWARE
+            - BOOK
+          required: false
+        - name: "language"
+          in: query
+          description: "Filter by language: English, Spanish"
+          type: string
+          required: false
+        - name: "year"
+          in: query
+          description: "Filter by year of release"
+          type: integer
+          required: false
+        - name: "genretype"
+          in: query
+          description: "Filter by genretype, e.g. 'Arcade Game'"
+          type: string
+          required: false
+        - name: "genresubtype"
+          in: query
+          description: "Filter by genresubtype, e.g. 'Action'"
+          type: string
+          required: false
+        - name: "machinetype"
+          in: query
+          description: "Filter by machinetype, e.g. 'ZX-Spectrum 48K'"
+          type: string
+          required: false
+        - name: "controls"
+          in: query
+          description: "Filter by controls, e.g. 'Kempston'"
+          type: string
+          required: false
+        - name: "multiplayermode"
+          in: query
+          description: "Filter by multiplayermode, e.g. 'Turn based'"
+          type: string
+          required: false
+        - name: "multiplayertype"
+          in: query
+          description: "Filter by multiplayertype, e.g. 'Versus'"
+          type: string
+          required: false
+        - name: "originalpublication"
+          in: query
+          description: "Filter by originalpublication, e.g. 'Type-in'"
+          type: string
+          required: false
+        - name: "availability"
+          in: query
+          description: "Filter by availability, e.g. 'Never released'"
+          type: string
+          required: false
+        - name: "group"
+          in: query
+          description: "Filter by group. See ZXDB documentation"
+          type: string
+          required: false
+        - name: "groupname"
+          in: query
+          description: "Filter by groupname. See ZXDB documentation"
+          type: string
+          required: false
+      responses:
+        # Response code
+        200:
+          description: "successful operation, JSON document with details"
+
+  /games/{game-id}:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Fetches a single entry by id"
+      description: |
+        This method fetches a single entry resource. It is the canonical URI for any entry resource provided by the API. Can be shared on e.g. facebook for a direct link to an entry
+
+      operationId: "getGameById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "game-id"
+          in: path
+          description: ZXDB entry id. For WoS compatibility, e.g. 0002259, left padded with 0's if less than 7 digits.
+          type: string
+          required: true
+        - name: mode
+          in: query
+          description: Specifies if returned JSON should be 'tiny', 'compact' or 'full'. Compact format is ideal for creating an overview page showing the result
+          required: false
+          default: "compact"
+          type: string
+        - name: output
+          in: query
+          description: Specifies output mode.
+          required: false
+          type: string
+          enum:
+            - flat
+      responses:
+        # Response code
+        200:
+          description: OK
+        400:
+          description: Bad request. Entry id must be an integer. Number of digits between 1 and 7.
+        404:
+          description: An entry with the specified ID was not found.
+        500:
+          description: Something went wrong.
+
+  /games/byletter/{letter}:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Fetches list of entries starting with a specific letter"
+      description: |
+        Fetches a list of entries starting with a specific letter: a-Z or  \# for numbers.
+
+        Specials:
+        *machinetype* - use ZXSPECTRUM, ZX81 or PENTAGON to cover all variants, as an alternative to specify each machine variant.
+
+      operationId: "getGamesByLetter"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "letter"
+          in: path
+          description: a-z - or # for numbers (case insensitive)
+          type: string
+          required: true
+        - name: "contenttype"
+          in: query
+          description: Filter by contenttype
+          type: string
+          enum:
+            - SOFTWARE
+            - HARDWARE
+            - BOOK
+          required: false
+        - name: "machinetype"
+          in: query
+          description: "Filter by machinetype, e.g. 'ZX-Spectrum 48K'"
+          type: string
+          required: false
+        - name: mode
+          in: query
+          description: Specifies if returned JSON should be 'tiny', 'compact' or 'full'. Compact format is ideal for creating an overview page showing the result
+          required: false
+          default: "tiny"
+          type: string
+        - name: size
+          in: query
+          description: Specifies the page size for pagination.
+          required: false
+          default: 25
+          type: integer
+        - name: offset
+          in: query
+          description: Specifies the page offset for pagination.
+          required: false
+          default: 0
+          type: integer
+        - name: output
+          in: query
+          description: Specifies output mode.
+          required: false
+          type: string
+          enum:
+            - simple
+            - flat
+      responses:
+        # Response code
+        200:
+          description: OK
+        400:
+          description: Bad request. Letter must be a single character, a-z or \#.
+        404:
+          description: An entry with the specified ID was not found.
+
+  /games/morelikethis/{game-id}:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Fetches list of similar entries"
+      description: |
+        Fetches a list of entries using the 'morelikethis' feature of Elasticsearch. Fields considered:
+          * machineType
+          * genreType
+          * genreSubType
+          * contentType
+
+      operationId: "moreLikeThis"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "game-id"
+          in: path
+          description: ZXDB entry id. For WoS compatibility, e.g. 0002259, left padded with 0's if less than 7 digits.
+          type: string
+          required: true
+        - name: mode
+          in: query
+          description: Specifies if returned JSON should be 'tiny', 'compact' or 'full'. Compact format is ideal for creating an overview page showing the result
+          required: false
+          default: "compact"
+          type: string
+        - name: size
+          in: query
+          description: Specifies number of entries to return.
+          required: false
+          default: 25
+          type: integer
+        - name: output
+          in: query
+          description: Specifies output mode.
+          required: false
+          type: string
+          enum:
+            - simple
+            - flat
+      responses:
+        # Response code
+        200:
+          description: OK
+        400:
+          description: Bad request. Letter must be a single character, a-z or \#.
+        404:
+          description: An entry with the specified ID was not found.
+
+  /games/random/{total}:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Fetches list of random entries"
+      description: |
+        Fetches a list of random SOFTWARE entries from the categories:
+        * Adventure Game
+        * Arcade Game
+        * Casual Game
+        * Game
+        * Sport Game
+        * Strategy Game
+
+        All returned items has loading and in-game screen.
+
+      operationId: "getRandomGames"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "total"
+          in: path
+          description: total number of entries to return
+          type: string
+          required: true
+        - name: mode
+          in: query
+          description: Specifies if returned JSON should be 'tiny', 'compact' or 'full'. Compact format is ideal for creating an overview page showing the result
+          required: false
+          default: "compact"
+          type: string
+        - name: output
+          in: query
+          description: Specifies output mode.
+          required: false
+          type: string
+          enum:
+            - simple
+            - flat
+      responses:
+        # Response code
+        200:
+          description: OK
+        400:
+          description: Bad request. Entry id must be an integer. larger than 0 and max 7 digits.
+        404:
+          description: An entry with the specified ID was not found.
+
+  /authors/{author-name}/games:
+    get:
+      summary: "Fetches list of entries filtered by author"
+      description: |
+        Fetches list of entries from a specific author, including:
+        * author.name
+        * authors.group
+
+      tags:
+        - "zxinfo"
+      parameters:
+        - name: author-name
+          in: path
+          description: Specifies name of author to lookup
+          required: true
+          type: string
+        - name: mode
+          in: query
+          description: Specifies if returned JSON should be 'tiny', 'compact' or 'full'. Compact format is ideal for creating an overview page showing the result
+          required: false
+          default: "compact"
+          type: string
+        - name: size
+          in: query
+          description: Specifies the page size for pagination.
+          required: false
+          default: 25
+          type: integer
+        - name: offset
+          in: query
+          description: Specifies the page offset for pagination.
+          required: false
+          default: 0
+          type: integer
+        - name: sort
+          in: query
+          description: Specifies sorting mode.
+          required: false
+          default: "rel_desc"
+          type: string
+          enum:
+            - title_asc
+            - title_desc
+            - date_asc
+            - date_desc
+            - rel_asc
+            - rel_desc
+        - name: output
+          in: query
+          description: Specifies output mode.
+          required: false
+          type: string
+          enum:
+            - simple
+            - flat
+      responses:
+        # Response code
+        200:
+          description: |
+            An array of games. Adds *X-Total-Count* to reponse header.
+
+  /publishers/{publisher-name}/games:
+    get:
+      summary: "Fetches list of entries filtered by publisher"
+      description: |
+        Fetches list of entries from a specific publisher, including:
+        * publisher.name
+        * releases.publisher.name
+
+      tags:
+        - "zxinfo"
+      parameters:
+        - name: publisher-name
+          in: path
+          description: Specifies name of publisher to lookup
+          required: true
+          type: string
+        - name: mode
+          in: query
+          description: Specifies if returned JSON should be 'tiny', 'compact' or 'full'. Compact format is ideal for creating an overview page showing the result
+          required: false
+          default: "compact"
+          type: string
+        - name: size
+          in: query
+          description: Specifies the page size for pagination.
+          required: false
+          default: 25
+          type: integer
+        - name: offset
+          in: query
+          description: Specifies the page offset for pagination.
+          required: false
+          default: 0
+          type: integer
+        - name: sort
+          in: query
+          description: Specifies sorting mode.
+          required: false
+          default: "rel_desc"
+          type: string
+          enum:
+            - title_asc
+            - title_desc
+            - date_asc
+            - date_desc
+            - rel_asc
+            - rel_desc
+        - name: output
+          in: query
+          description: Specifies output mode.
+          required: false
+          type: string
+          enum:
+            - simple
+            - flat
+      responses:
+        # Response code
+        200:
+          description: |
+            An array of games. Adds *X-Total-Count* to reponse header.
+
+  /magazines/:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Fetches all magazines"
+      description: |
+        This method fetches basic info for all magazines.
+      operationId: "getAllMagazines"
+      produces:
+        - "application/json"
+      parameters:
+        - name: size
+          in: query
+          description: Specifies the page size for pagination
+          required: true
+          type: integer
+        - name: offset
+          in: query
+          description: Specifies the page offset for pagination
+          required: true
+          type: integer
+        - name: sort
+          in: query
+          description: Specifies sorting mode. Can be on of name_asc, name_desc.
+          required: false
+          default: "name_asc"
+          type: string
+      responses:
+        # Response code
+        200:
+          description: |
+            An array of magazines. Adds *X-Total-Count* to reponse header.
+
+  /magazines/{magazine-name}:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Fetches a single magazine by name"
+      description: |
+        This method fetches a single magazine resource. It is the canonical URI for any entry resource provided by the API.
+
+          **Note: Output can be quite big, as it contains everything for a given magazine.**
+      operationId: "getMagazineByName"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "magazine-name"
+          in: path
+          description: Magazine name to fetch.
+          type: string
+          required: true
+      responses:
+        # Response code
+        200:
+          description: OK
+        404:
+          description: A magazine with the specified name was not found.
+
+  /magazines/{magazine-name}/issues:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Fetches basic issue info for single magazine by name"
+      description: |
+        This method fetches all basic issue info for a single magazine.
+      operationId: "getIssuesByMagazineName"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "magazine-name"
+          in: path
+          description: Magazine name to fetch.
+          type: string
+          required: true
+      responses:
+        # Response code
+        200:
+          description: |
+            An array of basic issues info. Adds *X-Total-Count* to reponse header.
+
+  /magazines/{magazine-name}/issues/{issue-id}:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Fetches issue info for single magazine by name and issue-id"
+      description: |
+        This method fetches all issue info for a single magazine and issue-id.
+      operationId: "getIssue"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "magazine-name"
+          in: path
+          description: Magazine name to fetch.
+          type: string
+          required: true
+        - name: "issue-id"
+          in: path
+          description: issue-id to fetch.
+          type: string
+          required: true
+      responses:
+        # Response code
+        200:
+          description: OK
+        404:
+          description: A magazine with the specified name and issue-id was not found.
+
+  /metadata/:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Returns list of metadata available"
+      description: |
+        Fetches a list of metadata:
+        Return list of possible values for the following:
+        * machinetype
+        * genretypes
+        * features
+
+        Intended to be used as input to /search
+
+      operationId: "getMetaData"
+      produces:
+        - "application/json"
+      responses:
+        # Response code
+        200:
+          description: OK
+
+  /suggest/{term}:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Returns list of suggestions"
+      description: |
+        Fetches a list of suggestions for input term. Returns suggestions for titles, publishers and authors to be used in type-as-you-go search fields.
+
+      operationId: "getSuggestions"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "term"
+          in: path
+          description: input for suggestions
+          type: string
+          required: true
+      responses:
+        # Response code
+        200:
+          description: OK
+
+  /suggest/author/{term}:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Returns list of suggestions"
+      description: |
+        Fetches a list of suggestions for input term:
+        Generates suggestions for authors.
+
+      operationId: "getSuggestionsAuthor"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "term"
+          in: path
+          description: input for suggestions
+          type: string
+          required: true
+      responses:
+        # Response code
+        200:
+          description: OK
+
+  /suggest/publisher/{term}:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Returns list of suggestions"
+      description: |
+        Fetches a list of suggestions for input term:
+        Generates suggestions for publishers.
+
+      operationId: "getSuggestionsPublisher"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "term"
+          in: path
+          description: input for suggestions
+          type: string
+          required: true
+      responses:
+        # Response code
+        200:
+          description: OK
+
+  /filecheck/{hash}:
+    get:
+      tags:
+        - "zxinfo"
+      summary: "Loookup game by file"
+      description: |
+        Lookup a game by md5 or sha512 hash of file. If found, returns id and title for found entry.
+
+        Use md5 <file> or sha512sum <file> to generate hash for file.
+
+      operationId: "getFileByHash"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "hash"
+          in: path
+          description: MD5 (length 32) or SHA512 (length 128) hash
+          type: string
+          required: true
+      responses:
+        # Response code
+        200:
+          description: OK

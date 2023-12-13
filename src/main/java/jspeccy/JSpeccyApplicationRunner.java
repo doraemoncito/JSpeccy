@@ -1,11 +1,12 @@
 package jspeccy;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.stereotype.Component;
 import picocli.CommandLine;
+
+import javax.inject.Inject;
 
 @Component
 @Slf4j
@@ -15,7 +16,7 @@ public class JSpeccyApplicationRunner implements CommandLineRunner, ExitCodeGene
     private final CommandLine.IFactory factory;
     private int exitCode;
 
-    @Autowired
+    @Inject
     public JSpeccyApplicationRunner(final JSpeccyCommand command, final CommandLine.IFactory factory) {
 
         this.command = command;

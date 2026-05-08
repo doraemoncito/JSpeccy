@@ -1135,9 +1135,9 @@ public final class Memory {
                 }
             }
         } catch (FileNotFoundException ex) {
-                String msg = java.util.ResourceBundle.getBundle("machine/Bundle").getString("FILE_ROM_ERROR");
-                log.warn("{}: {}", msg, filename);
-                return false;
+            String msg = java.util.ResourceBundle.getBundle("machine/Bundle").getString("MSG_USER_ROM_NOT_FOUND");
+            log.info(msg, new File(filename).getAbsolutePath());
+            return false;
         } catch (IOException ex) {
             String msg = java.util.ResourceBundle.getBundle("machine/Bundle").getString("FILE_ROM_ERROR");
             log.error("{}: {}", msg, filename);

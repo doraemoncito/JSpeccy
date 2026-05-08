@@ -134,14 +134,17 @@ public class JSpeccy extends javax.swing.JFrame {
             Transferable transfer = support.getTransferable();
 
             try {
-                java.util.List<File> list =
-                        (java.util.List<File>) transfer.getTransferData(DataFlavor.javaFileListFlavor);
+                java.util.List<?> list =
+                        (java.util.List<?>) transfer.getTransferData(DataFlavor.javaFileListFlavor);
 
                 if (list.size() != 1) {
                     return false;
                 }
 
-                for (File file : list) {
+                for (Object item : list) {
+                    if (!(item instanceof File file)) {
+                        return false;
+                    }
                     if (file.isDirectory())
                         return false;
 
